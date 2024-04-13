@@ -1,0 +1,2256 @@
+/*--------------------------------------------------------------
+# General
+--------------------------------------------------------------*/
+html, body {width: auto!important; overflow-x: hidden!important
+} 
+body {
+  font-family: "Open Sans", sans-serif;
+  color: #444444;
+  margin: 0px;
+  height: 100%;
+}
+
+.customBody {
+  background-color:#000;
+  width: auto!important; 
+  overflow-x: hidden!important;
+  margin: 0px;
+  height: 100vh;
+}
+
+a {
+  color: #04AA6D; 
+  text-decoration: none;
+}
+
+a:hover {
+  color: #04AA6D; 
+  text-decoration: none;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Raleway", sans-serif;
+}
+
+/*--------------------------------------------------------------
+# Header
+--------------------------------------------------------------*/
+#header {
+  transition: all 0.5s;
+  z-index: 997;
+  padding: 15px 0;
+}
+
+#header.header-scrolled,
+#header.header-inner-pages {
+  background: rgba(0, 0, 0, 0.5);
+}
+
+#header .logo {
+  font-size: 32px;
+  margin: 0;
+  padding: 0;
+  line-height: 1;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+#header .logo a {
+  color: #fff;
+}
+
+#header .logo a span {
+  color: #04AA6D; 
+}
+
+#header .logo img {
+  max-height: 40px;
+}
+
+/*--------------------------------------------------------------
+#  Get Startet Button
+--------------------------------------------------------------*/
+.get-started-btn {
+  color: #fff;
+  border-radius: 4px;
+  padding: 7px 25px 8px 25px;
+  white-space: nowrap;
+  transition: 0.3s;
+  font-size: 14px;
+  display: inline-block;
+  border: 2px solid #04AA6D; 
+}
+
+.get-started-btn:hover {
+  background: #04AA6D; 
+  color: #343a40;
+}
+
+@media (max-width: 992px) {
+  .get-started-btn {
+    padding: 7px 20px 8px 20px;
+    margin-right: 15px;
+  }
+}
+
+/*--------------------------------------------------------------
+# Hero Section
+--------------------------------------------------------------*/
+#hero {
+  width: 100%;
+  height: 100vh;
+  background: url("../img/black.png") top center;
+  background-size: cover;
+  position: relative;
+}
+
+#hero:before {
+  content: "";
+  background: rgba(0, 0, 0, 0.6);
+  position: absolute;
+  bottom: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+
+#hero .container {
+  position: relative;
+  padding-top: 74px;
+  text-align: center;
+}
+
+#hero h1 {
+  margin: 0;
+  font-size: 56px;
+  font-weight: 700;
+  line-height: 64px;
+  color: #fff;
+  font-family: "Poppins", sans-serif;
+}
+
+#hero h1 span {
+  color: #04AA6D; 
+}
+
+#hero h2 {
+  color: rgba(255, 255, 255, 0.9);
+  margin: 10px 0 0 0;
+  font-size: 24px;
+}
+
+#hero .icon-box {
+  padding: 30px 20px;
+  transition: ease-in-out 0.3s;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  height: 100%;
+  text-align: center;
+}
+
+#hero .icon-box i {
+  font-size: 32px;
+  line-height: 1;
+  color: #fff;
+  transition: ease-in-out 0.3s; 
+}
+
+#hero .icon-box h3 {
+  font-weight: 700;
+  margin: 10px 0 0 0;
+  padding: 0;
+  line-height: 1;
+  font-size: 20px;
+  line-height: 26px;
+}
+
+#hero .icon-box h3 {
+  color: #fff;
+  transition: ease-in-out 0.3s;
+}
+
+#hero .icon-box i {
+  color: #fff;
+  transition: ease-in-out 0.3s;
+}
+
+#hero .icon-box:hover h3, #hero .icon-box:hover i {
+  color: #04AA6D;
+}
+
+#hero .icon-box:hover {
+  border-color: #04AA6D;
+}
+
+@media (min-width: 1024px) {
+  #hero {
+    background-attachment: fixed;
+  }
+}
+
+@media (max-width: 768px) {
+  #hero {
+    height: auto;
+  }
+
+  #hero h1 {
+    font-size: 28px;
+    line-height: 36px;
+  }
+
+  #hero h2 {
+    font-size: 20px;
+    line-height: 24px;
+  }
+}
+
+#hero small {
+  font-family: Arial;
+  font-size: 12px;
+ }
+/*--------------------------------------------------------------
+# Home
+--------------------------------------------------------------*/
+.home {
+  padding: 60px 0;
+  overflow: hidden;
+}
+
+.section-title {
+  padding-bottom: 40px;
+}
+
+.section-title h2 {
+  font-size: 14px;
+  font-weight: 500;
+  padding: 0;
+  line-height: 1px;
+  margin: 0 0 5px 0;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #aaaaaa;
+  font-family: "Poppins", sans-serif;
+}
+
+.section-title h2::after {
+  content: "";
+  width: 120px;
+  height: 1px;
+  display: inline-block;
+  background: #ffde9e;
+  margin: 4px 10px;
+}
+
+.section-title p {
+  margin: 0;
+  margin: 0;
+  font-size: 36px;
+  font-weight: 700;
+  text-transform: uppercase;
+  font-family: "Poppins", sans-serif;
+  color: #151515;
+}
+/*--------------------------------------------------------------
+# grow
+--------------------------------------------------------------*/
+.grow {
+  padding-top: 20px;
+}
+
+.grow .icon-box {
+  padding-left: 15px;
+}
+
+.grow .icon-box h4 {
+  font-size: 20px;
+  font-weight: 700;
+  margin: 5px 0 10px 60px;
+}
+
+.grow .icon-box i {
+  font-size: 48px;
+  float: left;
+  color: #04AA6D; 
+}
+
+.grow .icon-box p {
+  font-size: 15px;
+  color: #848484;
+  margin-left: 60px;
+}
+
+.grow .image {
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  min-height: 400px;
+}
+/*--------------------------------------------------------------
+# diary
+--------------------------------------------------------------*/
+.diary {
+  padding-top: 20px;
+}
+
+.diary .icon-box {
+  text-align: center;
+  border: 1px solid #ebebeb;
+  padding: 80px 20px;
+  transition: all ease-in-out 0.3s;
+  background: #fff;
+}
+
+.diary .icon-box .icon {
+  margin: 0 auto;
+  width: 64px;
+  height: 64px;
+  background: #04AA6D; 
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+  transition: 0.3s;
+}
+
+.diary .icon-box .icon i {
+  color: #151515;
+  font-size: 28px;
+  transition: ease-in-out 0.3s;
+}
+
+.diary .icon-box h4 {
+  font-weight: 700;
+  margin-bottom: 15px;
+  font-size: 24px;
+}
+
+.diary .icon-box h4 a {
+  color: #151515;
+  transition: ease-in-out 0.3s;
+}
+
+.diary .icon-box h4 a:hover {
+  color: #04AA6D; 
+}
+
+.diary .icon-box p {
+  line-height: 24px;
+  font-size: 14px;
+  margin-bottom: 0;
+}
+
+.diary .icon-box:hover {
+  border-color: #fff;
+  box-shadow: 0px 0 25px 0 rgba(0, 0, 0, 0.1);
+  transform: translateY(-10px);
+}
+/*--------------------------------------------------------------
+# Cta
+--------------------------------------------------------------*/
+.cta {
+  background: url("../img/white.png") fixed center center;
+  background-size: cover;
+  padding: 0px 0;
+}
+
+.cta h3 {
+  color: #fff;
+  font-size: 28px;
+  font-weight: 700;
+}
+
+.cta p {
+  color: #808080;
+}
+
+.cta .cta-btn {
+  font-family: "Raleway", sans-serif;
+  font-weight: 600;
+  font-size: 16px;
+  letter-spacing: 1px;
+  display: inline-block;
+  padding: 8px 28px;
+  border-radius: 4px;
+  transition: 0.5s;
+  margin-top: 10px;
+  border: 2px solid #fff;
+  color: #fff;
+}
+
+.cta .cta-btn:hover {
+  background: #04AA6D; 
+  border-color: #04AA6D; 
+  color: #151515;
+}
+
+/*--------------------------------------------------------------
+# promo
+--------------------------------------------------------------*/
+.clients {
+  padding-top: 20px;
+}
+
+.clients .swiper-slide img {
+  opacity: 0.5;
+  transition: 0.3s;
+  filter: grayscale(100);
+}
+
+.clients .swiper-slide img:hover {
+  filter: none;
+  opacity: 1;
+}
+
+.clients .swiper-pagination {
+  margin-top: 20px;
+  position: relative;
+}
+
+.clients .swiper-pagination .swiper-pagination-bullet {
+  width: 12px;
+  height: 12px;
+  background-color: #fff;
+  opacity: 1;
+  background-color: #ddd;
+}
+
+.clients .swiper-pagination .swiper-pagination-bullet-active {
+  background-color: #04AA6D;
+}
+
+.clients .swiper-slide img {
+  transition-duration: 0ms !important;
+}
+/*--------------------------------------------------------------
+# shop
+--------------------------------------------------------------*/
+.portfolio {
+  padding-top: 20px;
+}
+
+.portfolio .portfolio-item {
+  margin-bottom: 30px;
+}
+
+.portfolio #portfolio-flters {
+  padding: 0;
+  margin: 0 auto 20px auto;
+  list-style: none;
+  text-align: center;
+}
+
+.portfolio #portfolio-flters li {
+  cursor: pointer;
+  display: inline-block;
+  padding: 8px 15px 10px 15px;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1;
+  text-transform: uppercase;
+  color: #444444;
+  margin-bottom: 5px;
+  transition: all 0.3s ease-in-out;
+  border-radius: 3px;
+}
+
+.portfolio #portfolio-flters li:hover,
+.portfolio #portfolio-flters li.filter-active {
+  color: #151515;
+  background: #04AA6D; 
+}
+
+.portfolio #portfolio-flters li:last-child {
+  margin-right: 0;
+}
+
+.portfolio .portfolio-wrap {
+  transition: 0.3s;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+  background: rgba(255, 255, 255, 0.6);
+}
+
+.portfolio .portfolio-wrap::before {
+  content: "";
+  background: rgba(21, 21, 21, 0.6);
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  transition: all ease-in-out 0.3s;
+  z-index: 2;
+  opacity: 0;
+}
+
+.portfolio .portfolio-wrap img {
+  transition: all ease-in-out 0.3s;
+}
+
+.portfolio .portfolio-wrap .portfolio-info {
+  opacity: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 3;
+  transition: all ease-in-out 0.3s;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-start;
+  padding: 20px;
+}
+
+.portfolio .portfolio-wrap .portfolio-info h4 {
+  font-size: 20px;
+  color: #fff;
+  font-weight: 600;
+}
+
+.portfolio .portfolio-wrap .portfolio-info p {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 14px;
+  text-transform: uppercase;
+  padding: 0;
+  margin: 0;
+  font-style: italic;
+}
+
+.portfolio .portfolio-wrap .portfolio-links {
+  text-align: center;
+  z-index: 4;
+}
+
+.portfolio .portfolio-wrap .portfolio-links a {
+  color: #fff;
+  margin: 0 5px 0 0;
+  font-size: 28px;
+  display: inline-block;
+  transition: 0.3s;
+}
+
+.portfolio .portfolio-wrap .portfolio-links a:hover {
+  color: #04AA6D; 
+}
+
+.portfolio .portfolio-wrap:hover::before {
+  opacity: 1;
+}
+
+.portfolio .portfolio-wrap:hover img {
+  transform: scale(1.2);
+}
+
+.portfolio .portfolio-wrap:hover .portfolio-info {
+  opacity: 1;
+}
+/*--------------------------------------------------------------
+# shop Details
+--------------------------------------------------------------*/
+.portfolio-details {
+  padding-top: 40px;
+}
+
+.portfolio-details .portfolio-details-slider img {
+  width: 100%;
+}
+
+.portfolio-details .portfolio-details-slider .swiper-pagination {
+  margin-top: 20px;
+  position: relative;
+}
+
+.portfolio-details .portfolio-details-slider .swiper-pagination .swiper-pagination-bullet {
+  width: 12px;
+  height: 12px;
+  background-color: #fff;
+  opacity: 1;
+  border: 1px solid #04AA6D; 
+}
+
+.portfolio-details .portfolio-details-slider .swiper-pagination .swiper-pagination-bullet-active {
+  background-color: #04AA6D; 
+}
+
+.portfolio-details .portfolio-info {
+  padding: 30px;
+  box-shadow: 0px 0 30px rgba(21, 21, 21, 0.08);
+}
+
+.portfolio-details .portfolio-info h3 {
+  font-size: 22px;
+  font-weight: 700;
+  margin-bottom: 20px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #eee;
+}
+
+.portfolio-details .portfolio-info ul {
+  list-style: none;
+  padding: 0;
+  font-size: 15px;
+}
+
+.portfolio-details .portfolio-info ul li+li {
+  margin-top: 10px;
+}
+
+.portfolio-details .portfolio-description {
+  padding-top: 30px;
+}
+
+.portfolio-details .portfolio-description h2 {
+  font-size: 26px;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+.portfolio-details .portfolio-description p {
+  padding: 0;
+}
+
+/*--------------------------------------------------------------
+# tools
+--------------------------------------------------------------*/
+.counts .content {
+  padding: 30px 0;
+}
+
+.counts .content h3 {
+  font-weight: 700;
+  font-size: 34px;
+  color: #151515;
+}
+
+.counts .content p {
+  margin-bottom: 0;
+}
+
+.counts .content .count-box {
+  padding: 20px 0;
+  width: 100%;
+}
+
+.counts .content .count-box i {
+  display: block;
+  font-size: 36px;
+  color: #04AA6D; 
+  float: left;
+}
+
+.counts .content .count-box span {
+  font-size: 36px;
+  line-height: 30px;
+  display: block;
+  font-weight: 700;
+  color: #151515;
+  margin-left: 50px;
+}
+
+.counts .content .count-box p {
+  padding: 15px 0 0 0;
+  margin: 0 0 0 50px;
+  font-family: "Raleway", sans-serif;
+  font-size: 14px;
+  color: #3b3b3b;
+}
+
+.counts .content .count-box a {
+  font-weight: 600;
+  display: block;
+  margin-top: 20px;
+  color: #3b3b3b;
+  font-size: 15px;
+  font-family: "Poppins", sans-serif;
+  transition: ease-in-out 0.3s;
+}
+
+.counts .content .count-box a:hover {
+  color: #626262;
+}
+
+.counts .image {
+  background: url("../img/plantDoc.png") center center no-repeat;
+  background-size: cover;
+  min-height: 400px;
+}
+/*--------------------------------------------------------------
+# Team
+--------------------------------------------------------------*/
+.team {
+  background: #fff;
+  padding: 60px 0;
+}
+
+.team .member {
+  margin-bottom: 20px;
+  overflow: hidden;
+  border-radius: 5px;
+  background: #fff;
+  box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.1);
+}
+
+.team .member .member-img {
+  position: relative;
+  overflow: hidden;
+}
+
+.team .member .social {
+  position: absolute;
+  left: 0;
+  bottom: 30px;
+  right: 0;
+  opacity: 0;
+  transition: ease-in-out 0.3s;
+  text-align: center;
+}
+
+.team .member .social a {
+  transition: color 0.3s;
+  color: #151515;
+  margin: 0 3px;
+  border-radius: 4px;
+  width: 36px;
+  height: 36px;
+  background: rgba(255, 255, 255, 0.8);
+  transition: ease-in-out 0.3s;
+  color: #484848;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.team .member .social a:hover {
+  color: #151515;
+  background: #04AA6D; 
+}
+
+.team .member .social i {
+  font-size: 18px;
+  line-height: 0;
+}
+
+.team .member .member-info {
+  padding: 25px 15px;
+}
+
+.team .member .member-info h4 {
+  font-weight: 700;
+  margin-bottom: 5px;
+  font-size: 18px;
+  color: #151515;
+}
+
+.team .member .member-info span {
+  display: block;
+  font-size: 13px;
+  font-weight: 400;
+  color: #aaaaaa;
+}
+
+.team .member .member-info p {
+  font-style: italic;
+  font-size: 14px;
+  line-height: 26px;
+  color: #777777;
+}
+
+.team .member:hover .social {
+  opacity: 1;
+  bottom: 15px;
+}
+/*--------------------------------------------------------------
+# Contact
+--------------------------------------------------------------*/
+.contact .info {
+  width: 100%;
+  background: #fff;
+}
+
+.contact .info i {
+  font-size: 20px;
+  background: #04AA6D; 
+  color: #151515;
+  float: left;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 4px;
+  transition: all 0.3s ease-in-out;
+}
+
+.contact .info h4 {
+  padding: 0 0 0 60px;
+  font-size: 22px;
+  font-weight: 600;
+  margin-bottom: 5px;
+  color: #151515;
+}
+
+.contact .info p {
+  padding: 0 0 0 60px;
+  margin-bottom: 0;
+  font-size: 14px;
+  color: #484848;
+}
+
+.contact .info .email,
+.contact .info .phone {
+  margin-top: 40px;
+}
+
+
+/*--------------------------------------------------------------
+# Breadcrumbs
+--------------------------------------------------------------*/
+.breadcrumbs {
+  padding: 15px 0;
+  background: transparent;
+  min-height: 40px;
+  margin-top: 74px;
+}
+
+.breadcrumbs h2 {
+  font-size: 28px;
+  font-weight: 400;
+}
+
+.breadcrumbs ol {
+  display: flex;
+  flex-wrap: wrap;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.breadcrumbs ol li+li {
+  padding-left: 10px;
+}
+
+.breadcrumbs ol li+li::before {
+  display: inline-block;
+  padding-right: 10px;
+  color: #2f2f2f;
+  content: "/";
+}
+
+@media (max-width: 992px) {
+  .breadcrumbs {
+    margin-top: 68px;
+  }
+
+  .breadcrumbs .d-flex {
+    display: block !important;
+  }
+
+  .breadcrumbs ol {
+    display: block;
+  }
+
+  .breadcrumbs ol li {
+    display: inline-block;
+  }
+}
+
+/*--------------------------------------------------------------
+# Footer
+--------------------------------------------------------------*/
+#footer {
+  background: black;
+  padding: 0 0 30px 0;
+  color: #fff;
+  font-size: 14px;
+}
+
+#footer .footer-top {
+  background: #151515;
+  border-bottom: 1px solid #222222;
+  padding: 60px 0 30px 0;
+}
+
+#footer .footer-top .footer-info {
+  margin-bottom: 30px;
+}
+
+#footer .footer-top .footer-info h3 {
+  font-size: 28px;
+  margin: 0 0 20px 0;
+  padding: 2px 0 2px 0;
+  line-height: 1;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+#footer .footer-top .footer-info h3 span {
+  color: #04AA6D; 
+}
+
+#footer .footer-top .footer-info p {
+  font-size: 14px;
+  line-height: 24px;
+  margin-bottom: 0;
+  font-family: "Raleway", sans-serif;
+  color: #fff;
+}
+
+#footer .footer-top .social-links a {
+  font-size: 18px;
+  display: inline-block;
+  background: #292929;
+  color: #fff;
+  line-height: 1;
+  padding: 8px 0;
+  margin-right: 4px;
+  border-radius: 4px;
+  text-align: center;
+  width: 36px;
+  height: 36px;
+  transition: 0.3s;
+}
+
+#footer .footer-top .social-links a:hover {
+  background: #04AA6D; 
+  color: #151515;
+  text-decoration: none;
+}
+
+#footer .footer-top h4 {
+  font-size: 16px;
+  font-weight: 600;
+  color: #fff;
+  position: relative;
+  padding-bottom: 12px;
+}
+
+#footer .footer-top .footer-links {
+  margin-bottom: 30px;
+}
+
+#footer .footer-top .footer-links ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+#footer .footer-top .footer-links ul i {
+  padding-right: 2px;
+  color: #04AA6D; 
+  font-size: 18px;
+  line-height: 1;
+}
+
+#footer .footer-top .footer-links ul li {
+  padding: 10px 0;
+  display: flex;
+  align-items: center;
+}
+
+#footer .footer-top .footer-links ul li:first-child {
+  padding-top: 0;
+}
+
+#footer .footer-top .footer-links ul a {
+  color: #fff;
+  transition: 0.3s;
+  display: inline-block;
+  line-height: 1;
+}
+
+#footer .footer-top .footer-links ul a:hover {
+  color: #04AA6D; 
+}
+
+#footer .copyright {
+  text-align: center;
+  padding-top: 30px;
+}
+
+/*--------------------------------------------------------------
+# Back to top button
+--------------------------------------------------------------*/
+.back-to-top {
+  position: fixed;
+  visibility: hidden;
+  opacity: 0;
+  right: 15px;
+  bottom: 15px;
+  z-index: 996;
+  background: #04AA6D; 
+  width: 40px;
+  height: 40px;
+  border-radius: 4px;
+  transition: all 0.4s;
+}
+
+.back-to-top i {
+  font-size: 28px;
+  color: #151515;
+  line-height: 0;
+}
+
+.back-to-top:hover {
+  background: #151515;
+}
+
+.back-to-top:hover i {
+  color: #04AA6D; 
+}
+
+.back-to-top.active {
+  visibility: visible;
+  opacity: 1;
+}
+
+/*--------------------------------------------------------------
+# Preloader
+--------------------------------------------------------------*/
+#preloader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 9999;
+  overflow: hidden;
+  background: #151515;
+}
+
+#preloader:before {
+  content: "";
+  position: fixed;
+  top: calc(50% - 0px);
+  left: calc(50% - 30px);
+  border: 6px solid #04AA6D; 
+  border-top-color: #151515;
+  border-bottom-color: #151515;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  -webkit-animation: animate-preloader 1s linear infinite;
+  animation: animate-preloader 1s linear infinite;
+}
+
+@-webkit-keyframes animate-preloader {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes animate-preloader {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/*--------------------------------------------------------------
+# Disable aos animation delay on mobile devices
+--------------------------------------------------------------*/
+@media screen and (max-width: 768px) {
+  [data-aos-delay] {
+    transition-delay: 0 !important;
+  }
+}
+
+/*--------------------------------------------------------------
+# Navigation Menu
+--------------------------------------------------------------*/
+/**
+* Desktop Navigation 
+*/
+.navbar {
+  background-color: rgba(0, 0, 0, 0.5);
+  overflow: auto;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  z-index: 1;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+}
+
+.navbar ul {
+  margin: 0;
+  padding: 5px;
+  display: flex;
+  list-style-type: none;
+  align-items: center;
+}
+
+.navbar a
+ {
+  float: left;
+  text-align: center;
+  padding: 10px 26px 10px 0;
+  font-size: 26px;
+  font-weight: 600;
+  color: #fff;
+  text-decoration: none;
+  transition: 0.3s;
+  width: 20%;
+}
+
+.navbar a:hover,
+.navbar .active,
+.navbar .active:focus,
+.navbar li:hover>a {
+  color: #04AA6D; 
+}
+
+/**
+* Mobile Navigation 
+*/
+
+/* Add responsiveness - on screens less than 500px, make the navigation links appear on top of each other, instead of next to each other */
+@media screen and (max-width: 500px) {
+  .navbar a {
+    float: none;
+    display: block;
+    
+  }
+}
+
+/*--------------------------------------------------------------
+# Search Page
+--------------------------------------------------------------*/
+#myInput {
+  background: transparent;
+  box-shadow: 0 0.3vw 1.0vw rgb(0 0 0 / 0.8);
+  width: 100%; /* Full-width */
+  font-size: 24px; /* Increase font-size */
+  padding: 1.0vw 1.0vw 1.0vw 1.0vw; /* Add some padding */
+  border: 0.1vw solid #04AA6D; /* Add a green border */
+  margin-bottom: 1.0vw; /* Add some space below the input */
+  color: #FFFFFF;
+  text-shadow: 1px 1px #000;
+}
+#myUL {
+  /* Remove default list styling */
+  display: none;
+  box-shadow: 0 0.3vw 1.0vw rgb(0 0 0 / 0.8);
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+#myUL li a {
+  margin-top: -1.0vw; /* Prevent double borders */
+  padding: 1.0vw; /* Add some padding */
+  text-decoration: none; /* Remove default text underline */
+  font-size: 24px; /* Increase the font-size */
+  color: #FFFFFF; /* Add a white text color */
+  text-shadow: 1px 1px #000;
+  display: block; /* Make it into a block element to fill the whole list */
+}
+#myUL li a:hover:not(.header) {
+  background-color: #04AA6D; /* Add a hover effect to all links, except for headers */
+}
+/* user selection data css*/
+.post-container {
+  text-align: justify;
+  text-justify: inter-word;
+  width:100%;
+  inline-size: 100%;
+  position: relative;
+  padding: 2.0vmin 2.0vmin calc(20px + 10.0vmin) 2.0vmin;
+ }
+#image {
+  max-width: 100%;
+  flex-basis: 40%;
+}
+
+#box {
+  height: 100%;
+  overflow:hidden;
+  word-wrap: break-word;
+  margin: 0;
+  font-size: 16px;
+  font-weight: 200;
+  color: #fff;
+  font-family: "Poppins", sans-serif;
+  text-shadow: 0.0vw 0.3vw 0.3vw rgb(0 0 0 / 0.8);
+ 
+}
+#box h1 {
+  margin: 0;
+  font-size: 56px;
+  font-weight: 700;
+  color: #fff;
+  font-family: "Poppins", sans-serif;
+  text-shadow: 0.0vw 0.3vw 0.3vw rgb(0 0 0 / 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+#box h2 {
+  color: rgba(255, 255, 255, 0.9);
+  margin: 10px 0 0 0;
+  font-size: 40px;
+  line-height: 1.0;
+  font-family: "Poppins", sans-serif;
+  text-shadow: 0.0vw 0.3vw 0.3vw rgb(0 0 0 / 0.8);
+}
+#box h3 {
+  color: rgba(255, 255, 255, 0.9);
+  margin: 10px 0 0 0;
+  font-size: 30px;
+  line-height: 1.0;
+  font-family: "Poppins", sans-serif;
+  text-shadow: 0.0vw 0.3vw 0.3vw rgb(0 0 0 / 0.8);
+}
+#box h4 {
+  color: rgba(255, 255, 255, 0.9);
+  margin: 10px 0 0 0;
+  font-size: 20px;
+  line-height: 1.0;
+  font-family: "Poppins", sans-serif;
+  text-shadow: 0.0vw 0.3vw 0.3vw rgb(0 0 0 / 0.8);
+}
+#weeks {
+  display: none;
+}
+@media (min-width: 1024px) {
+  #box {
+    background-attachment: fixed;
+  }
+}
+
+@media (max-width: 768px) {
+  #box {
+    height: auto;
+  }
+
+  #box h1 {
+    font-size: 28px;
+    line-height: 1.0;
+  }
+
+  #box h2 {
+    font-size: 20px;
+    line-height: 0.5;
+  }
+  #box h3 {
+    font-size: 15px;
+    line-height: 0.5;
+  }
+  #box h4 {
+    font-size: 10px;
+    line-height: 0.5;
+  }
+}
+/*--------------------------------------------------------------
+# taskButton
+--------------------------------------------------------------*/
+#taskButton {
+  display: none;
+}
+
+
+/*--------------------------------------------------------------
+# savedButton
+--------------------------------------------------------------*/
+#savedButton {
+  background: transparent;
+  border-radius: 4px;
+  padding: 7px 25px 8px 25px;
+  white-space: nowrap;
+  transition: 0.3s;
+  font-size: 14px;
+  border: 2px solid #04AA6D;
+  color: #FFFFFF; 
+  font-weight: bold;
+}
+
+#savedButton:hover {
+  background: #04AA6D; 
+  color: #343a40;
+}
+
+@media (max-width: 992px) {
+  #savedButton {
+    padding: 7px 20px 8px 20px;
+    margin-right: 15px;
+  }
+}
+/*--------------------------------------------------------------
+# DeleteButton
+--------------------------------------------------------------*/
+.DeleteButton {
+   
+
+  background: transparent;
+  padding: 5px 5px 5px 5px;
+  transition: ease-in-out 0.3s;
+  border: 1px solid red;
+  color: #FFFFFF;
+
+  text-align: center;
+}
+
+.DeleteButton:hover {
+  background: red; 
+  color: #343a40;
+}
+
+
+/*-------------------------------------------------------------
+# MyTask Save/Edit Button
+--------------------------------------------------------------*/
+.editbtn {
+  display: none;
+  background: transparent;
+  border-radius: 4px;
+  padding: 7px 7px 7px 7px;
+  white-space: nowrap;
+  transition: 0.3s;
+  font-size: 20px;
+  border: 2px solid #04AA6D;
+  color: #FFFFFF; 
+  font-weight: bold;
+}
+
+.editbtn:hover {
+  background: #04AA6D; 
+  color: #343a40;
+}
+
+@media (max-width: 992px) {
+  .editbtn {
+    padding: 5px 5px 5px 5px;
+  }
+}
+
+.text-center {
+  text-align: center;
+}
+/*--------------------------------------------------------------
+# Text and Image in MyGrow Image on show()
+--------------------------------------------------------------*/
+.MyGrowImg { 
+  width: 100%;
+  height: auto;
+}
+#MyGrowText {
+  display: none;
+}
+#DeleteButton {
+  display: none;
+}
+#MyGrow2Text {
+  display: none;
+}
+#Delete2Button {
+  display: none;
+}
+#MyGrow3Text {
+  display: none;
+}
+#Delete3Button {
+  display: none;
+}
+#MyGrow4Text {
+  display: none;
+}
+#Delete4Button {
+  display: none;
+}
+#MyGrow5Text {
+  display: none;
+}
+#Delete5Button {
+  display: none;
+}
+/*--------------------------------------------------------------
+# BackButton
+--------------------------------------------------------------*/
+#BackButton {
+  background: transparent;
+  border-radius: 4px;
+  padding: 7px 25px 8px 25px;
+  white-space: nowrap;
+  transition: 0.3s;
+  font-size: 14px;
+  border: 2px solid #04AA6D;
+  color: #FFFFFF; 
+  font-weight: bold;
+}
+
+#BackButton:hover {
+  background: #04AA6D; 
+  color: #343a40;
+}
+
+@media (max-width: 992px) {
+  #BackButton {
+    padding: 7px 20px 8px 20px;
+    margin-right: 15px;
+  }
+}
+/*--------------------------------------------------------------
+# myGrow plant size 
+--------------------------------------------------------------*/
+/* Container holding the logo image*/
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 10%;
+}
+/* Search image and the text */
+#image {
+  float: left;
+  display: none;
+  margin: 1.0vmin 2.0vmin 0.0vmin 0.0vmin;
+}
+.info {
+  inline-size: 100%;
+  overflow-wrap: break-word;
+  font-weight: bold;
+}
+#more_info {
+  display: none;
+}
+#web {
+  display: none;
+}
+/*drop menu */
+/* Dropdown Button */
+#dropbtn {
+  background: transparent;
+  border-radius: 4px;
+  padding: 7px 25px 8px 25px;
+  white-space: nowrap;
+  transition: 0.3s;
+  font-size: 20px;
+  border: 2px solid #04AA6D;
+  color: #FFFFFF; 
+  font-weight: bold;
+}
+
+#dropbtn:hover {
+  background: #04AA6D; 
+  color: #343a40;
+}
+
+@media (max-width: 992px) {
+  #dropbtn {
+    padding: 7px 20px 8px 20px;
+    margin-right: 15px;
+  }
+}
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.7);
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 996;
+  color: #FFFFFF; /* Add a white text color */
+  text-shadow: 1px 1px #000;
+}
+/* Links inside the dropdown */
+.dropdown-content a {
+  margin-top: -1.0vw; /* Prevent double borders */
+  padding: 1.0vw; /* Add some padding */
+  text-decoration: none; /* Remove default text underline */
+  font-size: 20px; /* Increase the font-size */
+  z-index: 996;
+  display: block; /* Make it into a block element to fill the whole list */
+}
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {background-color: #04AA6D;}
+/* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
+
+.show {display:block;}
+
+/*--------------------------------------------------------------
+# myGrow filter table 
+--------------------------------------------------------------*/
+
+table, th, td {
+  border: 1px solid white;
+  font-size: 14px;
+  position: relative;
+  cursor: -moz-zoom-in; 
+  cursor: -webkit-zoom-in;
+  cursor: zoom-in;
+}
+
+th {
+  font-weight: bold;
+  text-align: left;
+  color: #cccccc;
+}
+.table-responsive-sm {
+  overflow: auto;
+  width:auto;
+  height: 70vh; 
+}
+.table-responsive-sm thead th {
+  position: sticky; 
+  top: 0;
+  z-index: 1; }
+
+#table1 tr:hover:not(.header) {
+  background-color: #04AA6D; /* Add a hover effect to all links, except for headers */
+  color: #fff;
+}
+
+.icon-box li {
+  list-style-type: none;
+}
+
+#hide-table {
+  display: none;
+}
+
+.listPrint {
+  text-align: left;
+  font-size: 16px;
+  line-height: 26px;
+}
+
+.listPrint {
+  color: #fff;
+  transition: ease-in-out 0.3s;
+}
+
+.listPrint:hover {
+  color: #04AA6D;
+}
+
+#MammothGardenGrowMe_head {
+  display: none;
+}
+.MammothGardenGrowMe {
+  display: none;
+}
+
+#MammothGardenProtectMe_head {
+  display: none;
+}
+.MammothGardenProtectMe {
+  display: none;
+}
+
+#BioThriveGrow_head {
+  display: none;
+}
+.BioThriveGrow {
+  display: none;
+}
+
+#BioThriveBloom_head {
+  display: none;
+}
+.BioThriveBloom {
+  display: none;
+}
+
+#BCGrow_head {
+  display: none;
+}
+.BCGrow {
+  display: none;
+}
+
+#BCBoost_head {
+  display: none;
+}
+.BCBoost {
+  display: none;
+}
+
+#BCBloom_head {
+  display: none;
+}
+.BCBloom {
+  display: none;
+}
+
+#SugarDaddy_head {
+  display: none;
+}
+.SugarDaddy {
+  display: none;
+}
+
+#ROOT66_head {
+  display: none;
+}
+.ROOT66 {
+  display: none;
+}
+
+#ThriveAliveRed_head {
+  display: none;
+}
+.ThriveAliveRed {
+  display: none;
+}
+
+#ThriveAliveGreen_head {
+  display: none;
+}
+.ThriveAliveGreen {
+  display: none;
+}
+
+#MagiCal_head {
+  display: none;
+}
+.MagiCal {
+  display: none;
+}
+
+#AwesomeBlossoms_head {
+  display: none;
+}
+.AwesomeBlossoms {
+  display: none;
+}
+
+#RootechCloningGel_head {
+  display: none;
+}
+.RootechCloningGel {
+  display: none;
+}
+
+#FloraGro_head {
+  display: none;
+}
+.FloraGro {
+  display: none;
+}
+
+#FloraBloom_head {
+  display: none;
+}
+.FloraBloom {
+  display: none;
+}
+
+#FloraMicro_head {
+  display: none;
+}
+.FloraMicro {
+  display: none;
+}
+
+#BigBloom_head {
+  display: none;
+}
+.BigBloom {
+  display: none;
+}
+
+#GrowBig_head {
+  display: none;
+}
+.GrowBig {
+  display: none;
+}
+
+#TigerBloom_head {
+  display: none;
+}
+.TigerBloom {
+  display: none;
+}
+
+#Boomerang_head {
+  display: none;
+}
+.Boomerang {
+  display: none;
+}
+
+#Kangaroots_head {
+  display: none;
+}
+.Kangaroots {
+  display: none;
+}
+#MicrobeBrew_head {
+  display: none;
+}
+.MicrobeBrew {
+  display: none;
+}
+#WhollyMackerel_head {
+  display: none;
+}
+.WhollyMackerel {
+  display: none;
+}
+#KelpMeKelpYou_head {
+  display: none;
+}
+.KelpMeKelpYou {
+  display: none;
+}
+#Bembe_head {
+  display: none;
+}
+.Bembe {
+  display: none;
+}
+#OpenSesame_head {
+  display: none;
+}
+.OpenSesame {
+  display: none;
+}
+#BeastieBloomz_head {
+  display: none;
+}
+.BeastieBloomz {
+  display: none;
+}
+#ChaChing_head {
+  display: none;
+}
+.ChaChing {
+  display: none;
+}
+
+#VooDooJuice_head {
+  display: none;
+}
+.VooDooJuice {
+  display: none;
+}
+
+#BigBud_head {
+  display: none;
+}
+.BigBud {
+  display: none;
+}
+
+#B-52_head {
+  display: none;
+}
+.B-52 {
+  display: none;
+}
+
+#Overdrive_head {
+  display: none;
+}
+.Overdrive {
+  display: none;
+}
+
+#Piranha_head {
+  display: none;
+}
+.Piranha {
+  display: none;
+}
+
+#BudCandy_head {
+  display: none;
+}
+.BudCandy {
+  display: none;
+}
+
+#FinalPhaze_head {
+  display: none;
+}
+.FinalPhaze {
+  display: none;
+}
+
+#Tarantula_head {
+  display: none;
+}
+.Tarantula {
+  display: none;
+}
+
+#Nirvana_head {
+  display: none;
+}
+.Nirvana {
+  display: none;
+}
+
+#Sensizym_head {
+  display: none;
+}
+.Sensizym {
+  display: none;
+}
+
+#BudIgnitor_head {
+  display: none;
+}
+.BudIgnitor {
+  display: none;
+}
+
+#RhinoSkin_head {
+  display: none;
+}
+.RhinoSkin {
+  display: none;
+}
+
+#BudFactorX_head {
+  display: none;
+}
+.BudFactorX {
+  display: none;
+}
+
+#GROWPowder_head {
+  display: none;
+}
+.GROWPowder {
+  display: none;
+}
+
+#CALMAGPowder_head {
+  display: none;
+}
+.CALMAGPowder {
+  display: none;
+}
+
+#BLOOMPowder_head {
+  display: none;
+}
+.BLOOMPowder {
+  display: none;
+}
+
+#BOOSTPowder_head {
+  display: none;
+}
+.BOOSTPowder {
+  display: none;
+}
+
+#CARBOFLUSHPowder_head {
+  display: none;
+}
+.CARBOFLUSHPowder {
+  display: none;
+}
+
+#pHPerfectMicro_head {
+  display: none;
+}
+.pHPerfectMicro {
+  display: none;
+}
+
+#pHPerfectBloom_head {
+  display: none;
+}
+.pHPerfectBloom {
+  display: none;
+}
+
+#pHPerfectGrow_head {
+  display: none;
+}
+.pHPerfectGrow {
+  display: none;
+}
+
+#Biofuel_head {
+  display: none;
+}
+.Biofuel {
+  display: none;
+}
+
+#Continum_head {
+  display: none;
+}
+.Continum {
+  display: none;
+}
+
+#Dune_head {
+  display: none;
+}
+.Dune {
+  display: none;
+}
+
+#Lumina_head {
+  display: none;
+}
+.Lumina {
+  display: none;
+}
+
+#NeroSC_head {
+  display: none;
+}
+.NeroSC {
+  display: none;
+}
+
+#TribusOriginal_head {
+  display: none;
+}
+.TribusOriginal {
+  display: none;
+}
+
+#Tundra_head {
+  display: none;
+}
+.Tundra {
+  display: none;
+}
+
+#Cal-Mag_head {
+  display: none;
+}
+.Cal-Mag {
+  display: none;
+}
+
+#FloraNovaGrow_head {
+  display: none;
+}
+.FloraNovaGrow {
+  display: none;
+}
+
+#FloraNovaBloom_head {
+  display: none;
+}
+.FloraNovaBloom {
+  display: none;
+}
+
+#ProTekt_head {
+  display: none;
+}
+.ProTekt {
+  display: none;
+}
+
+#FoliagePro_head {
+  display: none;
+}
+.FoliagePro {
+  display: none;
+}
+
+#BLOOM_head {
+  display: none;
+}
+.BLOOM {
+  display: none;
+}
+
+#MagPro_head {
+  display: none;
+}
+.MagPro {
+  display: none;
+}
+
+#KLN_head {
+  display: none;
+}
+.KLN {
+  display: none;
+}
+
+#PUREBLENDPROGROW_head {
+  display: none;
+}
+.PUREBLENDPROGROW {
+  display: none;
+}
+
+#PUREBLENDPROBLOOM_head {
+  display: none;
+}
+.PUREBLENDPROBLOOM {
+  display: none;
+}
+
+#LIQUIDKARMA_head {
+  display: none;
+}
+.LIQUIDKARMA {
+  display: none;
+}
+
+#HYDROPLEX_head {
+  display: none;
+}
+.HYDROPLEX {
+  display: none;
+}
+
+#SWEETRAW_head {
+  display: none;
+}
+.SWEETRAW {
+  display: none;
+}
+
+#HYDROGUARD_head {
+  display: none;
+}
+.HYDROGUARD {
+  display: none;
+}
+
+#RHIZOBLAST_head {
+  display: none;
+}
+.RHIZOBLAST {
+  display: none;
+}
+              
+
+/*--------------------------------------------------------------
+# Plant Doctor filter table 
+--------------------------------------------------------------*/
+#Droopingplant_head {
+  display: none;
+}
+.Droopingplant {
+  display: none;
+}
+
+#Moldorpowder_head {
+  display: none;
+}
+.Moldorpowder {
+  display: none;
+}
+
+#Bugsarevisible_head {
+  display: none;
+}
+.Bugsarevisible {
+  display: none;
+}
+
+#Twistedgrowth_head {
+  display: none;
+}
+.Twistedgrowth {
+  display: none;
+}
+
+#Webbing_head {
+  display: none;
+}
+.Webbing {
+  display: none;
+}
+
+#Budsdying_head {
+  display: none;
+}
+.Budsdying {
+  display: none;
+}
+
+#Budslookodd_head {
+  display: none;
+}
+.Budslookodd {
+  display: none;
+}
+
+#Redstems_head {
+  display: none;
+}
+.Redstems {
+  display: none;
+}
+
+#Bronzeandbrownpatches_head {
+  display: none;
+}
+.Bronzeandbrownpatches {
+  display: none;
+}
+
+#Brownandslimyroots_head {
+  display: none;
+}
+.Brownandslimyroots {
+  display: none;
+}
+
+#CorCleaves_head {
+  display: none;
+}
+.CorCleaves {
+  display: none;
+}
+
+#Brownoryellowleaftips_head {
+  display: none;
+}
+.Brownoryellowleaftips {
+  display: none;
+}
+
+#Holesinleaves_head {
+  display: none;
+}
+.Holesinleaves {
+  display: none;
+}
+
+#Pinkorpurpleonleaves_head {
+  display: none;
+}
+.Pinkorpurpleonleaves {
+  display: none;
+}
+
+#Shinyorsmoothleaves_head {
+  display: none;
+}
+.Shinyorsmoothleaves {
+  display: none;
+}
+
+#Spotsormarkings_head {
+  display: none;
+}
+.Spotsormarkings {
+  display: none;
+}
+
+#Wiltingleaves_head {
+  display: none;
+}
+.Wiltingleaves {
+  display: none;
+}
+
+#Darkleaves_head {
+  display: none;
+}
+.Darkleaves {
+  display: none;
+}
+
+#Yellowingbetweenleafviens_head {
+  display: none;
+}
+.Yellowingbetweenleafviens {
+  display: none;
+}
+
+#Yellowleaves_head {
+  display: none;
+}
+.Yellowleaves {
+  display: none;
+}
+
+#newCol {
+  columns: 2;
+  -webkit-columns: 2;
+  -moz-columns: 2;
+}
+
+/*--------------------------------------------------------------
+# Video Promo Pages
+--------------------------------------------------------------*/
+iframe{
+  width: 100vw;
+  height: calc(100vw/1.77777778);
+ }
+
+ /*--------------------------------------------------------------
+# User input on table
+--------------------------------------------------------------*/
+input[type=text] {
+  min-width: 10px;
+  max-width: 100%;
+  width: 100%;
+  background-color: rgba(0,0,0,0.5);
+  color: white;
+}
+
+/*--------------------------------------------------------------
+# GetTheApp Menu
+--------------------------------------------------------------*/
+/**
+* Desktop Navigation 
+*/
+.appbar {
+  background-color: rgba(0, 0, 0, 0);
+  overflow: auto;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  z-index: 1;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+}
+
+.appbar ul {
+  margin: 0;
+  padding: 0 0 20px 0;
+  display: flex;
+  list-style-type: none;
+  align-items: center;
+}
+
+.appbar a
+ {
+  float: left;
+  padding: 0 0 20px 0;
+  width: 100px;
+  margin: 5px;
+}
+
+.gtaBody {
+background: url(../img/portfolio/pot3.png) no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}

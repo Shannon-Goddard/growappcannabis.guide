@@ -68,10 +68,12 @@ $(function(){
 //////////////////////Save button hide/show
 $('#SaveButton').hide();
 $("#table1").on("click", "td", function() {
+  $("#table1").blur();//////////////////////blur user input
   $('#SaveButton').show();
 });
 
 $("#SaveButton").on("click", function() {
+  $("#table1").blur();//////////////////////blur user input
   $('#SaveButton').hide();
 });
 
@@ -382,9 +384,3 @@ $("#table5").on("click", "td", function() {
 $("#SaveButton").on("click", function() {
   $('#SaveButton').hide();
 });
-
-//////////////////////blur user input
-document.getElementById("table1").blur();
-document.getElementById("table2").blur();
-document.getElementById("table3").blur();
-document.getElementById("table4").blur();

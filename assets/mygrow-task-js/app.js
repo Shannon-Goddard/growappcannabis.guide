@@ -68,14 +68,10 @@ $(function(){
 //////////////////////Save button hide/show
 $('#SaveButton').hide();
 $("#table1").on("click", "td", function() {
-  const inputString = $("#table1").val();////////////////
-  blur(inputString);//////////////////////blur user input
   $('#SaveButton').show();
 });
 
 $("#SaveButton").on("click", function() {
-  const inputString = $("#table1").val();////////////////
-  blur(inputString);//////////////////////blur user input
   $('#SaveButton').hide();
 });
 

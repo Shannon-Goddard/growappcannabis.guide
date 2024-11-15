@@ -2343,3 +2343,48 @@ background: url(../img/portfolio/pot3.png) no-repeat center center fixed;
     margin-right: 15px;
   }
 }
+
+/*--------------------------------------------------------------
+# Shop style
+--------------------------------------------------------------*/
+
+.portfolio-info small {
+  color: #FFFFFF;
+}
+
+.portfolio-info b {
+  color: #FFFFFF;
+}
+
+.rating {
+  color: #FF9900;
+  -webkit-text-stroke-width: 0.5px;
+  -webkit-text-stroke-color: #FF4500;
+}
+
+.empty-star {
+  color: #FF990000;
+  -webkit-text-stroke-width: 0.5px;
+  -webkit-text-stroke-color: #FF4500;
+}
+
+.icon-check {
+  color: #FF9900;
+}
+
+.rounded-pill {
+  color: #131A22;
+  background: #e1ad01;
+  border-radius: 0.5px;
+  padding: 4px 10px 4px 10px;
+  white-space: nowrap;
+  transition: 0.3s;
+  font-size: 14px;
+  display: inline-block;
+  border: 0.5px solid #e1ad01; 
+}
+
+.rounded-pill:hover {
+  background: #e1ad0199; 
+  color: #131A22;
+}

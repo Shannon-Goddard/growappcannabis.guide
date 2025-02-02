@@ -1,700 +1,740 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset
-      xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-      xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
-            http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:video="http://www.google.com/schemas/sitemap-video/1.1"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+        http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+
+  <!-- Homepage -->
+  <url>
+    <loc>https://growappcannabis.guide</loc>
+    <lastmod>2024-01-17</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <!-- Shop Page -->
+  <url>
+    <loc>https://growappcannabis.guide/shop.html</loc>
+    <lastmod>2024-01-17</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- Plant Doctor Main Page -->
+  <url>
+    <loc>https://growappcannabis.guide/tools/plant-doctor/plant-doctor.html</loc>
+    <lastmod>2024-01-17</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
+  </url>
 
 
-<url>
-  <loc>https://growappcannabis.guide/</loc>
-  <lastmod>2024-04-14T23:20:59+00:00</lastmod>
-  <priority>1.00</priority>
-</url>
-<url>
-  <loc>https://growappcannabis.guide/index.html</loc>
-  <lastmod>2024-04-14T23:20:59+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://growappcannabis.guide/shop-index.html</loc>
-  <lastmod>2024-04-14T14:45:00+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://growappcannabis.guide/tools-index.html</loc>
-  <lastmod>2024-04-14T14:45:00+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://growappcannabis.guide/tools/tools-how-to.html</loc>
-  <lastmod>2024-04-14T14:45:00+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://growappcannabis.guide/tools/tools-plant-doctor.html</loc>
-  <lastmod>2024-04-14T14:45:00+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://growappcannabis.guide/tools/tools-search-strains.html</loc>
-  <lastmod>2024-04-14T14:45:00+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://growappcannabis.guide/shop/loyal-shirt.html</loc>
-  <lastmod>2024-04-14T14:45:00+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://growappcannabis.guide/shop/ac_light_bar-details.html</loc>
-  <lastmod>2024-04-14T14:45:00+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://growappcannabis.guide/shop/dyno-details.html</loc>
-  <lastmod>2024-04-14T14:45:00+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://growappcannabis.guide/shop/ac_light_t22-details.html</loc>
-  <lastmod>2024-04-14T14:45:00+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://growappcannabis.guide/shop/ac_light_beam-details.html</loc>
-  <lastmod>2024-04-14T14:45:00+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://growappcannabis.guide/shop/ocean-details.html</loc>
-  <lastmod>2024-04-14T14:45:00+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://growappcannabis.guide/shop/AC-Infinity-Germination-Kit-details.html</loc>
-  <lastmod>2024-04-14T14:45:00+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://growappcannabis.guide/shop/gh-details.html</loc>
-  <lastmod>2024-04-14T14:45:00+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://growappcannabis.guide/shop/ac_evo-details.html</loc>
-  <lastmod>2024-04-14T14:45:00+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://growappcannabis.guide/shop/cal-mag-details.html</loc>
-  <lastmod>2024-04-14T14:45:00+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://growappcannabis.guide/shop/coco-gro-details.html</loc>
-  <lastmod>2024-04-14T14:45:00+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://growappcannabis.guide/shop/happy-frog-details.html</loc>
-  <lastmod>2024-04-14T14:45:00+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://growappcannabis.guide/shop/ac-pot-details.html</loc>
-  <lastmod>2024-04-14T14:45:00+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://growappcannabis.guide/shop/ac_fan_s6-details.html</loc>
-  <lastmod>2024-04-14T14:45:00+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://growappcannabis.guide/shop/ac_kit-details.html</loc>
-  <lastmod>2024-04-14T14:45:00+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://growappcannabis.guide/shop/foxfarm-dirty-dozen-details.html</loc>
-  <lastmod>2024-04-14T14:45:00+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://growappcannabis.guide/shop/advancenutrients-details.html</loc>
-  <lastmod>2024-04-14T14:45:00+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://growappcannabis.guide/shop/mamoth-grow-me-details.html</loc>
-  <lastmod>2024-04-14T14:45:00+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://growappcannabis.guide/shop/biothrive-details.html</loc>
-  <lastmod>2024-04-14T14:45:00+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://growappcannabis.guide/shop/technaflora-details.html</loc>
-  <lastmod>2024-04-14T14:45:00+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://growappcannabis.guide/shop/ac_fan_.pro_details.html</loc>
-  <lastmod>2024-04-14T14:45:00+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://growappcannabis.guide/shop/rapid-rooter-details.html</loc>
-  <lastmod>2024-04-14T14:45:00+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://growappcannabis.guide/shop/ac_kit5x5-details.html</loc>
-  <lastmod>2024-04-14T14:45:00+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://growappcannabis.guide/tools/plant-doctor/Accidental-Re-Vegging.html</loc>
-  <lastmod>2024-04-14T14:45:00+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://growappcannabis.guide/tools/plant-doctor/Aphids.html</loc>
-  <lastmod>2024-04-14T14:45:00+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://growappcannabis.guide/tools/plant-doctor/Barnacle-Scales.html</loc>
-  <lastmod>2024-04-14T14:45:00+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://growappcannabis.guide/tools/plant-doctor/Boron-Deficiency.html</loc>
-  <lastmod>2024-04-14T14:45:00+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://growappcannabis.guide/tools/plant-doctor/Broad-Mites.html</loc>
-  <lastmod>2024-04-14T14:45:00+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://growappcannabis.guide/tools/plant-doctor/Bud-Rot-or-Mold.html</loc>
-  <lastmod>2024-04-14T14:45:00+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://growappcannabis.guide/tools/plant-doctor/Calcium-Deficiency.html</loc>
-  <lastmod>2024-04-14T14:45:00+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://growappcannabis.guide/tools/plant-doctor/Caterpillars-Inchworms.html</loc>
-  <lastmod>2024-04-14T14:45:00+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://growappcannabis.guide/tools/plant-doctor/Copper-Deficiency.html</loc>
-  <lastmod>2024-04-14T14:45:00+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://growappcannabis.guide/tools/plant-doctor/Crickets.html</loc>
-  <lastmod>2024-04-14T14:45:00+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://growappcannabis.guide/tools/plant-doctor/Fungus-Gnats.html</loc>
-  <lastmod>2024-04-14T14:45:00+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://growappcannabis.guide/tools/plant-doctor/Grasshoppers.html</loc>
-  <lastmod>2024-04-14T14:45:00+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://growappcannabis.guide/tools/plant-doctor/Heat-Stress.html</loc>
-  <lastmod>2024-04-14T14:45:00+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://growappcannabis.guide/tools/plant-doctor/Hemp-Russet-Mites.html</loc>
-  <lastmod>2024-04-14T14:45:00+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://growappcannabis.guide/tools/plant-doctor/Hermies-Pollen-Sacs-Bananas.html</loc>
-  <lastmod>2024-04-14T14:45:00+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://growappcannabis.guide/tools/plant-doctor/Iron-Deficiency.html</loc>
-  <lastmod>2024-04-14T14:45:00+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://growappcannabis.guide/tools/plant-doctor/Leaf-Miners.html</loc>
-  <lastmod>2024-04-14T14:45:00+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://growappcannabis.guide/tools/plant-doctor/Leaf-Septoria-Yellow-Leaf-Spot.html</loc>
-  <lastmod>2024-04-14T14:45:00+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://growappcannabis.guide/tools/plant-doctor/Leafhoppers.html</loc>
-  <lastmod>2024-04-14T14:45:00+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://growappcannabis.guide/tools/plant-doctor/Light-Burn-or-Light-Stress.html</loc>
-  <lastmod>2024-04-14T14:45:00+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://growappcannabis.guide/tools/plant-doctor/Magnesium-Deficiency.html</loc>
-  <lastmod>2024-04-14T14:45:00+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://growappcannabis.guide/tools/plant-doctor/Manganese-Deficiency.html</loc>
-  <lastmod>2024-04-14T14:45:00+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://growappcannabis.guide/tools/plant-doctor/Mealybugs.html</loc>
-  <lastmod>2024-04-14T14:45:00+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://growappcannabis.guide/tools/plant-doctor/Molybdenum-Deficiency.html</loc>
-  <lastmod>2024-04-14T14:45:00+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://growappcannabis.guide/tools/plant-doctor/Nitrogen-Deficiency.html</loc>
-  <lastmod>2024-04-14T14:45:00+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://growappcannabis.guide/tools/plant-doctor/Nitrogen-Toxicity.html</loc>
-  <lastmod>2024-04-14T14:45:00+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://growappcannabis.guide/tools/plant-doctor/Nutrient-Burn.html</loc>
-  <lastmod>2024-04-14T14:45:00+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://growappcannabis.guide/tools/plant-doctor/Over-Watering.html</loc>
-  <lastmod>2024-04-14T14:45:00+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://growappcannabis.guide/tools/plant-doctor/pH-Fluctuations.html</loc>
-  <lastmod>2024-04-14T14:45:00+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://growappcannabis.guide/tools/plant-doctor/Phosphorus-Deficiency.html</loc>
-  <lastmod>2024-04-14T14:45:00+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://growappcannabis.guide/tools/plant-doctor/Planthoppers.html</loc>
-  <lastmod>2024-04-14T14:45:00+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://growappcannabis.guide/tools/plant-doctor/Potassium-Deficiency.html</loc>
-  <lastmod>2024-04-14T14:45:00+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://growappcannabis.guide/tools/plant-doctor/Root-Problems.html</loc>
-  <lastmod>2024-04-14T14:45:00+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://growappcannabis.guide/tools/plant-doctor/Root-Rot.html</loc>
-  <lastmod>2024-04-14T14:45:00+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://growappcannabis.guide/tools/plant-doctor/Slugs-or-Snails.html</loc>
-  <lastmod>2024-04-14T14:45:00+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://growappcannabis.guide/tools/plant-doctor/Spider-Mites.html</loc>
-  <lastmod>2024-04-14T14:45:00+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://growappcannabis.guide/tools/plant-doctor/Stink-Bug.html</loc>
-  <lastmod>2024-04-14T14:45:00+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://growappcannabis.guide/tools/plant-doctor/Sulfur-Deficiency.html</loc>
-  <lastmod>2024-04-14T14:45:00+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://growappcannabis.guide/tools/plant-doctor/Thrips.html</loc>
-  <lastmod>2024-04-14T14:45:00+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://growappcannabis.guide/tools/plant-doctor/Tobacco-Mosaic-Virus.html</loc>
-  <lastmod>2024-04-14T14:45:00+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://growappcannabis.guide/tools/plant-doctor/Under-watering.html</loc>
-  <lastmod>2024-04-14T14:45:00+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://growappcannabis.guide/tools/plant-doctor/White-Powdery-Mildew.html</loc>
-  <lastmod>2024-04-14T14:45:00+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://growappcannabis.guide/tools/plant-doctor/Whiteflies.html</loc>
-  <lastmod>2024-04-14T14:45:00+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://growappcannabis.guide/tools/plant-doctor/Wind-Burn.html</loc>
-  <lastmod>2024-04-14T14:45:00+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://growappcannabis.guide/tools/plant-doctor/Zinc-Deficiency.html</loc>
-  <lastmod>2024-04-14T14:45:00+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://growappcannabis.guide/mygrow-index.html</loc>
-  <lastmod>2024-04-14T14:45:00+00:00</lastmod>
-  <priority>0.1</priority>
-</url>
-<url>
-  <loc>https://growappcannabis.guide/mygrow/mygrow-search.html</loc>
-  <lastmod>2024-04-14T14:45:00+00:00</lastmod>
-  <priority>0.1</priority>
-</url>
-<url>
-  <loc>https://growappcannabis.guide/mygrow/mygrow2-search.html</loc>
-  <lastmod>2024-04-14T14:45:00+00:00</lastmod>
-  <priority>0.1</priority>
-</url>
-<url>
-  <loc>https://growappcannabis.guide/mygrow/mygrow3-search.html</loc>
-  <lastmod>2024-04-14T14:45:00+00:00</lastmod>
-  <priority>0.1</priority>
-</url>
-<url>
-  <loc>https://growappcannabis.guide/mygrow/mygrow4-search.html</loc>
-  <lastmod>2024-04-14T14:45:00+00:00</lastmod>
-  <priority>0.1</priority>
-</url>
-<url>
-  <loc>https://growappcannabis.guide/mygrow/mygrow-plant-size.html</loc>
-  <lastmod>2024-04-14T14:45:00+00:00</lastmod>
-  <priority>0.1</priority>
-</url>
-<url>
-  <loc>https://growappcannabis.guide/mygrow/mygrow2-plant-size.html</loc>
-  <lastmod>2024-04-14T14:45:00+00:00</lastmod>
-  <priority>0.1</priority>
-</url>
-<url>
-  <loc>https://growappcannabis.guide/mygrow/mygrow3-plant-size.html</loc>
-  <lastmod>2024-04-14T14:45:00+00:00</lastmod>
-  <priority>0.1</priority>
-</url>
-<url>
-  <loc>https://growappcannabis.guide/mygrow/mygrow4-plant-size.html</loc>
-  <lastmod>2024-04-14T14:45:00+00:00</lastmod>
-  <priority>0.1</priority>
-</url>
-<url>
-  <loc>https://growappcannabis.guide/mygrow/mygrow-light-watts.html</loc>
-  <lastmod>2024-04-14T14:45:00+00:00</lastmod>
-  <priority>0.1</priority>
-</url>
-<url>
-  <loc>https://growappcannabis.guide/mygrow/mygrow2-light-watts.html</loc>
-  <lastmod>2024-04-14T14:45:00+00:00</lastmod>
-  <priority>0.1</priority>
-</url>
-<url>
-  <loc>https://growappcannabis.guide/mygrow/mygrow3-light-watts.html</loc>
-  <lastmod>2024-04-14T14:45:00+00:00</lastmod>
-  <priority>0.1</priority>
-</url>
-<url>
-  <loc>https://growappcannabis.guide/mygrow/mygrow4-light-watts.html</loc>
-  <lastmod>2024-04-14T14:45:00+00:00</lastmod>
-  <priority>0.1</priority>
-</url>
-<url>
-  <loc>https://growappcannabis.guide/mygrow/mygrow-filter-table-nutrients.html</loc>
-  <lastmod>2024-04-14T14:45:00+00:00</lastmod>
-  <priority>0.1</priority>
-</url>
-<url>
-  <loc>https://growappcannabis.guide/mygrow/mygrow2-filter-table-nutrients.html</loc>
-  <lastmod>2024-04-14T14:45:00+00:00</lastmod>
-  <priority>0.1</priority>
-</url>
-<url>
-  <loc>https://growappcannabis.guide/mygrow/mygrow3-filter-table-nutrients.html</loc>
-  <lastmod>2024-04-14T14:45:00+00:00</lastmod>
-  <priority>0.1</priority>
-</url>
-<url>
-  <loc>https://growappcannabis.guide/mygrow/mygrow4-filter-table-nutrients.html</loc>
-  <lastmod>2024-04-14T14:45:00+00:00</lastmod>
-  <priority>0.1</priority>
-</url>
-<url>
-  <loc>https://growappcannabis.guide/mygrow/mygrow-saved.html</loc>
-  <lastmod>2024-04-14T14:45:00+00:00</lastmod>
-  <priority>0.1</priority>
-</url>
-<url>
-  <loc>https://growappcannabis.guide/mygrow/mygrow2-saved.html</loc>
-  <lastmod>2024-04-14T14:45:00+00:00</lastmod>
-  <priority>0.1</priority>
-</url>
-<url>
-  <loc>https://growappcannabis.guide/mygrow/mygrow3-saved.html</loc>
-  <lastmod>2024-04-14T14:45:00+00:00</lastmod>
-  <priority>0.1</priority>
-</url>
-<url>
-  <loc>https://growappcannabis.guide/mygrow/mygrow4-saved.html</loc>
-  <lastmod>2024-04-14T14:45:00+00:00</lastmod>
-  <priority>0.1</priority>
-</url>
-<url>
-  <loc>https://growappcannabis.guide/mygrow/mygrow-filter-table.html</loc>
-  <lastmod>2024-04-14T14:45:00+00:00</lastmod>
-  <priority>0.1</priority>
-</url>
-<url>
-  <loc>https://growappcannabis.guide/mygrow/mygrow2-filter-table.html</loc>
-  <lastmod>2024-04-14T14:45:00+00:00</lastmod>
-  <priority>0.1</priority>
-</url>
-<url>
-  <loc>https://growappcannabis.guide/mygrow/mygrow3-filter-table.html</loc>
-  <lastmod>2024-04-14T14:45:00+00:00</lastmod>
-  <priority>0.1</priority>
-</url>
-<url>
-  <loc>https://growappcannabis.guide/mygrow/mygrow4-filter-table.html</loc>
-  <lastmod>2024-04-14T14:45:00+00:00</lastmod>
-  <priority>0.1</priority>
-</url>
-<url>
-  <loc>https://growappcannabis.guide/mygrow/mygrow-task.html</loc>
-  <lastmod>2024-04-14T14:45:00+00:00</lastmod>
-  <priority>0.1</priority>
-</url>
-<url>
-  <loc>https://growappcannabis.guide/mydiary/mydiary-filter-table.html</loc>
-  <lastmod>2024-04-14T14:45:00+00:00</lastmod>
-  <priority>0.1</priority>
-</url>
-<url>
-  <loc>https://growappcannabis.guide/mydiary/mydiary2-filter-table.html</loc>
-  <lastmod>2024-04-14T14:45:00+00:00</lastmod>
-  <priority>0.1</priority>
-</url>
-<url>
-  <loc>https://growappcannabis.guide/mydiary/mydiary3-filter-table.html</loc>
-  <lastmod>2024-04-14T14:45:00+00:00</lastmod>
-  <priority>0.1</priority>
-</url>
-<url>
-  <loc>https://growappcannabis.guide/mydiary/mydiary4-filter-table.html</loc>
-  <lastmod>2024-04-14T14:45:00+00:00</lastmod>
-  <priority>0.1</priority>
-</url>
-<url>
-  <loc>https://growappcannabis.guide/promo/promo1.html</loc>
-  <lastmod>2024-04-14T14:45:00+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://growappcannabis.guide/promo/promo2.html</loc>
-  <lastmod>2024-04-14T14:45:00+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://growappcannabis.guide/promo/promo3.html</loc>
-  <lastmod>2024-04-14T14:45:00+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://growappcannabis.guide/tools/tools-contact-us.html</loc>
-  <lastmod>2024-04-14T14:45:00+00:00</lastmod>
-  <priority>0.1</priority>
-</url>
-<url>
-  <loc>https://growappcannabis.guide/assets/vendor/policies/TermsOfUse.html</loc>
-  <lastmod>2024-04-14T14:45:00+00:00</lastmod>
-  <priority>0.1</priority>
-</url>
-<url>
-  <loc>https://growappcannabis.guide/assets/vendor/policies/PrivacyPolicy.html</loc>
-  <lastmod>2024-04-14T14:45:00+00:00</lastmod>
-  <priority>0.1</priority>
-</url>
-<url>
-  <loc>https://growappcannabis.guide/assets/vendor/policies/eula.html</loc>
-  <lastmod>2024-04-14T14:45:00+00:00</lastmod>
-  <priority>0.1</priority>
-</url>
-<url>
-  <loc>https://growappcannabis.guide/assets/vendor/policies/CookiePolicy.html</loc>
-  <lastmod>2024-04-14T14:45:00+00:00</lastmod>
-  <priority>0.1</priority>
-</url>
-<url>
-  <loc>https://growappcannabis.guide/GetTheApp.html</loc>
-  <lastmod>2024-04-14T14:45:00+00:00</lastmod>
-  <priority>1.0</priority>
-</url>
-<url>
-  <loc>https://growappcannabis.guide/shop/govee-heater.html</loc>
-  <lastmod>2024-05-02T19:00:00+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://growappcannabis.guide/shop/govee-humidifier.html</loc>
-  <lastmod>2024-05-02T19:00:00+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://growappcannabis.guide/shop/govee-mini-hygrometer.html</loc>
-  <lastmod>2024-05-02T19:00:00+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://growappcannabis.guide/shop/loyal-backpack.html</loc>
-  <lastmod>2024-05-02T19:00:00+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://growappcannabis.guide/shop/loyal-hat.html</loc>
-  <lastmod>2024-05-02T19:00:00+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://growappcannabis.guide/shop/loyal-hoodie.html</loc>
-  <lastmod>2024-05-02T19:00:00+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://growappcannabis.guide/shop/loyal-notebook.html</loc>
-  <lastmod>2024-05-02T19:00:00+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://growappcannabis.guide/shop/loyal-pin.html</loc>
-  <lastmod>2024-05-02T19:00:00+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://growappcannabis.guide/shop/loyal-sticker.html</loc>
-  <lastmod>2024-05-02T19:00:00+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://growappcannabis.guide/shop/seed-supreme-seeds.html</loc>
-  <lastmod>2024-05-02T19:00:00+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://growappcannabis.guide/shop/vivosun-small-tent-kit.html</loc>
-  <lastmod>2024-07-22T17:00:00+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://growappcannabis.guide/shop/vivosun-clone-kit.html</loc>
-  <lastmod>2024-07-22T17:00:00+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://growappcannabis.guide/shop/vivosun-2x2-tent.html</loc>
-  <lastmod>2024-07-22T17:00:00+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://growappcannabis.guide/shop/vivosun-hygrometer.html</loc>
-  <lastmod>2024-07-22T17:00:00+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://growappcannabis.guide/shop/vivosun-dehumidifier.html</loc>
-  <lastmod>2024-07-22T17:00:00+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://growappcannabis.guide/shop/vivosun-humidifier.html</loc>
-  <lastmod>2024-07-22T17:00:00+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://growappcannabis.guide/shop/vivosun-facric-pot.html</loc>
-  <lastmod>2024-07-22T17:00:00+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://growappcannabis.guide/shop/vivosun-heater.html</loc>
-  <lastmod>2024-07-22T17:00:00+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://growappcannabis.guide/shop/ball-mason-jar.html</loc>
-  <lastmod>2024-07-22T17:00:00+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://growappcannabis.guide/shop/cultivation-nation.html</loc>
-  <lastmod>2024-07-22T17:00:00+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://growappcannabis.guide/shop/growers-choice.html</loc>
-  <lastmod>2024-07-22T17:00:00+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://growappcannabis.guide/shop/hygrometer.html</loc>
-  <lastmod>2024-07-22T17:00:00+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://growappcannabis.guide/shop/vivosun-vs-series.html</loc>
-  <lastmod>2024-07-22T17:00:00+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://growappcannabis.guide/shop/vivosun-fan.html</loc>
-  <lastmod>2024-07-22T17:00:00+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
+  <!-- Plant Doctor - Accidental Re-Vegging -->
+  <url>
+    <loc>https://growappcannabis.guide/tools/plant-doctor/assets/html/Accidental-Re-Vegging.html</loc>
+    <lastmod>2024-01-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <video:video>
+      <video:thumbnail_loc>https://growappcannabis.guide/tools/plant-doctor/assets/poster/accidental_revegging.png</video:thumbnail_loc>
+      <video:title>Accidental Re-Vegging</video:title>
+      <video:description>How-To Treat Accidental Re-Vegging Of A Cannabis Plant</video:description>
+      <video:content_loc>https://growappcannabis.guide/tools/plant-doctor/assets/video/Accidental_Re-Vegging.mp4</video:content_loc>
+      <video:duration>48</video:duration>
+    </video:video>
+  </url>
+
+    <!-- Plant Doctor - Aphids -->
+  <url>
+    <loc>https://growappcannabis.guide/tools/plant-doctor/assets/html/Aphids.html</loc>
+    <lastmod>2024-01-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <video:video>
+      <video:thumbnail_loc>https://growappcannabis.guide/tools/plant-doctor/assets/poster/aphids.png</video:thumbnail_loc>
+      <video:title>Aphids</video:title>
+      <video:description>How-To Treat Aphids On Cannabis Plants</video:description>
+      <video:content_loc>https://growappcannabis.guide/tools/plant-doctor/assets/video/Aphids.mp4</video:content_loc>
+      <video:duration>46</video:duration>
+    </video:video>
+  </url>
+
+      <!-- Plant Doctor - Barnacle Scales -->
+  <url>
+    <loc>https://growappcannabis.guide/tools/plant-doctor/assets/html/Barnacle-Scales.html</loc>
+    <lastmod>2024-01-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <video:video>
+      <video:thumbnail_loc>https://growappcannabis.guide/tools/plant-doctor/assets/poster/barnacle_scales.png</video:thumbnail_loc>
+      <video:title>Barnacle Scales</video:title>
+      <video:description>How-To Treat Barnacle Scales On Cannabis Plants</video:description>
+      <video:content_loc>https://growappcannabis.guide/tools/plant-doctor/assets/video/Barnacle_Scales.mp4</video:content_loc>
+      <video:duration>62</video:duration>
+    </video:video>
+  </url>
+
+        <!-- Plant Doctor - Boron Deficiency -->
+  <url>
+    <loc>https://growappcannabis.guide/tools/plant-doctor/assets/html/Boron-Deficiency.html</loc>
+    <lastmod>2024-01-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <video:video>
+      <video:thumbnail_loc>https://growappcannabis.guide/tools/plant-doctor/assets/poster/boron_deficiency.png</video:thumbnail_loc>
+      <video:title>Boron Deficiency</video:title>
+      <video:description>How-To Treat Boron Deficiency On Cannabis Plants</video:description>
+      <video:content_loc>https://growappcannabis.guide/tools/plant-doctor/assets/video/Boron_Deficiency.mp4</video:content_loc>
+      <video:duration>59</video:duration>
+    </video:video>
+  </url>
+
+          <!-- Plant Doctor - Broad Mites -->
+  <url>
+    <loc>https://growappcannabis.guide/tools/plant-doctor/assets/html/Broad-Mites.html</loc>
+    <lastmod>2024-01-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <video:video>
+      <video:thumbnail_loc>https://growappcannabis.guide/tools/plant-doctor/assets/poster/broad_mites.png</video:thumbnail_loc>
+      <video:title>Broad Mites</video:title>
+      <video:description>How-To Treat Broad Mites On Cannabis Plants</video:description>
+      <video:content_loc>https://growappcannabis.guide/tools/plant-doctor/assets/video/Broad-Mites.mp4</video:content_loc>
+      <video:duration>63</video:duration>
+    </video:video>
+  </url>
+
+            <!-- Plant Doctor - Bud Rot or Mold -->
+  <url>
+    <loc>https://growappcannabis.guide/tools/plant-doctor/assets/html/Bud-Rot-or-Mold.html</loc>
+    <lastmod>2024-01-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <video:video>
+      <video:thumbnail_loc>https://growappcannabis.guide/tools/plant-doctor/assets/poster/bud_rot_or_mold.png</video:thumbnail_loc>
+      <video:title>Bud Rot or Mold</video:title>
+      <video:description>How-To Treat Bud Rot or Mold On Cannabis Plants</video:description>
+      <video:content_loc>https://growappcannabis.guide/tools/plant-doctor/assets/video/Bud-rot_or_mold.mp4</video:content_loc>
+      <video:duration>57</video:duration>
+    </video:video>
+  </url>
+
+              <!-- Plant Doctor - Calcium Deficiency -->
+  <url>
+    <loc>https://growappcannabis.guide/tools/plant-doctor/assets/html/Calcium-Deficiency.html</loc>
+    <lastmod>2024-01-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <video:video>
+      <video:thumbnail_loc>https://growappcannabis.guide/tools/plant-doctor/assets/poster/calcium_deficiency.png</video:thumbnail_loc>
+      <video:title>Calcium Deficiency</video:title>
+      <video:description>How-To Treat Calcium Deficiency On Cannabis Plants</video:description>
+      <video:content_loc>https://growappcannabis.guide/tools/plant-doctor/assets/video/Calcium_Deficiency.mp4</video:content_loc>
+      <video:duration>68</video:duration>
+    </video:video>
+  </url>
+
+                <!-- Plant Doctor - Caterpillars and Inchworms -->
+  <url>
+    <loc>https://growappcannabis.guide/tools/plant-doctor/assets/html/Caterpillars-Inchworms.html</loc>
+    <lastmod>2024-01-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <video:video>
+      <video:thumbnail_loc>https://growappcannabis.guide/tools/plant-doctor/assets/poster/caterpillars_and_inchworms.png</video:thumbnail_loc>
+      <video:title>Caterpillars and Inchworms</video:title>
+      <video:description>How-To Treat Caterpillars and Inchworms On Cannabis Plants</video:description>
+      <video:content_loc>https://growappcannabis.guide/tools/plant-doctor/assets/video/Caterpillars_and_Inchworms.mp4</video:content_loc>
+      <video:duration>67</video:duration>
+    </video:video>
+  </url>
+
+                  <!-- Plant Doctor - Copper Deficiency -->
+  <url>
+    <loc>https://growappcannabis.guide/tools/plant-doctor/assets/html/Copper-Deficiency.html</loc>
+    <lastmod>2024-01-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <video:video>
+      <video:thumbnail_loc>https://growappcannabis.guide/tools/plant-doctor/assets/poster/copper_deficiency.png</video:thumbnail_loc>
+      <video:title>Copper Deficiency</video:title>
+      <video:description>How-To Treat Copper Deficiency On Cannabis Plants</video:description>
+      <video:content_loc>https://growappcannabis.guide/tools/plant-doctor/assets/video/Copper_Deficiency.mp4</video:content_loc>
+      <video:duration>67</video:duration>
+    </video:video>
+  </url>
+
+                    <!-- Plant Doctor - Crickets -->
+  <url>
+    <loc>https://growappcannabis.guide/tools/plant-doctor/assets/html/Crickets.html</loc>
+    <lastmod>2024-01-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <video:video>
+      <video:thumbnail_loc>https://growappcannabis.guide/tools/plant-doctor/assets/poster/crickets.png</video:thumbnail_loc>
+      <video:title>Crickets</video:title>
+      <video:description>How-To Treat Crickets On Cannabis Plants</video:description>
+      <video:content_loc>https://growappcannabis.guide/tools/plant-doctor/assets/video/Crickets.mp4</video:content_loc>
+      <video:duration>60</video:duration>
+    </video:video>
+  </url>
+
+                      <!-- Plant Doctor - Fungus Gnats -->
+  <url>
+    <loc>https://growappcannabis.guide/tools/plant-doctor/assets/html/Fungus-Gnats.html</loc>
+    <lastmod>2024-01-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <video:video>
+      <video:thumbnail_loc>https://growappcannabis.guide/tools/plant-doctor/assets/poster/fungus_gnats.png</video:thumbnail_loc>
+      <video:title>Fungus Gnats</video:title>
+      <video:description>How-To Treat Fungus Gnats On Cannabis Plants</video:description>
+      <video:content_loc>https://growappcannabis.guide/tools/plant-doctor/assets/video/Fungus_Gnats.mp4</video:content_loc>
+      <video:duration>58</video:duration>
+    </video:video>
+  </url>
+
+                        <!-- Plant Doctor - Grasshoppers -->
+  <url>
+    <loc>https://growappcannabis.guide/tools/plant-doctor/assets/html/Grasshoppers.html</loc>
+    <lastmod>2024-01-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <video:video>
+      <video:thumbnail_loc>https://growappcannabis.guide/tools/plant-doctor/assets/poster/grasshoppers.png</video:thumbnail_loc>
+      <video:title>Grasshoppers</video:title>
+      <video:description>How-To Treat Grasshoppers On Cannabis Plants</video:description>
+      <video:content_loc>https://growappcannabis.guide/tools/plant-doctor/assets/video/Grasshoppers.mp4</video:content_loc>
+      <video:duration>49</video:duration>
+    </video:video>
+  </url>
+
+                          <!-- Plant Doctor - Heat Stress -->
+  <url>
+    <loc>https://growappcannabis.guide/tools/plant-doctor/assets/html/Heat-Stress.html</loc>
+    <lastmod>2024-01-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <video:video>
+      <video:thumbnail_loc>https://growappcannabis.guide/tools/plant-doctor/assets/poster/heat_stress.png</video:thumbnail_loc>
+      <video:title>Heat Stress</video:title>
+      <video:description>How-To Treat Heat Stress On Cannabis Plants</video:description>
+      <video:content_loc>https://growappcannabis.guide/tools/plant-doctor/assets/video/Heat_Stress.mp4</video:content_loc>
+      <video:duration>56</video:duration>
+    </video:video>
+  </url>
+
+                            <!-- Plant Doctor - Hemp Russet Mites -->
+  <url>
+    <loc>https://growappcannabis.guide/tools/plant-doctor/assets/html/Hemp-Russet-Mites.html</loc>
+    <lastmod>2024-01-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <video:video>
+      <video:thumbnail_loc>https://growappcannabis.guide/tools/plant-doctor/assets/poster/hemp_russet_mites.png</video:thumbnail_loc>
+      <video:title>Hemp Russet Mites</video:title>
+      <video:description>How-To Treat Hemp Russet Mites On Cannabis Plants</video:description>
+      <video:content_loc>https://growappcannabis.guide/tools/plant-doctor/assets/video/Hemp_Russet_Mites.mp4</video:content_loc>
+      <video:duration>62</video:duration>
+    </video:video>
+  </url>
+
+                              <!-- Plant Doctor - Hermies, Pollen Sacs and Bananas -->
+  <url>
+    <loc>https://growappcannabis.guide/tools/plant-doctor/assets/html/Hermies-Pollen-Sacs-Bananas.html</loc>
+    <lastmod>2024-01-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <video:video>
+      <video:thumbnail_loc>https://growappcannabis.guide/tools/plant-doctor/assets/poster/hermies_pollen_sacs_and_bananas.png</video:thumbnail_loc>
+      <video:title>Hermies, Pollen Sacs and Bananas</video:title>
+      <video:description>How-To Treat Hermies, Pollen Sacs and Bananas On Cannabis Plants</video:description>
+      <video:content_loc>https://growappcannabis.guide/tools/plant-doctor/assets/video/Hermies_Pollen-Sacs_and_Bananas.mp4</video:content_loc>
+      <video:duration>59</video:duration>
+    </video:video>
+  </url>
+
+                              <!-- Plant Doctor - Iron Deficiency -->
+  <url>
+    <loc>https://growappcannabis.guide/tools/plant-doctor/assets/html/Iron-Deficiency.html</loc>
+    <lastmod>2024-01-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <video:video>
+      <video:thumbnail_loc>https://growappcannabis.guide/tools/plant-doctor/assets/poster/iron_deficiency.png</video:thumbnail_loc>
+      <video:title>Iron Deficiency</video:title>
+      <video:description>How-To Treat Iron Deficiency On Cannabis Plants</video:description>
+      <video:content_loc>https://growappcannabis.guide/tools/plant-doctor/assets/video/Iron_Deficiency.mp4</video:content_loc>
+      <video:duration>64</video:duration>
+    </video:video>
+  </url>
+
+                                <!-- Plant Doctor - Leaf Miners -->
+  <url>
+    <loc>https://growappcannabis.guide/tools/plant-doctor/assets/html/Leaf-Miners.html</loc>
+    <lastmod>2024-01-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <video:video>
+      <video:thumbnail_loc>https://growappcannabis.guide/tools/plant-doctor/assets/poster/leaf_miners.png</video:thumbnail_loc>
+      <video:title>Leaf Miners</video:title>
+      <video:description>How-To Treat Leaf Miners On Cannabis Plants</video:description>
+      <video:content_loc>https://growappcannabis.guide/tools/plant-doctor/assets/video/Leaf_Miners.mp4</video:content_loc>
+      <video:duration>67</video:duration>
+    </video:video>
+  </url>
+
+                                  <!-- Plant Doctor - Leaf Septoria / Yellow Leaf Spots -->
+  <url>
+    <loc>https://growappcannabis.guide/tools/plant-doctor/assets/html/Leaf-Septoria-Yellow-Leaf-Spot.html</loc>
+    <lastmod>2024-01-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <video:video>
+      <video:thumbnail_loc>https://growappcannabis.guide/tools/plant-doctor/assets/poster/leaf_septoria.png</video:thumbnail_loc>
+      <video:title>Leaf Septoria / Yellow Leaf Spots</video:title>
+      <video:description>How-To Treat Leaf Septoria / Yellow Leaf Spots On Cannabis Plants</video:description>
+      <video:content_loc>https://growappcannabis.guide/tools/plant-doctor/assets/video/Leaf_Septoria.mp4</video:content_loc>
+      <video:duration>69</video:duration>
+    </video:video>
+  </url>
+
+                                    <!-- Plant Doctor - Leafhoppers -->
+  <url>
+    <loc>https://growappcannabis.guide/tools/plant-doctor/assets/html/Leafhoppers.html</loc>
+    <lastmod>2024-01-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <video:video>
+      <video:thumbnail_loc>https://growappcannabis.guide/tools/plant-doctor/assets/poster/leafhopper.png</video:thumbnail_loc>
+      <video:title>Leafhoppers</video:title>
+      <video:description>How-To Treat Leafhoppers On Cannabis Plants</video:description>
+      <video:content_loc>https://growappcannabis.guide/tools/plant-doctor/assets/video/Leaf_Hoppers.mp4</video:content_loc>
+      <video:duration>60</video:duration>
+    </video:video>
+  </url>
+
+                                      <!-- Plant Doctor - Light Burn or Light Stress -->
+  <url>
+    <loc>https://growappcannabis.guide/tools/plant-doctor/assets/html/Light-Burn-or-Light-Stress.html</loc>
+    <lastmod>2024-01-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <video:video>
+      <video:thumbnail_loc>https://growappcannabis.guide/tools/plant-doctor/assets/poster/light_burn_or_light_stress.png</video:thumbnail_loc>
+      <video:title>Light Burn or Light Stress</video:title>
+      <video:description>How-To Treat Light Burn or Light Stress On Cannabis Plants</video:description>
+      <video:content_loc>https://growappcannabis.guide/tools/plant-doctor/assets/video/Light-Burn_or_Light-Stress.mp4</video:content_loc>
+      <video:duration>55</video:duration>
+    </video:video>
+  </url>
+
+                                        <!-- Plant Doctor - Magnesium Deficiency -->
+  <url>
+    <loc>https://growappcannabis.guide/tools/plant-doctor/assets/html/Magnesium-Deficiency.html</loc>
+    <lastmod>2024-01-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <video:video>
+      <video:thumbnail_loc>https://growappcannabis.guide/tools/plant-doctor/assets/poster/magnesium_deficiency.png</video:thumbnail_loc>
+      <video:title>Magnesium Deficiency</video:title>
+      <video:description>How-To Treat Magnesium Deficiency On Cannabis Plants</video:description>
+      <video:content_loc>https://growappcannabis.guide/tools/plant-doctor/assets/video/Magnesium_Deficiency.mp4</video:content_loc>
+      <video:duration>58</video:duration>
+    </video:video>
+  </url>
+
+                                          <!-- Plant Doctor - Manganese Deficiency -->
+  <url>
+    <loc>https://growappcannabis.guide/tools/plant-doctor/assets/html/Manganese-Deficiency.html</loc>
+    <lastmod>2024-01-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <video:video>
+      <video:thumbnail_loc>https://growappcannabis.guide/tools/plant-doctor/assets/poster/manganese_deficiency.png</video:thumbnail_loc>
+      <video:title>Manganese Deficiency</video:title>
+      <video:description>How-To Treat Manganese Deficiency On Cannabis Plants</video:description>
+      <video:content_loc>https://growappcannabis.guide/tools/plant-doctor/assets/video/Manganese_Deficiency.mp4</video:content_loc>
+      <video:duration>51</video:duration>
+    </video:video>
+  </url>
+
+                                            <!-- Plant Doctor - Mealybugs -->
+  <url>
+    <loc>https://growappcannabis.guide/tools/plant-doctor/assets/html/Mealybugs.html</loc>
+    <lastmod>2024-01-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <video:video>
+      <video:thumbnail_loc>https://growappcannabis.guide/tools/plant-doctor/assets/poster/mealybugs.png</video:thumbnail_loc>
+      <video:title>Mealybugs</video:title>
+      <video:description>How-To Treat Mealybugs On Cannabis Plants</video:description>
+      <video:content_loc>https://growappcannabis.guide/tools/plant-doctor/assets/video/Mealybugs.mp4</video:content_loc>
+      <video:duration>56</video:duration>
+    </video:video>
+  </url>
+
+                                                <!-- Plant Doctor - Molybdenum Deficiency -->
+  <url>
+    <loc>https://growappcannabis.guide/tools/plant-doctor/assets/html/Molybdenum-Deficiency.html</loc>
+    <lastmod>2024-01-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <video:video>
+      <video:thumbnail_loc>https://growappcannabis.guide/tools/plant-doctor/assets/poster/molybdenum_deficiency.png</video:thumbnail_loc>
+      <video:title>Molybdenum Deficiency</video:title>
+      <video:description>How-To Treat Molybdenum Deficiency On Cannabis Plants</video:description>
+      <video:content_loc>https://growappcannabis.guide/tools/plant-doctor/assets/video/Molybdenum_Deficiency.mp4</video:content_loc>
+      <video:duration>61</video:duration>
+    </video:video>
+  </url>
+
+                                                  <!-- Plant Doctor - Nitrogen Deficiency -->
+  <url>
+    <loc>https://growappcannabis.guide/tools/plant-doctor/assets/html/Nitrogen-Deficiency.html</loc>
+    <lastmod>2024-01-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <video:video>
+      <video:thumbnail_loc>https://growappcannabis.guide/tools/plant-doctor/assets/poster/nitrogen_deficiency.png</video:thumbnail_loc>
+      <video:title>Nitrogen Deficiency</video:title>
+      <video:description>How-To Treat Nitrogen Deficiency On Cannabis Plants</video:description>
+      <video:content_loc>https://growappcannabis.guide/tools/plant-doctor/assets/video/Nitrogen_Deficiency.mp4</video:content_loc>
+      <video:duration>68</video:duration>
+    </video:video>
+  </url>
+
+                                                    <!-- Plant Doctor - Nitrogen Toxicity -->
+  <url>
+    <loc>https://growappcannabis.guide/tools/plant-doctor/assets/html/Nitrogen-Toxicity.html</loc>
+    <lastmod>2024-01-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <video:video>
+      <video:thumbnail_loc>https://growappcannabis.guide/tools/plant-doctor/assets/poster/nitrogen_toxicity.png</video:thumbnail_loc>
+      <video:title>Nitrogen Toxicity</video:title>
+      <video:description>How-To Treat Nitrogen Toxicity On Cannabis Plants</video:description>
+      <video:content_loc>https://growappcannabis.guide/tools/plant-doctor/assets/video/Nitrogen_Toxicity.mp4</video:content_loc>
+      <video:duration>66</video:duration>
+    </video:video>
+  </url>
+
+                                                      <!-- Plant Doctor - Nutrient Burn -->
+  <url>
+    <loc>https://growappcannabis.guide/tools/plant-doctor/assets/html/Nutrient-Burn.html</loc>
+    <lastmod>2024-01-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <video:video>
+      <video:thumbnail_loc>https://growappcannabis.guide/tools/plant-doctor/assets/poster/nutrient_burn.png</video:thumbnail_loc>
+      <video:title>Nutrient Burn</video:title>
+      <video:description>How-To Treat Nutrient Burn On Cannabis Plants</video:description>
+      <video:content_loc>https://growappcannabis.guide/tools/plant-doctor/assets/video/Nutrient_Burn.mp4</video:content_loc>
+      <video:duration>55</video:duration>
+    </video:video>
+  </url>
+
+                                                        <!-- Plant Doctor - Over-Watering -->
+  <url>
+    <loc>https://growappcannabis.guide/tools/plant-doctor/assets/html/Over-Watering.html</loc>
+    <lastmod>2024-01-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <video:video>
+      <video:thumbnail_loc>https://growappcannabis.guide/tools/plant-doctor/assets/poster/over_watering.png</video:thumbnail_loc>
+      <video:title>Over-Watering</video:title>
+      <video:description>How-To Treat Over-Watering On Cannabis Plants</video:description>
+      <video:content_loc>https://growappcannabis.guide/tools/plant-doctor/assets/video/Over-Watering.mp4</video:content_loc>
+      <video:duration>57</video:duration>
+    </video:video>
+  </url>
+
+                                                          <!-- Plant Doctor - pH Fluctuations -->
+  <url>
+    <loc>https://growappcannabis.guide/tools/plant-doctor/assets/html/pH-Fluctuations.html</loc>
+    <lastmod>2024-01-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <video:video>
+      <video:thumbnail_loc>https://growappcannabis.guide/tools/plant-doctor/assets/poster/ph_fluctuations.png</video:thumbnail_loc>
+      <video:title>pH Fluctuations</video:title>
+      <video:description>How-To Treat pH Fluctuations On Cannabis Plants</video:description>
+      <video:content_loc>https://growappcannabis.guide/tools/plant-doctor/assets/video/pHFluctuations.mp4</video:content_loc>
+      <video:duration>62</video:duration>
+    </video:video>
+  </url>
+
+                                                            <!-- Plant Doctor - Phosphorus Deficiency -->
+  <url>
+    <loc>https://growappcannabis.guide/tools/plant-doctor/assets/html/Phosphorus-Deficiency.html</loc>
+    <lastmod>2024-01-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <video:video>
+      <video:thumbnail_loc>https://growappcannabis.guide/tools/plant-doctor/assets/poster/phosphorus_deficiency.png</video:thumbnail_loc>
+      <video:title>Phosphorus Deficiency</video:title>
+      <video:description>How-To Treat Phosphorus Deficiency On Cannabis Plants</video:description>
+      <video:content_loc>https://growappcannabis.guide/tools/plant-doctor/assets/video/Phosphorus_Deficiency.mp4</video:content_loc>
+      <video:duration>46</video:duration>
+    </video:video>
+  </url>
+
+                                                              <!-- Plant Doctor - Planthoppers -->
+  <url>
+    <loc>https://growappcannabis.guide/tools/plant-doctor/assets/html/Planthoppers.html</loc>
+    <lastmod>2024-01-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <video:video>
+      <video:thumbnail_loc>https://growappcannabis.guide/tools/plant-doctor/assets/poster/planthoppers.png</video:thumbnail_loc>
+      <video:title>Planthoppers</video:title>
+      <video:description>How-To Treat Planthoppers On Cannabis Plants</video:description>
+      <video:content_loc>https://growappcannabis.guide/tools/plant-doctor/assets/video/Planthoppers.mp4</video:content_loc>
+      <video:duration>60</video:duration>
+    </video:video>
+  </url>
+
+                                                                <!-- Plant Doctor - Potassium Deficiency -->
+  <url>
+    <loc>https://growappcannabis.guide/tools/plant-doctor/assets/html/Potassium-Deficiency.html</loc>
+    <lastmod>2024-01-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <video:video>
+      <video:thumbnail_loc>https://growappcannabis.guide/tools/plant-doctor/assets/poster/potassium_deficiency.png</video:thumbnail_loc>
+      <video:title>Potassium Deficiency</video:title>
+      <video:description>How-To Treat Potassium Deficiency On Cannabis Plants</video:description>
+      <video:content_loc>https://growappcannabis.guide/tools/plant-doctor/assets/video/Potassium_Deficiency.mp4</video:content_loc>
+      <video:duration>48</video:duration>
+    </video:video>
+  </url>
+
+                                                                  <!-- Plant Doctor - Root Problems -->
+  <url>
+    <loc>https://growappcannabis.guide/tools/plant-doctor/assets/html/Root-Problems.html</loc>
+    <lastmod>2024-01-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <video:video>
+      <video:thumbnail_loc>https://growappcannabis.guide/tools/plant-doctor/assets/poster/root_problems.png</video:thumbnail_loc>
+      <video:title>Root Problems</video:title>
+      <video:description>How-To Treat Root Problems On Cannabis Plants</video:description>
+      <video:content_loc>https://growappcannabis.guide/tools/plant-doctor/assets/video/Root_Problems.mp4</video:content_loc>
+      <video:duration>41</video:duration>
+    </video:video>
+  </url>
+
+                                                                    <!-- Plant Doctor - Root Rot -->
+  <url>
+    <loc>https://growappcannabis.guide/tools/plant-doctor/assets/html/Root-Rot.html</loc>
+    <lastmod>2024-01-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <video:video>
+      <video:thumbnail_loc>https://growappcannabis.guide/tools/plant-doctor/assets/poster/root_rot.png</video:thumbnail_loc>
+      <video:title>Root Rot</video:title>
+      <video:description>How-To Treat Root Rot On Cannabis Plants</video:description>
+      <video:content_loc>https://growappcannabis.guide/tools/plant-doctor/assets/video/Root_Rot.mp4</video:content_loc>
+      <video:duration>58</video:duration>
+    </video:video>
+  </url>
+
+                                                                      <!-- Plant Doctor - Slugs or Snails -->
+  <url>
+    <loc>https://growappcannabis.guide/tools/plant-doctor/assets/html/Slugs-or-Snails.html</loc>
+    <lastmod>2024-01-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <video:video>
+      <video:thumbnail_loc>https://growappcannabis.guide/tools/plant-doctor/assets/poster/slug_or_snail.png</video:thumbnail_loc>
+      <video:title>Slugs or Snails</video:title>
+      <video:description>How-To Treat Slugs or Snails On Cannabis Plants</video:description>
+      <video:content_loc>https://growappcannabis.guide/tools/plant-doctor/assets/video/Slugs_or_Snails.mp4</video:content_loc>
+      <video:duration>65</video:duration>
+    </video:video>
+  </url>
+
+                                                                        <!-- Plant Doctor - Spider Mites -->
+  <url>
+    <loc>https://growappcannabis.guide/tools/plant-doctor/assets/html/Spider-Mites.html</loc>
+    <lastmod>2024-01-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <video:video>
+      <video:thumbnail_loc>https://growappcannabis.guide/tools/plant-doctor/assets/poster/spider_mites.png</video:thumbnail_loc>
+      <video:title>Spider Mites</video:title>
+      <video:description>How-To Treat Spider Mites On Cannabis Plants</video:description>
+      <video:content_loc>https://growappcannabis.guide/tools/plant-doctor/assets/video/Spider_Mites.mp4</video:content_loc>
+      <video:duration>57</video:duration>
+    </video:video>
+  </url>
+
+                                                                          <!-- Plant Doctor - Stink Bugs -->
+  <url>
+    <loc>https://growappcannabis.guide/tools/plant-doctor/assets/html/Stink-Bug.html</loc>
+    <lastmod>2024-01-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <video:video>
+      <video:thumbnail_loc>https://growappcannabis.guide/tools/plant-doctor/assets/poster/stink_bugs.png</video:thumbnail_loc>
+      <video:title>Stink Bugs</video:title>
+      <video:description>How-To Treat Stink Bugs On Cannabis Plants</video:description>
+      <video:content_loc>https://growappcannabis.guide/tools/plant-doctor/assets/video/Stink_Bugs.mp4</video:content_loc>
+      <video:duration>64</video:duration>
+    </video:video>
+  </url>
+
+                                                                            <!-- Plant Doctor - Sulfur Deficiency -->
+  <url>
+    <loc>https://growappcannabis.guide/tools/plant-doctor/assets/html/Sulfur-Deficiency.html</loc>
+    <lastmod>2024-01-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <video:video>
+      <video:thumbnail_loc>https://growappcannabis.guide/tools/plant-doctor/assets/poster/sulfer_deficiency.png</video:thumbnail_loc>
+      <video:title>Sulfur Deficiency</video:title>
+      <video:description>How-To Treat Sulfur Deficiency On Cannabis Plants</video:description>
+      <video:content_loc>https://growappcannabis.guide/tools/plant-doctor/assets/video/Sulfur_Deficiency.mp4</video:content_loc>
+      <video:duration>55</video:duration>
+    </video:video>
+  </url>
+
+                                                                              <!-- Plant Doctor - Thrips -->
+  <url>
+    <loc>https://growappcannabis.guide/tools/plant-doctor/assets/html/Thrips.html</loc>
+    <lastmod>2024-01-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <video:video>
+      <video:thumbnail_loc>https://growappcannabis.guide/tools/plant-doctor/assets/poster/thrips.png</video:thumbnail_loc>
+      <video:title>Thrips</video:title>
+      <video:description>How-To Treat Thrips On Cannabis Plants</video:description>
+      <video:content_loc>https://growappcannabis.guide/tools/plant-doctor/assets/video/Thrips.mp4</video:content_loc>
+      <video:duration>64</video:duration>
+    </video:video>
+  </url>
+
+                                                                                <!-- Plant Doctor - Tobacco Mosaic Virus (TMV) -->
+  <url>
+    <loc>https://growappcannabis.guide/tools/plant-doctor/assets/html/Tobacco-Mosaic-Virus.html</loc>
+    <lastmod>2024-01-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <video:video>
+      <video:thumbnail_loc>https://growappcannabis.guide/tools/plant-doctor/assets/poster/tocacco_mosiac_virus.png</video:thumbnail_loc>
+      <video:title>Tobacco Mosaic Virus (TMV)</video:title>
+      <video:description>How-To Treat Tobacco Mosaic Virus (TMV) On Cannabis Plants</video:description>
+      <video:content_loc>https://growappcannabis.guide/tools/plant-doctor/assets/video/Tobacco_Mosaic_Virus.mp4</video:content_loc>
+      <video:duration>42</video:duration>
+    </video:video>
+  </url>
+
+                                                                                  <!-- Plant Doctor - Under-watering -->
+  <url>
+    <loc>https://growappcannabis.guide/tools/plant-doctor/assets/html/Under-watering.html</loc>
+    <lastmod>2024-01-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <video:video>
+      <video:thumbnail_loc>https://growappcannabis.guide/tools/plant-doctor/assets/poster/under_watering.png</video:thumbnail_loc>
+      <video:title>Under-watering</video:title>
+      <video:description>How-To Treat Under-watering On Cannabis Plants</video:description>
+      <video:content_loc>https://growappcannabis.guide/tools/plant-doctor/assets/video/Under_Watering.mp4</video:content_loc>
+      <video:duration>52</video:duration>
+    </video:video>
+  </url>
+
+                                                                                    <!-- Plant Doctor - White Powdery Mildew -->
+  <url>
+    <loc>https://growappcannabis.guide/tools/plant-doctor/assets/html/White-Powdery-Mildew.html</loc>
+    <lastmod>2024-01-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <video:video>
+      <video:thumbnail_loc>https://growappcannabis.guide/tools/plant-doctor/assets/poster/white_powdery_mildew.png</video:thumbnail_loc>
+      <video:title>White Powdery Mildew</video:title>
+      <video:description>How-To Treat White Powdery Mildew On Cannabis Plants</video:description>
+      <video:content_loc>https://growappcannabis.guide/tools/plant-doctor/assets/video/White_Powdery_Mildew.mp4</video:content_loc>
+      <video:duration>58</video:duration>
+    </video:video>
+  </url>
+
+                                                                                      <!-- Plant Doctor - Whiteflies -->
+  <url>
+    <loc>https://growappcannabis.guide/tools/plant-doctor/assets/html/Whiteflies.html</loc>
+    <lastmod>2024-01-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <video:video>
+      <video:thumbnail_loc>https://growappcannabis.guide/tools/plant-doctor/assets/poster/whiteflies.png</video:thumbnail_loc>
+      <video:title>Whiteflies</video:title>
+      <video:description>How-To Treat Whiteflies On Cannabis Plants</video:description>
+      <video:content_loc>https://growappcannabis.guide/tools/plant-doctor/assets/video/Whiteflies.mp4</video:content_loc>
+      <video:duration>49</video:duration>
+    </video:video>
+  </url>
+
+                                                                                        <!-- Plant Doctor - Wind Burn -->
+  <url>
+    <loc>https://growappcannabis.guide/tools/plant-doctor/assets/html/Wind-Burn.html</loc>
+    <lastmod>2024-01-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <video:video>
+      <video:thumbnail_loc>https://growappcannabis.guide/tools/plant-doctor/assets/poster/wind_burn.png</video:thumbnail_loc>
+      <video:title>Wind Burn</video:title>
+      <video:description>How-To Treat Wind Burn On Cannabis Plants</video:description>
+      <video:content_loc>https://growappcannabis.guide/tools/plant-doctor/assets/video/Wind_Burn.mp4</video:content_loc>
+      <video:duration>55</video:duration>
+    </video:video>
+  </url>
+
+                                                                                          <!-- Plant Doctor - Zinc Deficiency -->
+  <url>
+    <loc>https://growappcannabis.guide/tools/plant-doctor/assets/html/Zinc-Deficiency.html</loc>
+    <lastmod>2024-01-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <video:video>
+      <video:thumbnail_loc>https://growappcannabis.guide/tools/plant-doctor/assets/poster/zinc_deficiency.png</video:thumbnail_loc>
+      <video:title>Zinc Deficiency</video:title>
+      <video:description>How-To Treat Zinc Deficiency On Cannabis Plants</video:description>
+      <video:content_loc>https://growappcannabis.guide/tools/plant-doctor/assets/video/Zinc_Deficiency.mp4</video:content_loc>
+      <video:duration>56</video:duration>
+    </video:video>
+  </url>
+
+
+  <!-- GetTheApp Page -->
+  <url>
+    <loc>https://growappcannabis.guide/GetTheApp.html</loc>
+    <lastmod>2024-01-17</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- How-To Page -->
+  <url>
+    <loc>https://growappcannabis.guide/tools/how-to/how-to.html</loc>
+    <lastmod>2024-01-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <video:video>
+      <video:thumbnail_loc>https://growappcannabis.guide/tools/how-to/assets/poster/nutes.png</video:thumbnail_loc>
+      <video:title>HowTo</video:title>
+      <video:description>How-To Tips and Tricks Grow Cannabis</video:description>
+      <video:content_loc>https://growappcannabis.guide/tools/how-to/assets/video/tent.mp4</video:content_loc>
+      <video:duration>65</video:duration>
+    </video:video>
+  </url>
+
+    <!-- Search Strains Page -->
+  <url>
+    <loc>https://growappcannabis.guide/tools/search-strains/search-strains.html</loc>
+    <lastmod>2024-01-17</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
+  </url>
 
 </urlset>

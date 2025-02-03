@@ -100,28 +100,38 @@ async function shareTable() {
             // Remove .notes rows
             tempDiv.querySelectorAll('tr.notes').forEach(row => row.remove());
             
-            // Get cleaned text content
-            const tableContent = tempDiv.innerText;
+            // Format table data properly
+            const rows = tempDiv.querySelectorAll('tr');
+            let formattedContent = '';
+            
+            rows.forEach(row => {
+                const cells = row.querySelectorAll('th, td');
+                const rowData = [];
+                
+                cells.forEach(cell => {
+                    rowData.push(cell.textContent.trim());
+                });
+                
+                // Add tab spacing between columns and newline for rows
+                formattedContent += rowData.join('\t') + '\n';
+            });
             
             // Check if the content is not empty
-            if (!tableContent.trim()) {
+            if (!formattedContent.trim()) {
                 showMessage('No content available to share', 'error');
                 return;
             }
 
-            // Wrap the share attempt in a try-catch block
             try {
                 await navigator.share({
                     title: 'MyGrow Table',
-                    text: tableContent
+                    text: formattedContent
                 });
                 showMessage('Table shared successfully!', 'success');
             } catch (error) {
-                // Handle specific share errors
                 if (error.name === 'NotAllowedError') {
                     showMessage('Share canceled or permission denied', 'info');
                 } else if (error.name === 'AbortError') {
-                    // User cancelled the share operation - no need to show error
                     return;
                 } else {
                     console.error('Share error:', error);
@@ -133,18 +143,31 @@ async function shareTable() {
             showMessage('Error preparing content for sharing', 'error');
         }
     } else {
-        // Fallback for devices/browsers that don't support sharing
         showMessage('Sharing is not supported on this device/browser', 'info');
         
-        // Optional: You could add a fallback here, like copying to clipboard
+        // Clipboard fallback with formatted content
         try {
             const table = document.getElementById('table1');
             const tempDiv = document.createElement('div');
             tempDiv.innerHTML = table.innerHTML;
             tempDiv.querySelectorAll('tr.notes').forEach(row => row.remove());
-            const tableContent = tempDiv.innerText;
             
-            await navigator.clipboard.writeText(tableContent);
+            // Format table data for clipboard
+            const rows = tempDiv.querySelectorAll('tr');
+            let formattedContent = '';
+            
+            rows.forEach(row => {
+                const cells = row.querySelectorAll('th, td');
+                const rowData = [];
+                
+                cells.forEach(cell => {
+                    rowData.push(cell.textContent.trim());
+                });
+                
+                formattedContent += rowData.join('\t') + '\n';
+            });
+            
+            await navigator.clipboard.writeText(formattedContent);
             showMessage('Content copied to clipboard instead', 'success');
         } catch (clipboardError) {
             console.error('Clipboard fallback failed:', clipboardError);

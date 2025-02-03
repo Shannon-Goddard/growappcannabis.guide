@@ -135,21 +135,29 @@ async function shareTable() {
     if (navigator.share) {
         try {
             const table = document.getElementById('table2');
-            const tempDiv = document.createElement('div');
-            tempDiv.innerHTML = table.innerHTML;
             
-            // Keep only header and .notes rows
-            const headerRow = $(tempDiv).find('tr:first');
-            const notesRows = $(tempDiv).find('tr.notes');
+            // Get header row and notes rows
+            const headerRow = table.querySelector('tr:first-child');
+            const notesRows = table.querySelectorAll('tr.notes');
             
-            // Clear and rebuild with only the rows we want
-            $(tempDiv).empty();
-            headerRow.appendTo(tempDiv);
-            notesRows.appendTo(tempDiv);
+            // Format header
+            const headerCells = headerRow.querySelectorAll('th');
+            let formattedContent = Array.from(headerCells)
+                .map(cell => cell.textContent.trim())
+                .join('\t') + '\n\n';
             
-            const tableContent = tempDiv.innerText;
+            // Format notes rows
+            notesRows.forEach(row => {
+                const cells = row.querySelectorAll('td');
+                const rowContent = Array.from(cells)
+                    .map(cell => cell.textContent.trim())
+                    .join('\t');
+                if (rowContent.trim()) {
+                    formattedContent += rowContent + '\n';
+                }
+            });
             
-            if (!tableContent.trim()) {
+            if (!formattedContent.trim()) {
                 showMessage('No content available to share', 'error');
                 return;
             }
@@ -157,9 +165,9 @@ async function shareTable() {
             try {
                 await navigator.share({
                     title: 'MyDiary',
-                    text: tableContent
+                    text: formattedContent
                 });
-                showMessage('Table shared successfully!', 'success');
+                showMessage('Content shared successfully!', 'success');
             } catch (error) {
                 if (error.name === 'NotAllowedError') {
                     showMessage('Share canceled or permission denied', 'info');
@@ -169,29 +177,39 @@ async function shareTable() {
             }
         } catch (error) {
             console.error('Error sharing table:', error);
-            showMessage('Failed to share table. Please try again.', 'error');
+            showMessage('Failed to share content. Please try again.', 'error');
         }
     } else {
-        showMessage('Sharing is not supported on this device/browser', 'info');
         // Clipboard fallback
         try {
             const table = document.getElementById('table2');
-            const tempDiv = document.createElement('div');
-            tempDiv.innerHTML = table.innerHTML;
             
-            // Keep only header and .notes rows for clipboard copy
-            const headerRow = $(tempDiv).find('tr:first');
-            const notesRows = $(tempDiv).find('tr.notes');
+            // Get header row and notes rows
+            const headerRow = table.querySelector('tr:first-child');
+            const notesRows = table.querySelectorAll('tr.notes');
             
-            // Clear and rebuild with only the rows we want
-            $(tempDiv).empty();
-            headerRow.appendTo(tempDiv);
-            notesRows.appendTo(tempDiv);
+            // Format header
+            const headerCells = headerRow.querySelectorAll('th');
+            let formattedContent = Array.from(headerCells)
+                .map(cell => cell.textContent.trim())
+                .join('\t') + '\n\n';
             
-            await navigator.clipboard.writeText(tempDiv.innerText);
-            showMessage('Content copied to clipboard instead', 'success');
+            // Format notes rows
+            notesRows.forEach(row => {
+                const cells = row.querySelectorAll('td');
+                const rowContent = Array.from(cells)
+                    .map(cell => cell.textContent.trim())
+                    .join('\t');
+                if (rowContent.trim()) {
+                    formattedContent += rowContent + '\n';
+                }
+            });
+
+            await navigator.clipboard.writeText(formattedContent);
+            showMessage('Content copied to clipboard', 'success');
         } catch (clipboardError) {
             console.error('Clipboard fallback failed:', clipboardError);
+            showMessage('Failed to copy content', 'error');
         }
     }
 }
@@ -209,6 +227,7 @@ $(document).ready(function() {
         }
     });
 });
+
 
 // Error handling for script loading
 window.onerror = function(msg, url, lineNo, columnNo, error) {

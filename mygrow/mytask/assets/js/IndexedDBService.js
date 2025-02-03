@@ -96,127 +96,73 @@ $(async function() {
 
     // Function to clean table content
     function cleanTableContent(table) {
+        const cleanedTable = table.clone();
+        
         // Remove any input fields and preserve their values
-        table.find('input').each(function() {
+        cleanedTable.find('input').each(function() {
             const input = $(this);
             const value = input.val() || '';
             input.closest('td').html(value);
         });
 
         // Remove any empty text nodes
-        table.contents().each(function() {
+        cleanedTable.contents().each(function() {
             if (this.nodeType === 3 && !this.nodeValue.trim()) {
                 $(this).remove();
             }
         });
 
-        return table;
+        return cleanedTable;
     }
 
     // Initialize each table
     for (const [tableId, dbConfig] of Object.entries(dbConfigs)) {
-        const table = $(`#${tableId}`);
-        if (!table.length) continue;
+        const table = document.getElementById(tableId);
+        if (table) {
+            const $table = $(table);
 
-        // Clean and save initial table content if needed
-        const initialContent = table.html();
-        if (initialContent) {
-            cleanTableContent(table);
-            await IndexedDBService.saveTable(
-                dbConfig.dbName,
-                dbConfig.dbVersion,
-                dbConfig.storeName,
-                table.html()
-            );
-        }
-
-        // Load saved content
-        try {
-            const savedContent = await IndexedDBService.loadTable(
-                dbConfig.dbName,
-                dbConfig.dbVersion,
-                dbConfig.storeName
-            );
-
-            if (savedContent) {
-                table.html(savedContent);
-                cleanTableContent(table);
-                updateRowVisibility(tableId);
-            }
-        } catch (error) {
-            console.error(`Error loading ${tableId}:`, error);
-        }
-
-        // Make table editable
-        table.attr('contenteditable', 'true');
-
-        // Save content when table is modified
-        table.on('input', async function() {
+            // Load saved content
             try {
-                cleanTableContent(table);
-                await IndexedDBService.saveTable(
+                const savedContent = await IndexedDBService.loadTable(
                     dbConfig.dbName,
                     dbConfig.dbVersion,
-                    dbConfig.storeName,
-                    table.html()
+                    dbConfig.storeName
                 );
+
+                if (savedContent) {
+                    $table.html(savedContent);
+                    updateRowVisibility(tableId);
+                }
             } catch (error) {
-                console.error(`Error saving ${tableId}:`, error);
+                console.error(`Error loading ${tableId}:`, error);
             }
-        });
+
+            // Make table editable
+            $table.attr('contenteditable', 'true');
+        }
     }
 
-    // Save button functionality
-    $('#SaveButton').hide();
+    // Save all tables before page unload
+    window.addEventListener('beforeunload', async (event) => {
+        // Save each table if it exists
+        await Promise.all(Object.entries(dbConfigs).map(async ([tableId, dbConfig]) => {
+            const table = document.getElementById(tableId);
+            if (table) {
+                const $table = $(table);
+                const tableClone = cleanTableContent($table);
+                tableClone.find('tr').show(); // Show all rows in clone
 
-    $("table").on("click", "td", function() {
-        $('#SaveButton').show();
-    });
-
-    $("#SaveButton").on("click", async function() {
-        for (const [tableId, dbConfig] of Object.entries(dbConfigs)) {
-            const table = $(`#${tableId}`);
-            if (!table.length) continue;
-
-            cleanTableContent(table);
-            await IndexedDBService.saveTable(
-                dbConfig.dbName,
-                dbConfig.dbVersion,
-                dbConfig.storeName,
-                table.html()
-            );
-        }
-
-        $('#SaveButton').hide();
-    });
-
-    // Remove any existing beforeunload handlers
-    $(window).off('beforeunload');
-    window.onbeforeunload = null;
-
-    // Add visibilitychange handler for auto-saving
-    document.addEventListener('visibilitychange', async () => {
-        if (document.visibilityState === 'hidden') {
-            for (const [tableId, dbConfig] of Object.entries(dbConfigs)) {
-                const table = $(`#${tableId}`);
-                if (!table.length) continue;
-
-                // Show all rows temporarily
-                table.find('tr').show();
-                
-                cleanTableContent(table);
-                
-                // Save the complete table content
-                await IndexedDBService.saveTable(
-                    dbConfig.dbName,
-                    dbConfig.dbVersion,
-                    dbConfig.storeName,
-                    table.html()
-                );
-                
-                // Restore visibility
-                updateRowVisibility(tableId);
+                try {
+                    await IndexedDBService.saveTable(
+                        dbConfig.dbName,
+                        dbConfig.dbVersion,
+                        dbConfig.storeName,
+                        tableClone.html()
+                    );
+                } catch (error) {
+                    console.error(`Error saving ${tableId}:`, error);
+                }
             }
-        }
+        }));
     });
 });

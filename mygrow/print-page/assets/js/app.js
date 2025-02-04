@@ -1,43 +1,3 @@
-// Message System Styles
-const styles = `
-    .message {
-        position: fixed;
-        bottom: 20px;
-        right: 20px;
-        padding: 15px 25px;
-        border-radius: 5px;
-        color: white;
-        font-size: 16px;
-        z-index: 1000;
-        animation: fadeInOut 3s ease-in-out;
-        box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-    }
-
-    .message-success {
-        background-color: #4CAF50;
-    }
-
-    .message-error {
-        background-color: #f44336;
-    }
-
-    .message-info {
-        background-color: #2196F3;
-    }
-
-    @keyframes fadeInOut {
-        0% { opacity: 0; transform: translateY(20px); }
-        10% { opacity: 1; transform: translateY(0); }
-        90% { opacity: 1; transform: translateY(0); }
-        100% { opacity: 0; transform: translateY(-20px); }
-    }
-`;
-
-// Add styles to document
-const styleSheet = document.createElement('style');
-styleSheet.textContent = styles;
-document.head.appendChild(styleSheet);
-
 // Message display function
 function showMessage(message, type = 'info') {
     const messageDiv = document.createElement('div');
@@ -45,27 +5,19 @@ function showMessage(message, type = 'info') {
     messageDiv.textContent = message;
     document.body.appendChild(messageDiv);
     
-    // Remove message after 3 seconds
-    setTimeout(() => {
-        messageDiv.remove();
-    }, 3000);
+    setTimeout(() => messageDiv.remove(), 3000);
 }
 
 // Excel export function
 function toExcel() {
     try {
-        // Create a clone of the table
         const originalTable = document.getElementById('table1');
         const tableClone = originalTable.cloneNode(true);
         
-        // Remove all .notes rows from the clone
         tableClone.querySelectorAll('tr.notes').forEach(row => row.remove());
-        
-        // Temporarily add the clone to the document (hidden)
         tableClone.style.display = 'none';
         document.body.appendChild(tableClone);
 
-        // Export the cleaned table
         $(tableClone).table2excel({
             exclude: ".noExl",
             name: "MyGrow.xls",
@@ -77,9 +29,7 @@ function toExcel() {
             preserveColors: false
         });
 
-        // Remove the clone
         tableClone.remove();
-        
         showMessage('Table exported successfully!', 'success');
     } catch (error) {
         console.error('Error exporting to Excel:', error);
@@ -93,85 +43,143 @@ async function shareTable() {
         try {
             const table = document.getElementById('table1');
             
-            // Create a temporary div to hold table content
-            const tempDiv = document.createElement('div');
-            tempDiv.innerHTML = table.innerHTML;
-            
-            // Remove .notes rows
-            tempDiv.querySelectorAll('tr.notes').forEach(row => row.remove());
-            
-            // Format table data properly
-            const rows = tempDiv.querySelectorAll('tr');
-            let formattedContent = '';
-            
-            rows.forEach(row => {
-                const cells = row.querySelectorAll('th, td');
-                const rowData = [];
-                
-                cells.forEach(cell => {
-                    rowData.push(cell.textContent.trim());
-                });
-                
-                // Add tab spacing between columns and newline for rows
-                formattedContent += rowData.join('\t') + '\n';
-            });
-            
-            // Check if the content is not empty
-            if (!formattedContent.trim()) {
-                showMessage('No content available to share', 'error');
-                return;
-            }
+            // Create email-friendly HTML structure
+            const emailTemplate = `
+                <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+                <html xmlns="http://www.w3.org/1999/xhtml">
+                <head>
+                    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+                    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+                    <title>MyGrow Table</title>
+                </head>
+                <body style="margin: 0; padding: 0; font-family: Arial, sans-serif;">
+                    <table role="presentation" style="width: 100%; border-collapse: collapse; border: 0; border-spacing: 0; background: #ffffff;">
+                        <tr>
+                            <td align="center" style="padding: 20px 0;">
+                                <table role="presentation" style="width: 95%; border-collapse: collapse; border: 1px solid #cccccc;">
+                                    ${convertTableToEmailFriendly(table.innerHTML)}
+                                </table>
+                            </td>
+                        </tr>
+                    </table>
+                </body>
+                </html>
+            `;
 
+            const blob = new Blob([emailTemplate], { type: 'text/html' });
+            const file = new File([blob], 'MyGrow-Table.html', { type: 'text/html' });
+
+            await navigator.share({
+                title: 'MyGrow Table',
+                text: 'MyGrow Table Data',
+                files: [file]
+            });
+            showMessage('Table shared successfully!', 'success');
+        } catch (error) {
+            console.error('Share error:', error);
             try {
+                const textContent = prepareTableText(table);
                 await navigator.share({
                     title: 'MyGrow Table',
-                    text: formattedContent
+                    text: textContent
                 });
-                showMessage('Table shared successfully!', 'success');
-            } catch (error) {
-                if (error.name === 'NotAllowedError') {
-                    showMessage('Share canceled or permission denied', 'info');
-                } else if (error.name === 'AbortError') {
-                    return;
-                } else {
-                    console.error('Share error:', error);
-                    showMessage('Unable to share content', 'error');
-                }
+                showMessage('Table shared as text!', 'success');
+            } catch (fallbackError) {
+                showMessage('Unable to share content', 'error');
             }
-        } catch (error) {
-            console.error('Error preparing content:', error);
-            showMessage('Error preparing content for sharing', 'error');
         }
     } else {
-        showMessage('Sharing is not supported on this device/browser', 'info');
-        
-        // Clipboard fallback with formatted content
+        showMessage('Sharing not supported on this device/browser', 'info');
         try {
             const table = document.getElementById('table1');
-            const tempDiv = document.createElement('div');
-            tempDiv.innerHTML = table.innerHTML;
-            tempDiv.querySelectorAll('tr.notes').forEach(row => row.remove());
-            
-            // Format table data for clipboard
-            const rows = tempDiv.querySelectorAll('tr');
-            let formattedContent = '';
-            
-            rows.forEach(row => {
-                const cells = row.querySelectorAll('th, td');
-                const rowData = [];
-                
-                cells.forEach(cell => {
-                    rowData.push(cell.textContent.trim());
-                });
-                
-                formattedContent += rowData.join('\t') + '\n';
-            });
-            
-            await navigator.clipboard.writeText(formattedContent);
-            showMessage('Content copied to clipboard instead', 'success');
+            await navigator.clipboard.writeText(table.outerHTML);
+            showMessage('HTML table copied to clipboard instead', 'success');
         } catch (clipboardError) {
             console.error('Clipboard fallback failed:', clipboardError);
         }
+    }
+}
+
+// Helper function to convert table to email-friendly format
+function convertTableToEmailFriendly(tableHTML) {
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(tableHTML, 'text/html');
+    const rows = doc.querySelectorAll('tr:not(.notes)');
+    
+    let emailFriendlyHTML = '';
+    rows.forEach(row => {
+        emailFriendlyHTML += '<tr>';
+        const cells = row.querySelectorAll('th, td');
+        
+        cells.forEach(cell => {
+            const isHeader = cell.tagName.toLowerCase() === 'th';
+            const cellStyles = `
+                border: 1px solid #cccccc;
+                padding: 10px;
+                text-align: left;
+                background-color: ${isHeader ? '#f8f9fa' : '#ffffff'};
+                font-weight: ${isHeader ? 'bold' : 'normal'};
+                font-size: 14px;
+                color: #333333;
+            `;
+            
+            emailFriendlyHTML += `
+                <${cell.tagName.toLowerCase()} style="${cellStyles}">
+                    ${cell.innerHTML}
+                </${cell.tagName.toLowerCase()}>
+            `;
+        });
+        emailFriendlyHTML += '</tr>';
+    });
+    
+    return emailFriendlyHTML;
+}
+
+// Helper function to prepare table text
+function prepareTableText(table) {
+    const rows = table.querySelectorAll('tr:not(.notes)');
+    let text = '';
+    
+    rows.forEach(row => {
+        const cells = row.querySelectorAll('th, td');
+        const rowData = Array.from(cells).map(cell => cell.textContent.trim());
+        text += rowData.join('\t') + '\n';
+    });
+    
+    return text;
+}
+
+// Print function
+function printTable() {
+    const table = document.getElementById('table1');
+    const printWindow = window.open('', '_blank');
+    
+    if (printWindow) {
+        const printContent = `
+            <!DOCTYPE html>
+            <html>
+            <head>
+                <title>MyGrow Table</title>
+                <link rel="stylesheet" href="styles.css">
+            </head>
+            <body>
+                ${table.outerHTML}
+                <script>
+                    window.onload = function() {
+                        window.print();
+                        window.onafterprint = function() {
+                            window.close();
+                        };
+                    };
+                </script>
+            </body>
+            </html>
+        `;
+        
+        printWindow.document.write(printContent);
+        printWindow.document.close();
+    } else {
+        showMessage('Pop-up blocked. Please allow pop-ups and try again.', 'error');
     }
 }
 
@@ -186,10 +194,8 @@ function hideLoader() {
 
 // Initialize when document is ready
 $(document).ready(function() {
-    // Hide loader when page is fully loaded
     hideLoader();
 
-    // Handle export button click
     $('#exportBtn').on('click', function() {
         if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
             shareTable().catch(error => {
@@ -226,7 +232,7 @@ $(document).ready(function() {
     });
 });
 
-// Error handling for script loading
+// Error handling
 window.onerror = function(msg, url, lineNo, columnNo, error) {
     console.error('Error: ' + msg + '\nURL: ' + url + '\nLine: ' + lineNo + '\nColumn: ' + columnNo + '\nError object: ' + JSON.stringify(error));
     showMessage('An error occurred. Please try again.', 'error');

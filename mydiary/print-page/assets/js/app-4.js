@@ -92,7 +92,6 @@ $(function(){
 // Excel export function
 function toExcel() {
     try {
-        // Create a clone of the table
         const originalTable = document.getElementById('table4');
         const tableClone = originalTable.cloneNode(true);
         
@@ -112,7 +111,7 @@ function toExcel() {
         // Export the cleaned table
         $(tableClone).table2excel({
             exclude: ".noExl",
-            name: "MyDiary.xls",
+            name: "MyDiary",
             filename: "MyDiary.xls",
             fileext: ".xls",
             exclude_img: true,
@@ -136,82 +135,110 @@ async function shareTable() {
         try {
             const table = document.getElementById('table4');
             
-            // Get header row and notes rows
-            const headerRow = table.querySelector('tr:first-child');
-            const notesRows = table.querySelectorAll('tr.notes');
-            
-            // Format header
-            const headerCells = headerRow.querySelectorAll('th');
-            let formattedContent = Array.from(headerCells)
-                .map(cell => cell.textContent.trim())
-                .join('\t') + '\n\n';
-            
-            // Format notes rows
-            notesRows.forEach(row => {
-                const cells = row.querySelectorAll('td');
-                const rowContent = Array.from(cells)
-                    .map(cell => cell.textContent.trim())
-                    .join('\t');
-                if (rowContent.trim()) {
-                    formattedContent += rowContent + '\n';
-                }
-            });
-            
-            if (!formattedContent.trim()) {
-                showMessage('No content available to share', 'error');
-                return;
-            }
+            // Create email-friendly HTML structure
+            const emailTemplate = `
+                <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+                <html xmlns="http://www.w3.org/1999/xhtml">
+                <head>
+                    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+                    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+                    <title>MyDiary Table</title>
+                </head>
+                <body style="margin: 0; padding: 0; font-family: Arial, sans-serif;">
+                    <table role="presentation" style="width: 100%; border-collapse: collapse; border: 0; border-spacing: 0; background: #ffffff;">
+                        <tr>
+                            <td align="center" style="padding: 20px 0;">
+                                <table role="presentation" style="width: 95%; border-collapse: collapse; border: 1px solid #cccccc;">
+                                    ${convertTableToEmailFriendly(table.innerHTML)}
+                                </table>
+                            </td>
+                        </tr>
+                    </table>
+                </body>
+                </html>
+            `;
 
-            try {
-                await navigator.share({
-                    title: 'MyDiary',
-                    text: formattedContent
-                });
-                showMessage('Content shared successfully!', 'success');
-            } catch (error) {
-                if (error.name === 'NotAllowedError') {
-                    showMessage('Share canceled or permission denied', 'info');
-                } else if (error.name !== 'AbortError') {
-                    throw error;
-                }
-            }
+            const blob = new Blob([emailTemplate], { type: 'text/html' });
+            const file = new File([blob], 'MyDiary-Table.html', { type: 'text/html' });
+
+            await navigator.share({
+                title: 'MyDiary Table',
+                text: 'MyDiary Table Data',
+                files: [file]
+            });
+            showMessage('Table shared successfully!', 'success');
         } catch (error) {
-            console.error('Error sharing table:', error);
-            showMessage('Failed to share content. Please try again.', 'error');
+            console.error('Share error:', error);
+            try {
+                const textContent = prepareTableText(table);
+                await navigator.share({
+                    title: 'MyDiary Table',
+                    text: textContent
+                });
+                showMessage('Table shared as text!', 'success');
+            } catch (fallbackError) {
+                showMessage('Unable to share content', 'error');
+            }
         }
     } else {
-        // Clipboard fallback
+        showMessage('Sharing not supported on this device/browser', 'info');
         try {
             const table = document.getElementById('table4');
-            
-            // Get header row and notes rows
-            const headerRow = table.querySelector('tr:first-child');
-            const notesRows = table.querySelectorAll('tr.notes');
-            
-            // Format header
-            const headerCells = headerRow.querySelectorAll('th');
-            let formattedContent = Array.from(headerCells)
-                .map(cell => cell.textContent.trim())
-                .join('\t') + '\n\n';
-            
-            // Format notes rows
-            notesRows.forEach(row => {
-                const cells = row.querySelectorAll('td');
-                const rowContent = Array.from(cells)
-                    .map(cell => cell.textContent.trim())
-                    .join('\t');
-                if (rowContent.trim()) {
-                    formattedContent += rowContent + '\n';
-                }
-            });
-
-            await navigator.clipboard.writeText(formattedContent);
-            showMessage('Content copied to clipboard', 'success');
+            await navigator.clipboard.writeText(table.outerHTML);
+            showMessage('HTML table copied to clipboard instead', 'success');
         } catch (clipboardError) {
             console.error('Clipboard fallback failed:', clipboardError);
-            showMessage('Failed to copy content', 'error');
         }
     }
+}
+
+// Helper function to convert table to email-friendly format
+function convertTableToEmailFriendly(tableHTML) {
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(tableHTML, 'text/html');
+    const rows = doc.querySelectorAll('tr:not(.notes)');
+    
+    let emailFriendlyHTML = '';
+    rows.forEach(row => {
+        emailFriendlyHTML += '<tr>';
+        const cells = row.querySelectorAll('th, td');
+        
+        cells.forEach(cell => {
+            const isHeader = cell.tagName.toLowerCase() === 'th';
+            const cellStyles = `
+                border: 1px solid #cccccc;
+                padding: 10px;
+                text-align: left;
+                background-color: ${isHeader ? '#f8f9fa' : '#ffffff'};
+                font-weight: ${isHeader ? 'bold' : 'normal'};
+                font-size: 14px;
+                color: #333333;
+            `;
+            
+            emailFriendlyHTML += `
+                <${cell.tagName.toLowerCase()} style="${cellStyles}">
+                    ${cell.innerHTML}
+                </${cell.tagName.toLowerCase()}>
+            `;
+        });
+        emailFriendlyHTML += '</tr>';
+    });
+    
+    return emailFriendlyHTML;
+}
+
+// Helper function to prepare table text
+function prepareTableText(table) {
+    const rows = table.querySelectorAll('tr:not(.notes)');
+    let text = '';
+    
+    rows.forEach(row => {
+        const cells = row.querySelectorAll('th, td');
+        const rowData = Array.from(cells).map(cell => cell.textContent.trim());
+        text += rowData.join('\t') + '\n';
+    });
+    
+    return text;
 }
 
 // Initialize export/share functionality
@@ -227,7 +254,6 @@ $(document).ready(function() {
         }
     });
 });
-
 
 // Error handling for script loading
 window.onerror = function(msg, url, lineNo, columnNo, error) {

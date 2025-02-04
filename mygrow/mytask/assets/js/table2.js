@@ -1,4 +1,4 @@
-// table2.js
+// table1.js
 $(async function() {
     const IndexedDBService = {
         dbName: 'myDatabase2',
@@ -64,6 +64,9 @@ $(async function() {
     let hiddenTable = null;
     let saveTimeout = null;
 
+    // Set contenteditable immediately
+    table.attr('contenteditable', 'true');
+
     function isTodayDate(dateStr) {
         if (!dateStr) return false;
         const today = new Date();
@@ -122,8 +125,6 @@ $(async function() {
         'padding': '8px',
         'text-align': 'left'
     });
-
-    table.attr('contenteditable', 'true');
 
     function debouncedSave() {
         if (saveTimeout) {

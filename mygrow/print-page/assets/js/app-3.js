@@ -13,17 +13,9 @@ const styles = `
         box-shadow: 0 2px 5px rgba(0,0,0,0.2);
     }
 
-    .message-success {
-        background-color: #4CAF50;
-    }
-
-    .message-error {
-        background-color: #f44336;
-    }
-
-    .message-info {
-        background-color: #2196F3;
-    }
+    .message-success { background-color: #4CAF50; }
+    .message-error { background-color: #f44336; }
+    .message-info { background-color: #2196F3; }
 
     @keyframes fadeInOut {
         0% { opacity: 0; transform: translateY(20px); }
@@ -44,10 +36,138 @@ function showMessage(message, type = 'info') {
     messageDiv.className = `message message-${type}`;
     messageDiv.textContent = message;
     document.body.appendChild(messageDiv);
+    setTimeout(() => messageDiv.remove(), 3000);
+}
+
+// Display table from IndexedDB
+async function displayTableFromIndexedDB() {
+    const table = document.getElementById('table3');
     
-    setTimeout(() => {
-        messageDiv.remove();
-    }, 3000);
+    // Clear existing table content
+    while (table.firstChild) {
+        table.removeChild(table.firstChild);
+    }
+
+    try {
+        const data = await indexedDBService.getAllData();
+        if (data && data.length > 0) {
+            // Create table header
+            const thead = document.createElement('thead');
+            const headerRow = document.createElement('tr');
+            Object.keys(data[0]).forEach(key => {
+                const th = document.createElement('th');
+                th.textContent = key;
+                headerRow.appendChild(th);
+            });
+            thead.appendChild(headerRow);
+            table.appendChild(thead);
+
+            // Create table body
+            const tbody = document.createElement('tbody');
+            data.forEach(row => {
+                const tr = document.createElement('tr');
+                Object.values(row).forEach(value => {
+                    const td = document.createElement('td');
+                    td.textContent = value;
+                    tr.appendChild(td);
+                });
+                tbody.appendChild(tr);
+            });
+            table.appendChild(tbody);
+        }
+    } catch (error) {
+        console.error('Error loading data from IndexedDB:', error);
+        showMessage('Error loading table data', 'error');
+    }
+}
+
+// Share table function
+async function shareTable() {
+    if (navigator.share) {
+        try {
+            const table = document.getElementById('table3');
+            
+            // Create a temporary container
+            const container = document.createElement('div');
+            
+            // Clone the table and remove notes
+            const tableClone = table.cloneNode(true);
+            tableClone.querySelectorAll('tr.notes').forEach(row => row.remove());
+            
+            // Add necessary styles inline
+            const styles = `
+                <style>
+                    table { 
+                        border-collapse: collapse;
+                        width: 100%;
+                        margin: 0;
+                        padding: 0;
+                        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+                    }
+                    th, td { 
+                        border: 1px solid #ddd;
+                        padding: 8px;
+                        text-align: left;
+                    }
+                    th {
+                        background-color: #f8f9fa;
+                        font-weight: bold;
+                    }
+                    tr:nth-child(even) {
+                        background-color: #f8f9fa;
+                    }
+                </style>
+            `;
+
+            // Create HTML content
+            const htmlContent = `
+                <!DOCTYPE html>
+                <html>
+                <head>
+                    <meta charset="utf-8">
+                    <meta name="viewport" content="width=device-width, initial-scale=1">
+                    ${styles}
+                </head>
+                <body>
+                    ${tableClone.outerHTML}
+                </body>
+                </html>
+            `;
+
+            // Create file objects
+            const htmlBlob = new Blob([htmlContent], { type: 'text/html' });
+            const htmlFile = new File([htmlBlob], 'grow-table.html', { type: 'text/html' });
+
+            // Prepare share data
+            const shareData = {
+                title: 'MyGrow Table',
+                files: [htmlFile]
+            };
+
+            // Check if file sharing is supported
+            if (navigator.canShare && navigator.canShare(shareData)) {
+                await navigator.share(shareData);
+                showMessage('Table shared successfully!', 'success');
+            } else {
+                // Fallback to basic share
+                const plainText = Array.from(tableClone.rows).map(row => 
+                    Array.from(row.cells)
+                        .map(cell => cell.textContent.trim())
+                        .join('\t')
+                ).join('\n');
+
+                await navigator.share({
+                    title: 'MyGrow Table',
+                    text: plainText
+                });
+                showMessage('Table shared as text', 'info');
+            }
+        } catch (error) {
+            handleShareError(error);
+        }
+    } else {
+        await handleNonShareFallback(document.getElementById('table3'));
+    }
 }
 
 // Excel export function
@@ -80,83 +200,47 @@ function toExcel() {
     }
 }
 
-// Mobile share function
-async function shareTable() {
-    if (navigator.share) {
-        try {
-            const table = document.getElementById('table3');
-            const tempDiv = document.createElement('div');
-            tempDiv.innerHTML = table.innerHTML;
-            
-            tempDiv.querySelectorAll('tr.notes').forEach(row => row.remove());
-            
-            const rows = tempDiv.querySelectorAll('tr');
-            let formattedContent = '';
-            
-            rows.forEach(row => {
-                const cells = row.querySelectorAll('th, td');
-                const rowData = [];
-                
-                cells.forEach(cell => {
-                    rowData.push(cell.textContent.trim());
-                });
-                
-                formattedContent += rowData.join('\t') + '\n';
-            });
-            
-            if (!formattedContent.trim()) {
-                showMessage('No content available to share', 'error');
-                return;
-            }
-
-            try {
-                await navigator.share({
-                    title: 'MyGrow Table',
-                    text: formattedContent
-                });
-                showMessage('Table shared successfully!', 'success');
-            } catch (error) {
-                if (error.name === 'NotAllowedError') {
-                    showMessage('Share canceled or permission denied', 'info');
-                } else if (error.name === 'AbortError') {
-                    return;
-                } else {
-                    console.error('Share error:', error);
-                    showMessage('Unable to share content', 'error');
-                }
-            }
-        } catch (error) {
-            console.error('Error preparing content:', error);
-            showMessage('Error preparing content for sharing', 'error');
-        }
+// Helper function to handle sharing errors
+function handleShareError(error) {
+    console.error('Share error:', error);
+    if (error.name === 'NotAllowedError') {
+        showMessage('Share canceled or permission denied', 'info');
+    } else if (error.name === 'AbortError') {
+        return;
     } else {
-        showMessage('Sharing is not supported on this device/browser', 'info');
-        
-        try {
-            const table = document.getElementById('table3');
-            const tempDiv = document.createElement('div');
-            tempDiv.innerHTML = table.innerHTML;
-            tempDiv.querySelectorAll('tr.notes').forEach(row => row.remove());
-            
-            const rows = tempDiv.querySelectorAll('tr');
-            let formattedContent = '';
-            
-            rows.forEach(row => {
-                const cells = row.querySelectorAll('th, td');
-                const rowData = [];
-                
-                cells.forEach(cell => {
-                    rowData.push(cell.textContent.trim());
-                });
-                
-                formattedContent += rowData.join('\t') + '\n';
-            });
-            
-            await navigator.clipboard.writeText(formattedContent);
-            showMessage('Content copied to clipboard instead', 'success');
-        } catch (clipboardError) {
-            console.error('Clipboard fallback failed:', clipboardError);
-        }
+        showMessage('Unable to share content', 'error');
+    }
+}
+
+// Helper function for non-share capable browsers
+async function handleNonShareFallback(table) {
+    try {
+        const tableClone = table.cloneNode(true);
+        tableClone.querySelectorAll('tr.notes').forEach(row => row.remove());
+
+        const textarea = document.createElement('textarea');
+        textarea.style.position = 'fixed';
+        textarea.style.left = '0';
+        textarea.style.top = '0';
+        textarea.style.opacity = '0';
+
+        const csvContent = Array.from(tableClone.rows).map(row => 
+            Array.from(row.cells)
+                .map(cell => `"${cell.textContent.trim().replace(/"/g, '""')}"`)
+                .join(',')
+        ).join('\n');
+
+        textarea.value = csvContent;
+        document.body.appendChild(textarea);
+        textarea.focus();
+        textarea.select();
+
+        await navigator.clipboard.writeText(textarea.value);
+        document.body.removeChild(textarea);
+        showMessage('Table copied to clipboard as CSV', 'success');
+    } catch (error) {
+        console.error('Clipboard fallback failed:', error);
+        showMessage('Unable to copy to clipboard', 'error');
     }
 }
 
@@ -172,6 +256,17 @@ function hideLoader() {
 // Initialize when document is ready
 $(document).ready(function() {
     hideLoader();
+    
+    // Load table data from IndexedDB
+    displayTableFromIndexedDB()
+        .then(() => {
+            hideLoader();
+        })
+        .catch(error => {
+            console.error('Error initializing table:', error);
+            showMessage('Error loading table data', 'error');
+            hideLoader();
+        });
 
     $('#exportBtn').on('click', function() {
         if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {

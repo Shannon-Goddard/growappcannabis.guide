@@ -117,17 +117,12 @@ document.addEventListener('DOMContentLoaded', async () => {
             // Insert the content into our table
             table.innerHTML = content;
 
-            // Hide notes rows
+            // Hide .notes rows
             const notesRows = table.querySelectorAll('.notes');
             notesRows.forEach(row => {
-                row.style.visibility = 'collapse';
-                row.style.lineHeight = '0';
-                const cells = row.getElementsByTagName('*');
-                Array.from(cells).forEach(cell => {
-                    cell.style.padding = '0';
-                    cell.style.border = 'none';
-                });
+                row.style.display = 'none';
             });
+
 
             // Update strain information
             const strainElements = document.getElementsByClassName('strain');

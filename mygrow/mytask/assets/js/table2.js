@@ -1,68 +1,7 @@
-// table1.js
 $(async function() {
-    const IndexedDBService = {
-        dbName: 'myDatabase2',
-        dbVersion: 2,
-        storeName: 'tables2',
-        
-        initDB() {
-            return new Promise((resolve, reject) => {
-                const request = indexedDB.open(this.dbName, this.dbVersion);
-                request.onerror = () => reject(request.error);
-                request.onupgradeneeded = (event) => {
-                    const db = event.target.result;
-                    if (!db.objectStoreNames.contains(this.storeName)) {
-                        db.createObjectStore(this.storeName);
-                    }
-                };
-                request.onsuccess = () => resolve(request.result);
-            });
-        },
-
-        async saveTable(tableContent) {
-            try {
-                const db = await this.initDB();
-                return new Promise((resolve, reject) => {
-                    const transaction = db.transaction(this.storeName, 'readwrite');
-                    const store = transaction.objectStore(this.storeName);
-                    const request = store.put(tableContent, 'mainTable');
-                    request.onsuccess = () => resolve(true);
-                    request.onerror = () => reject(request.error);
-                    transaction.oncomplete = () => db.close();
-                });
-            } catch (error) {
-                console.error('Error saving to IndexedDB:', error);
-                return false;
-            }
-        },
-
-        async loadTable() {
-            try {
-                const db = await this.initDB();
-                return new Promise((resolve, reject) => {
-                    const transaction = db.transaction(this.storeName, 'readonly');
-                    const store = transaction.objectStore(this.storeName);
-                    const request = store.get('mainTable');
-                    request.onsuccess = () => {
-                        db.close();
-                        resolve(request.result);
-                    };
-                    request.onerror = () => {
-                        db.close();
-                        reject(request.error);
-                    };
-                });
-            } catch (error) {
-                console.error('Error loading from IndexedDB:', error);
-                return null;
-            }
-        }
-    };
-
     const table = $('#table2');
     let fullTableContent = '';
     let hiddenTable = null;
-    let saveTimeout = null;
 
     // Set contenteditable immediately
     table.attr('contenteditable', 'true');
@@ -102,7 +41,7 @@ $(async function() {
     }
 
     try {
-        const savedContent = await IndexedDBService.loadTable();
+        const savedContent = await TableSaveManager.loadTable('table2');
         if (savedContent) {
             fullTableContent = savedContent;
             table.html(savedContent);
@@ -126,65 +65,11 @@ $(async function() {
         'text-align': 'left'
     });
 
-    function debouncedSave() {
-        if (saveTimeout) {
-            clearTimeout(saveTimeout);
-        }
-        saveTimeout = setTimeout(async () => {
-            const currentContent = table.html();
-            hiddenTable.html(currentContent);
-            hiddenTable.find('tr').show();
-            hiddenTable.find(':input').show();
-            fullTableContent = hiddenTable.html();
-            await IndexedDBService.saveTable(fullTableContent);
-            filterTableByToday();
-        }, 1000);
+    // Create hidden table if it doesn't exist yet
+    if (!hiddenTable) {
+        createHiddenTable();
     }
 
-    table.on('input', function() {
-        debouncedSave();
-    });
-
-    $(window).on('beforeunload', function() {
-        clearTimeout(saveTimeout);
-        
-        table.find('tr').show();
-        table.find(':input').show();
-        
-        hiddenTable.html(table.html());
-        hiddenTable.find('tr').show();
-        hiddenTable.find(':input').show();
-        
-        fullTableContent = hiddenTable.html();
-        
-        const db = indexedDB.open(IndexedDBService.dbName, IndexedDBService.dbVersion);
-        db.onsuccess = function(event) {
-            const database = event.target.result;
-            const transaction = database.transaction([IndexedDBService.storeName], 'readwrite');
-            const store = transaction.objectStore(IndexedDBService.storeName);
-            store.put(fullTableContent, 'mainTable');
-        };
-        
-        filterTableByToday();
-        table.find(":input").hide();
-    });
-
-    document.addEventListener('visibilitychange', function() {
-        if (document.hidden) {
-            clearTimeout(saveTimeout);
-            
-            table.find('tr').show();
-            table.find(':input').show();
-            
-            hiddenTable.html(table.html());
-            hiddenTable.find('tr').show();
-            hiddenTable.find(':input').show();
-            
-            fullTableContent = hiddenTable.html();
-            IndexedDBService.saveTable(fullTableContent);
-            
-            filterTableByToday();
-            table.find(":input").hide();
-        }
-    });
+    // Register with TableSaveManager
+    TableSaveManager.registerTable('table2', table, hiddenTable, filterTableByToday);
 });

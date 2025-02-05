@@ -1,4 +1,3 @@
-// save.js
 window.tableStorage = {
     dbConfigs: {
         table1: { dbName: 'myDatabase', dbVersion: 1, storeName: 'tables' },
@@ -8,8 +7,8 @@ window.tableStorage = {
     },
     tables: {},
     saveTimeouts: {},
-    TYPING_DELAY: 1500,
-    lastKnownContent: {},
+    saveQueue: {},
+    lastTypingTime: {},
 
     async initDB(tableId) {
         const config = this.dbConfigs[tableId];
@@ -85,44 +84,88 @@ window.tableStorage = {
         }
     },
 
+    getTypingDelay(tableId) {
+        const now = Date.now();
+        const timeSinceLastType = now - (this.lastTypingTime[tableId] || 0);
+        this.lastTypingTime[tableId] = now;
+
+        // Fast typing (< 100ms between keystrokes): longer delay
+        // Slow typing (> 500ms between keystrokes): shorter delay
+        if (timeSinceLastType < 100) {
+            return 800; // Fast typing
+        } else if (timeSinceLastType < 500) {
+            return 600; // Medium typing
+        } else {
+            return 400; // Slow typing
+        }
+    },
+
+    processSaveQueue(tableId) {
+        if (!this.saveQueue[tableId]) return;
+
+        const currentContent = this.saveQueue[tableId];
+        delete this.saveQueue[tableId];
+
+        if (currentContent !== this.tables[tableId]?.lastContent) {
+            this.saveTableData(tableId, currentContent)
+                .then(() => {
+                    this.tables[tableId].lastContent = currentContent;
+                    if (this.tables[tableId].filterFunction) {
+                        this.tables[tableId].filterFunction();
+                    }
+                });
+        }
+    },
+
     registerTable(tableId, filterFunction) {
         const table = document.getElementById(tableId);
         if (!table) return;
 
         this.tables[tableId] = {
             filterFunction,
-            lastContent: table.innerHTML
+            lastContent: table.innerHTML,
+            isTyping: false
         };
 
-        // Add input handler with debounce
         let saveTimeout = null;
-        table.addEventListener('input', () => {
-            if (saveTimeout) clearTimeout(saveTimeout);
-            saveTimeout = setTimeout(() => {
-                const currentContent = table.innerHTML;
-                if (currentContent !== this.tables[tableId].lastContent) {
-                    this.saveTableData(tableId, currentContent)
-                        .then(() => {
-                            this.tables[tableId].lastContent = currentContent;
-                            if (filterFunction) filterFunction();
-                        })
-                        .catch(error => console.error(`Error saving ${tableId}:`, error));
-                }
-            }, this.TYPING_DELAY);
-        });
+        let throttleTimeout = null;
 
-        // Add blur handler for immediate save
+        const handleInput = () => {
+            this.saveQueue[tableId] = table.innerHTML;
+            
+            // Clear existing timeouts
+            if (saveTimeout) clearTimeout(saveTimeout);
+            if (throttleTimeout) clearTimeout(throttleTimeout);
+
+            // Set typing flag
+            if (!this.tables[tableId].isTyping) {
+                this.tables[tableId].isTyping = true;
+            }
+
+            // Schedule save with dynamic delay
+            saveTimeout = setTimeout(() => {
+                this.processSaveQueue(tableId);
+                this.tables[tableId].isTyping = false;
+            }, this.getTypingDelay(tableId));
+
+            // Ensure save happens after typing stops
+            throttleTimeout = setTimeout(() => {
+                if (this.tables[tableId].isTyping) {
+                    this.processSaveQueue(tableId);
+                }
+            }, 2000); // Backup save after 2 seconds of continuous typing
+        };
+
+        // Handle input events
+        table.addEventListener('input', handleInput);
+
+        // Handle blur events for immediate save
         table.addEventListener('blur', (event) => {
             if (event.target.tagName === 'TD') {
-                const currentContent = table.innerHTML;
-                if (currentContent !== this.tables[tableId].lastContent) {
-                    this.saveTableData(tableId, currentContent)
-                        .then(() => {
-                            this.tables[tableId].lastContent = currentContent;
-                            if (filterFunction) filterFunction();
-                        })
-                        .catch(error => console.error(`Error saving ${tableId}:`, error));
-                }
+                if (saveTimeout) clearTimeout(saveTimeout);
+                if (throttleTimeout) clearTimeout(throttleTimeout);
+                this.processSaveQueue(tableId);
+                this.tables[tableId].isTyping = false;
             }
         }, true);
     }
@@ -153,10 +196,10 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Register other tables similarly
+    // Register other tables
     ['table2', 'table3', 'table4'].forEach(tableId => {
         if (document.getElementById(tableId)) {
-            window.tableStorage.registerTable(tableId, null); // No filter function for other tables
+            window.tableStorage.registerTable(tableId, null);
         }
     });
 });

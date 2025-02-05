@@ -41,7 +41,7 @@ $(async function() {
     }
 
     try {
-        const savedContent = await TableSaveManager.loadTable('table3');
+        const savedContent = await window.tableStorage.loadTableData('table3');
         if (savedContent) {
             fullTableContent = savedContent;
             table.html(savedContent);
@@ -69,7 +69,4 @@ $(async function() {
     if (!hiddenTable) {
         createHiddenTable();
     }
-
-    // Register with TableSaveManager
-    TableSaveManager.registerTable('table3', table, hiddenTable, filterTableByToday);
 });

@@ -1,4 +1,5 @@
-const TableSaveManager = {
+// save.js
+window.tableStorage = {
     dbConfigs: {
         table1: { dbName: 'myDatabase', dbVersion: 1, storeName: 'tables' },
         table2: { dbName: 'myDatabase2', dbVersion: 2, storeName: 'tables2' },
@@ -7,9 +8,8 @@ const TableSaveManager = {
     },
     tables: {},
     saveTimeouts: {},
-    TYPING_DELAY: 3000,  
-    MIN_SAVE_INTERVAL: 5000,
-    BATCH_SAVE_TIMEOUT: 3000,
+    TYPING_DELAY: 1500,
+    lastKnownContent: {},
 
     async initDB(tableId) {
         const config = this.dbConfigs[tableId];
@@ -26,13 +26,13 @@ const TableSaveManager = {
         });
     },
 
-    async saveTable(tableId, tableContent) {
+    async saveTableData(tableId, content) {
         try {
             const db = await this.initDB(tableId);
             return new Promise((resolve, reject) => {
                 const transaction = db.transaction(this.dbConfigs[tableId].storeName, 'readwrite');
                 const store = transaction.objectStore(this.dbConfigs[tableId].storeName);
-                const request = store.put(tableContent, 'mainTable');
+                const request = store.put(content, 'mainTable');
                 request.onsuccess = () => resolve(true);
                 request.onerror = () => reject(request.error);
                 transaction.oncomplete = () => db.close();
@@ -43,7 +43,27 @@ const TableSaveManager = {
         }
     },
 
-    async loadTable(tableId) {
+    async restoreTableData() {
+        const tables = ['table1', 'table2', 'table3', 'table4'];
+        for (const tableId of tables) {
+            try {
+                const table = document.getElementById(tableId);
+                if (table) {
+                    const content = await this.loadTableData(tableId);
+                    if (content) {
+                        table.innerHTML = content;
+                        if (this.tables[tableId]?.filterFunction) {
+                            this.tables[tableId].filterFunction();
+                        }
+                    }
+                }
+            } catch (error) {
+                console.error(`Error restoring ${tableId}:`, error);
+            }
+        }
+    },
+
+    async loadTableData(tableId) {
         try {
             const db = await this.initDB(tableId);
             return new Promise((resolve, reject) => {
@@ -65,105 +85,78 @@ const TableSaveManager = {
         }
     },
 
-    registerTable(tableId, table, hiddenTable, filterFunction) {
-        this.tables[tableId] = { table, hiddenTable, filterFunction };
-        
-        // Setup save on input with debounce
-        table.on('input', () => {
-            if (this.saveTimeouts[tableId]) {
-                clearTimeout(this.saveTimeouts[tableId]);
-            }
-            this.saveTimeouts[tableId] = setTimeout(async () => {
-                const currentContent = table.html();
-                // Save to hidden table without affecting visibility
-                hiddenTable.html(currentContent);
-                const visibilityStates = this.captureVisibilityStates(table);
-                hiddenTable.find('tr').show();
-                hiddenTable.find(':input').show();
-                await this.saveTable(tableId, hiddenTable.html());
-                this.restoreVisibilityStates(table, visibilityStates);
+    registerTable(tableId, filterFunction) {
+        const table = document.getElementById(tableId);
+        if (!table) return;
+
+        this.tables[tableId] = {
+            filterFunction,
+            lastContent: table.innerHTML
+        };
+
+        // Add input handler with debounce
+        let saveTimeout = null;
+        table.addEventListener('input', () => {
+            if (saveTimeout) clearTimeout(saveTimeout);
+            saveTimeout = setTimeout(() => {
+                const currentContent = table.innerHTML;
+                if (currentContent !== this.tables[tableId].lastContent) {
+                    this.saveTableData(tableId, currentContent)
+                        .then(() => {
+                            this.tables[tableId].lastContent = currentContent;
+                            if (filterFunction) filterFunction();
+                        })
+                        .catch(error => console.error(`Error saving ${tableId}:`, error));
+                }
             }, this.TYPING_DELAY);
         });
-    },
 
-    captureVisibilityStates(table) {
-        const states = [];
-        table.find('tr').each(function() {
-            states.push({
-                row: $(this),
-                isHidden: $(this).is(':hidden'),
-                hasNotes: $(this).next().hasClass('notes')
-            });
-        });
-        return states;
-    },
-
-    restoreVisibilityStates(table, states) {
-        states.forEach(state => {
-            if (state.isHidden) {
-                state.row.hide();
-                if (state.hasNotes) {
-                    state.row.next('.notes').hide();
-                }
-            } else {
-                state.row.show();
-                if (state.hasNotes) {
-                    state.row.next('.notes').show();
+        // Add blur handler for immediate save
+        table.addEventListener('blur', (event) => {
+            if (event.target.tagName === 'TD') {
+                const currentContent = table.innerHTML;
+                if (currentContent !== this.tables[tableId].lastContent) {
+                    this.saveTableData(tableId, currentContent)
+                        .then(() => {
+                            this.tables[tableId].lastContent = currentContent;
+                            if (filterFunction) filterFunction();
+                        })
+                        .catch(error => console.error(`Error saving ${tableId}:`, error));
                 }
             }
-        });
-    },
-
-    async saveTableState(tableId) {
-        const { table, hiddenTable } = this.tables[tableId];
-        const currentContent = table.html();
-        const visibilityStates = this.captureVisibilityStates(table);
-        
-        // Save to hidden table without affecting visibility
-        hiddenTable.html(currentContent);
-        hiddenTable.find('tr').show();
-        hiddenTable.find(':input').show();
-        
-        await this.saveTable(tableId, hiddenTable.html());
-        this.restoreVisibilityStates(table, visibilityStates);
-    },
-
-    handleUnload() {
-        Object.keys(this.tables).forEach(tableId => {
-            if (this.saveTimeouts[tableId]) {
-                clearTimeout(this.saveTimeouts[tableId]);
-            }
-            // Use synchronous version for unload
-            const { table, hiddenTable } = this.tables[tableId];
-            const visibilityStates = this.captureVisibilityStates(table);
-            
-            hiddenTable.html(table.html());
-            hiddenTable.find('tr').show();
-            hiddenTable.find(':input').show();
-            
-            const db = indexedDB.open(this.dbConfigs[tableId].dbName);
-            db.onsuccess = function(event) {
-                const database = event.target.result;
-                const transaction = database.transaction([this.dbConfigs[tableId].storeName], 'readwrite');
-                const store = transaction.objectStore(this.dbConfigs[tableId].storeName);
-                store.put(hiddenTable.html(), 'mainTable');
-                this.restoreVisibilityStates(table, visibilityStates);
-            }.bind(this);
-        });
+        }, true);
     }
 };
 
-// Initialize event listeners
-$(document).ready(() => {
-    document.addEventListener('visibilitychange', function() {
-        if (document.hidden) {
-            Object.keys(TableSaveManager.tables).forEach(async (tableId) => {
-                await TableSaveManager.saveTableState(tableId);
+// Initialize tables when document is ready
+document.addEventListener('DOMContentLoaded', () => {
+    // Register each table with its filter function
+    if (document.getElementById('table1')) {
+        window.tableStorage.registerTable('table1', function() {
+            const table = document.getElementById('table1');
+            table.querySelectorAll('tr:not(:first-child)').forEach(row => {
+                const dateCell = row.querySelector('td:nth-child(2)');
+                if (dateCell) {
+                    const dateStr = dateCell.textContent.trim();
+                    const today = new Date();
+                    const formattedToday = `${today.getMonth() + 1}/${today.getDate()}/${today.getFullYear()}`;
+                    if (dateStr === formattedToday) {
+                        row.style.display = '';
+                    } else {
+                        row.style.display = 'none';
+                        if (row.nextElementSibling?.classList.contains('notes')) {
+                            row.nextElementSibling.style.display = 'none';
+                        }
+                    }
+                }
             });
-        }
-    });
+        });
+    }
 
-    window.addEventListener('beforeunload', () => {
-        TableSaveManager.handleUnload();
+    // Register other tables similarly
+    ['table2', 'table3', 'table4'].forEach(tableId => {
+        if (document.getElementById(tableId)) {
+            window.tableStorage.registerTable(tableId, null); // No filter function for other tables
+        }
     });
 });

@@ -62,6 +62,7 @@ $(async function() {
     let fullTableContent = '';
     let hiddenTable = null;
     let saveTimeout = null;
+    let isUpdating = false;
     
     function createHiddenTable() {
         hiddenTable = table.clone();
@@ -80,20 +81,33 @@ $(async function() {
         const activeElement = document.activeElement;
         const selection = window.getSelection();
         const range = selection.getRangeAt(0);
+        const cursorPosition = range.startOffset;
+        
+        // Store the specific cell being edited
+        const activeCell = activeElement.closest('td, th');
+        const cellIndex = activeCell ? Array.from(activeCell.parentElement.children).indexOf(activeCell) : -1;
+        const rowIndex = activeCell ? activeCell.parentElement.rowIndex : -1;
         
         table.html(hiddenTable.html());
         table.find('tr:not(:first)').hide();
         table.find('.notes').show();
         table.find(":input").hide();
         
-        if (activeElement && activeElement.parentElement) {
-            const newElement = table.find(activeElement.tagName).get(0);
-            if (newElement) {
-                newElement.focus();
-                range.selectNodeContents(newElement);
-                range.collapse(false);
+        if (activeCell) {
+            // Find the same cell in the updated table
+            const newCell = table[0].rows[rowIndex]?.cells[cellIndex];
+            if (newCell) {
+                const range = document.createRange();
+                const selection = window.getSelection();
+                
+                // Set cursor position
+                const textNode = newCell.firstChild || newCell;
+                range.setStart(textNode, Math.min(cursorPosition, textNode.length));
+                range.setEnd(textNode, Math.min(cursorPosition, textNode.length));
+                
                 selection.removeAllRanges();
                 selection.addRange(range);
+                newCell.focus();
             }
         }
     }
@@ -122,18 +136,41 @@ $(async function() {
             clearTimeout(saveTimeout);
         }
         saveTimeout = setTimeout(async () => {
+            const selection = window.getSelection();
+            const range = selection.getRangeAt(0);
+            const cursorPosition = range.startOffset;
+            const activeCell = document.activeElement.closest('td, th');
+            
             const currentContent = table.html();
             hiddenTable.html(currentContent);
             hiddenTable.find('tr').show();
             hiddenTable.find(':input').show();
             fullTableContent = hiddenTable.html();
             await IndexedDBService.saveTable(fullTableContent);
-            updateVisibleTable();
+            
+            // Only update visibility states
+            table.find('tr:not(:first)').hide();
+            table.find('.notes').show();
+            table.find(':input').hide();
+            
+            // Restore cursor position
+            if (activeCell) {
+                const range = document.createRange();
+                const textNode = activeCell.firstChild || activeCell;
+                range.setStart(textNode, Math.min(cursorPosition, textNode.length));
+                range.setEnd(textNode, Math.min(cursorPosition, textNode.length));
+                selection.removeAllRanges();
+                selection.addRange(range);
+            }
         }, 1000);
     }
 
     table.on('input', function() {
-        debouncedSave();
+        if (!isUpdating) {
+            isUpdating = true;
+            debouncedSave();
+            isUpdating = false;
+        }
     });
 
     $(window).on('beforeunload', function() {

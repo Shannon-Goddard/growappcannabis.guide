@@ -1,9 +1,5 @@
 $(async function() {
     const table = $('#table3');
-    let fullTableContent = '';
-    let hiddenTable = null;
-
-    // Set contenteditable immediately
     table.attr('contenteditable', 'true');
 
     function isTodayDate(dateStr) {
@@ -27,25 +23,10 @@ $(async function() {
         });
     }
 
-    function createHiddenTable() {
-        hiddenTable = table.clone();
-        hiddenTable.attr('id', 'hiddenTable3');
-        hiddenTable.css({
-            'position': 'absolute',
-            'left': '-9999px',
-            'visibility': 'hidden'
-        });
-        hiddenTable.find('tr').show();
-        hiddenTable.find(':input').show();
-        $('body').append(hiddenTable);
-    }
-
     try {
         const savedContent = await window.tableStorage.loadTableData('table3');
         if (savedContent) {
-            fullTableContent = savedContent;
             table.html(savedContent);
-            createHiddenTable();
             filterTableByToday();
             table.find(":input").hide();
         }
@@ -65,8 +46,5 @@ $(async function() {
         'text-align': 'left'
     });
 
-    // Create hidden table if it doesn't exist yet
-    if (!hiddenTable) {
-        createHiddenTable();
-    }
+    window.tableStorage.registerTable('table3', filterTableByToday);
 });

@@ -66,10 +66,8 @@ window.tableStorage = {
             for (const tableId of tables) {
                 const table = $(`#${tableId}`);
                 if (table.length) {
-                    // Show all rows before saving
                     table.find('tr').show();
                     await this.saveTableData(tableId, table.html());
-                    // Reapply filter after saving
                     if (this.tables[tableId]?.filterFunction) {
                         this.tables[tableId].filterFunction();
                     }
@@ -91,30 +89,6 @@ window.tableStorage = {
     }
 };
 
-// Save on page unload
 $(window).on('beforeunload', function() {
     window.tableStorage.saveAllTables();
-});
-
-// Initialize save button
-$(document).ready(() => {
-    $('#SaveButton').on('click', async (e) => {
-        e.preventDefault();
-        const saveButton = $('#SaveButton');
-        const originalText = saveButton.html();
-        
-        // Change button text to saving
-        saveButton.html('<i class="fa fa-spinner fa-spin"></i> Saving...');
-        
-        // Save all tables
-        await window.tableStorage.saveAllTables();
-        
-        // Show saved message briefly
-        saveButton.html('<i class="fa fa-check"></i> Saved!');
-        
-        // Reset button text after 1 second
-        setTimeout(() => {
-            saveButton.html(originalText);
-        }, 1000);
-    });
 });

@@ -162,7 +162,7 @@ $(async function() {
                 selection.removeAllRanges();
                 selection.addRange(range);
             }
-        }, 1000);
+        }, 250);
     }
 
     table.on('input', function() {

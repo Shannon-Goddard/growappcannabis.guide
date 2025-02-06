@@ -10,6 +10,19 @@ window.tableStorage = {
     saveQueue: {},
     lastTypingTime: {},
 
+    // Helper function for debouncing
+    debounce(func, wait) {
+        let timeout;
+        return function executedFunction(...args) {
+            const later = () => {
+                clearTimeout(timeout);
+                func(...args);
+            };
+            clearTimeout(timeout);
+            timeout = setTimeout(later, wait);
+        };
+    },
+
     async initDB(tableId) {
         const config = this.dbConfigs[tableId];
         return new Promise((resolve, reject) => {
@@ -29,12 +42,14 @@ window.tableStorage = {
         try {
             const db = await this.initDB(tableId);
             return new Promise((resolve, reject) => {
-                const transaction = db.transaction(this.dbConfigs[tableId].storeName, 'readwrite');
-                const store = transaction.objectStore(this.dbConfigs[tableId].storeName);
-                const request = store.put(content, 'mainTable');
-                request.onsuccess = () => resolve(true);
-                request.onerror = () => reject(request.error);
-                transaction.oncomplete = () => db.close();
+                requestAnimationFrame(() => {
+                    const transaction = db.transaction(this.dbConfigs[tableId].storeName, 'readwrite');
+                    const store = transaction.objectStore(this.dbConfigs[tableId].storeName);
+                    const request = store.put(content, 'mainTable');
+                    request.onsuccess = () => resolve(true);
+                    request.onerror = () => reject(request.error);
+                    transaction.oncomplete = () => db.close();
+                });
             });
         } catch (error) {
             console.error('Error saving to IndexedDB:', error);
@@ -50,10 +65,12 @@ window.tableStorage = {
                 if (table) {
                     const content = await this.loadTableData(tableId);
                     if (content) {
-                        table.innerHTML = content;
-                        if (this.tables[tableId]?.filterFunction) {
-                            this.tables[tableId].filterFunction();
-                        }
+                        requestAnimationFrame(() => {
+                            table.innerHTML = content;
+                            if (this.tables[tableId]?.filterFunction) {
+                                this.tables[tableId].filterFunction();
+                            }
+                        });
                     }
                 }
             } catch (error) {
@@ -89,14 +106,24 @@ window.tableStorage = {
         const timeSinceLastType = now - (this.lastTypingTime[tableId] || 0);
         this.lastTypingTime[tableId] = now;
 
-        // Fast typing (< 100ms between keystrokes): longer delay
-        // Slow typing (> 500ms between keystrokes): shorter delay
-        if (timeSinceLastType < 100) {
-            return 800; // Fast typing
-        } else if (timeSinceLastType < 500) {
-            return 600; // Medium typing
+        const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+        
+        if (isMobile) {
+            if (timeSinceLastType < 100) {
+                return 200;
+            } else if (timeSinceLastType < 500) {
+                return 150;
+            } else {
+                return 100;
+            }
         } else {
-            return 400; // Slow typing
+            if (timeSinceLastType < 100) {
+                return 800;
+            } else if (timeSinceLastType < 500) {
+                return 600;
+            } else {
+                return 400;
+            }
         }
     },
 
@@ -107,13 +134,17 @@ window.tableStorage = {
         delete this.saveQueue[tableId];
 
         if (currentContent !== this.tables[tableId]?.lastContent) {
-            this.saveTableData(tableId, currentContent)
-                .then(() => {
-                    this.tables[tableId].lastContent = currentContent;
-                    if (this.tables[tableId].filterFunction) {
-                        this.tables[tableId].filterFunction();
-                    }
-                });
+            requestAnimationFrame(() => {
+                this.saveTableData(tableId, currentContent)
+                    .then(() => {
+                        this.tables[tableId].lastContent = currentContent;
+                        if (this.tables[tableId].filterFunction) {
+                            requestAnimationFrame(() => {
+                                this.tables[tableId].filterFunction();
+                            });
+                        }
+                    });
+            });
         }
     },
 
@@ -129,51 +160,54 @@ window.tableStorage = {
 
         let saveTimeout = null;
         let throttleTimeout = null;
+        const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
 
         const handleInput = () => {
             this.saveQueue[tableId] = table.innerHTML;
             
-            // Clear existing timeouts
             if (saveTimeout) clearTimeout(saveTimeout);
             if (throttleTimeout) clearTimeout(throttleTimeout);
 
-            // Set typing flag
             if (!this.tables[tableId].isTyping) {
                 this.tables[tableId].isTyping = true;
             }
 
-            // Schedule save with dynamic delay
+            const delay = isMobile ? 150 : this.getTypingDelay(tableId);
+            
             saveTimeout = setTimeout(() => {
-                this.processSaveQueue(tableId);
-                this.tables[tableId].isTyping = false;
-            }, this.getTypingDelay(tableId));
+                requestAnimationFrame(() => {
+                    this.processSaveQueue(tableId);
+                    this.tables[tableId].isTyping = false;
+                });
+            }, delay);
 
-            // Ensure save happens after typing stops
             throttleTimeout = setTimeout(() => {
                 if (this.tables[tableId].isTyping) {
-                    this.processSaveQueue(tableId);
+                    requestAnimationFrame(() => {
+                        this.processSaveQueue(tableId);
+                    });
                 }
-            }, 2000); // Backup save after 2 seconds of continuous typing
+            }, isMobile ? 1000 : 2000);
         };
 
-        // Handle input events
-        table.addEventListener('input', handleInput);
+        table.addEventListener('input', handleInput, { passive: true });
 
-        // Handle blur events for immediate save
         table.addEventListener('blur', (event) => {
             if (event.target.tagName === 'TD') {
                 if (saveTimeout) clearTimeout(saveTimeout);
                 if (throttleTimeout) clearTimeout(throttleTimeout);
-                this.processSaveQueue(tableId);
-                this.tables[tableId].isTyping = false;
+                requestAnimationFrame(() => {
+                    this.processSaveQueue(tableId);
+                    this.tables[tableId].isTyping = false;
+                });
             }
-        }, true);
+        }, { passive: true });
     }
 };
 
 // Initialize tables when document is ready
 document.addEventListener('DOMContentLoaded', () => {
-    // Register each table with its filter function
+    // Register table1 with its filter function
     if (document.getElementById('table1')) {
         window.tableStorage.registerTable('table1', function() {
             const table = document.getElementById('table1');

@@ -32,6 +32,50 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" rel="stylesheet" crossorigin="anonymous">
     <!-- Keep your custom styles local -->
     <link href="../../assets/css/style.css" rel="stylesheet">
+    <style>
+      #SaveButton {
+          background: transparent;
+          border-radius: 4px;
+          padding: 7px 25px 8px 25px;
+          white-space: nowrap;
+          transition: all 0.3s ease;
+          font-size: 14px;
+          border: 2px solid #04AA6D;
+          color: #FFFFFF;
+          font-weight: bold;
+      }
+  
+      #SaveButton:hover {
+          background: #04AA6D;
+          color: #343a40;
+      }
+  
+      /* Save states */
+      #SaveButton.save-button-pending {
+          background: #f0ad4e !important;
+          border-color: #f0ad4e !important;
+          color: #343a40 !important;
+      }
+  
+      #SaveButton.save-button-success {
+          background: #04AA6D !important;
+          border-color: #04AA6D !important;
+          color: #FFFFFF !important;
+      }
+  
+      #SaveButton.save-button-saving {
+          background: #5bc0de !important;
+          border-color: #5bc0de !important;
+          color: #FFFFFF !important;
+      }
+  
+      @media (max-width: 992px) {
+          #SaveButton {
+              padding: 7px 20px 8px 20px;
+              margin-right: 15px;
+          }
+      }
+  </style>  
   
   </head>
   
@@ -135,6 +179,7 @@
     <!-- Keep your custom scripts local -->
    <script src="../../assets/js/main.js"></script>
    <script src="../../mygrow/mytask/assets/js/save.js"></script>
+   <script src="../../mygrow/mytask/assets/js/mytask-save-handler.js"></script>
    <script src="../../mygrow/mytask/assets/js/table1.js"></script>
    <script src="../../mygrow/mytask/assets/js/table2.js"></script>
    <script src="../../mygrow/mytask/assets/js/table3.js"></script>

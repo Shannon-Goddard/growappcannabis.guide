@@ -2,27 +2,38 @@ $(async function() {
     const table = $('#table1');
     table.attr('contenteditable', 'true');
 
-    function isTodayDate(dateStr) {
-        if (!dateStr) return false;
-        const today = new Date();
-        const formattedToday = `${today.getMonth() + 1}/${today.getDate()}/${today.getFullYear()}`;
-        return dateStr.trim() === formattedToday;
-    }
+    // Pre-calculate today's date once
+    const today = new Date();
+    const formattedToday = `${today.getMonth() + 1}/${today.getDate()}/${today.getFullYear()}`;
 
+    // Simple, efficient filter
     function filterTableByToday() {
         table.find('tr:not(:first)').each(function() {
             const dateCell = $(this).find('td:nth-child(2)').text().trim();
-            if (isTodayDate(dateCell)) {
-                $(this).show();
-            } else {
-                $(this).hide();
-                if ($(this).next().hasClass('notes')) {
-                    $(this).next().hide();
-                }
+            const isToday = (dateCell === formattedToday);
+            $(this).toggle(isToday);
+            if (!isToday && $(this).next().hasClass('notes')) {
+                $(this).next().hide();
             }
         });
     }
 
+    // Save handler with longer delay
+    let saveTimeout;
+    table.on('input', 'td', function() {
+        clearTimeout(saveTimeout);
+        saveTimeout = setTimeout(() => {
+            window.tableStorage.saveTableData('table1', table.html());
+        }, 5000);
+    });
+
+    // Ensure save on page leave
+    $(window).on('beforeunload', function() {
+        clearTimeout(saveTimeout);
+        window.tableStorage.saveTableData('table1', table.html());
+    });
+
+    // Initial load
     try {
         const savedContent = await window.tableStorage.loadTableData('table1');
         if (savedContent) {
@@ -34,6 +45,10 @@ $(async function() {
         console.error('Error loading table:', error);
     }
 
+    // Register table
+    window.tableStorage.registerTable('table1', filterTableByToday);
+
+    // One-time style application
     table.css({
         'width': '100%',
         'border-collapse': 'collapse',
@@ -45,6 +60,4 @@ $(async function() {
         'padding': '8px',
         'text-align': 'left'
     });
-
-    window.tableStorage.registerTable('table1', filterTableByToday);
 });

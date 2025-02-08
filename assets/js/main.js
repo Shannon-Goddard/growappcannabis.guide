@@ -368,7 +368,17 @@
         // Set up mutation observer for the current table
         const observer = new MutationObserver((mutations) => {
           if (window.tableStorage) {
-            window.tableStorage.saveTableData(tableId, currentTable.innerHTML)
+            // Create a deep clone of the table for saving
+            const tableClone = currentTable.cloneNode(true);
+            const hiddenRows = tableClone.querySelectorAll('tr[style*="display: none"]');
+            
+            // Show all rows in the clone (invisible to user)
+            hiddenRows.forEach(row => {
+              row.style.display = '';
+            });
+
+            // Save complete table content from clone
+            window.tableStorage.saveTableData(tableId, tableClone.innerHTML)
               .then(() => console.log(`Changes saved for ${tableId}`))
               .catch(error => console.error(`Error saving changes for ${tableId}:`, error));
           }
@@ -408,9 +418,16 @@
     const currentTable = document.querySelector('[id^="table"]');
     if (currentTable && window.tableStorage) {
       try {
+        // Create a clone for saving complete data
+        const tableClone = currentTable.cloneNode(true);
+        const hiddenRows = tableClone.querySelectorAll('tr[style*="display: none"]');
+        hiddenRows.forEach(row => {
+          row.style.display = '';
+        });
+
         await window.tableStorage.saveTableData(
           currentTable.id, 
-          currentTable.innerHTML
+          tableClone.innerHTML
         );
       } catch (error) {
         console.error(`Error saving ${currentTable.id} before unload:`, error);
@@ -431,6 +448,7 @@
   });
 
 })();
+
 
 //////////////////////////////in code///////////
 });

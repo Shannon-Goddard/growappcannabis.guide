@@ -2,58 +2,38 @@ $(async function() {
     const table = $('#table2');
     table.attr('contenteditable', 'true');
 
-    let queued = false;
-    let lastValue = null;
+    // Pre-calculate today's date once
+    const today = new Date();
+    const formattedToday = `${today.getMonth() + 1}/${today.getDate()}/${today.getFullYear()}`;
 
-    function isTodayDate(dateStr) {
-        if (!dateStr) return false;
-        const today = new Date();
-        const formattedToday = `${today.getMonth() + 1}/${today.getDate()}/${today.getFullYear()}`;
-        return dateStr.trim() === formattedToday;
-    }
-
+    // Simple, efficient filter
     function filterTableByToday() {
-        requestAnimationFrame(() => {
-            table.find('tr:not(:first)').each(function() {
-                const dateCell = $(this).find('td:nth-child(2)').text().trim();
-                if (isTodayDate(dateCell)) {
-                    $(this).show();
-                } else {
-                    $(this).hide();
-                    if ($(this).next().hasClass('notes')) {
-                        $(this).next().hide();
-                    }
-                }
-            });
+        table.find('tr:not(:first)').each(function() {
+            const dateCell = $(this).find('td:nth-child(2)').text().trim();
+            const isToday = (dateCell === formattedToday);
+            $(this).toggle(isToday);
+            if (!isToday && $(this).next().hasClass('notes')) {
+                $(this).next().hide();
+            }
         });
     }
 
-    // Optimized input handling
-    table.on('input', function() {
-        if (!queued) {
-            queued = true;
-            if ('requestIdleCallback' in window) {
-                requestIdleCallback(() => {
-                    const currentValue = table.html();
-                    if (currentValue !== lastValue) {
-                        window.tableStorage.saveTableData('table2', currentValue);
-                        lastValue = currentValue;
-                    }
-                    queued = false;
-                }, { timeout: 1000 });
-            } else {
-                setTimeout(() => {
-                    const currentValue = table.html();
-                    if (currentValue !== lastValue) {
-                        window.tableStorage.saveTableData('table2', currentValue);
-                        lastValue = currentValue;
-                    }
-                    queued = false;
-                }, 100);
-            }
-        }
+    // Save handler with longer delay
+    let saveTimeout;
+    table.on('input', 'td', function() {
+        clearTimeout(saveTimeout);
+        saveTimeout = setTimeout(() => {
+            window.tableStorage.saveTableData('table2', table.html());
+        }, 5000);
     });
 
+    // Ensure save on page leave
+    $(window).on('beforeunload', function() {
+        clearTimeout(saveTimeout);
+        window.tableStorage.saveTableData('table2', table.html());
+    });
+
+    // Initial load
     try {
         const savedContent = await window.tableStorage.loadTableData('table2');
         if (savedContent) {
@@ -65,22 +45,19 @@ $(async function() {
         console.error('Error loading table:', error);
     }
 
-    // Performance optimized styles
+    // Register table
+    window.tableStorage.registerTable('table2', filterTableByToday);
+
+    // One-time style application
     table.css({
         'width': '100%',
         'border-collapse': 'collapse',
-        'margin': '20px 0',
-        'will-change': 'transform', // Hardware acceleration hint
-        'transform': 'translateZ(0)' // Force hardware acceleration
+        'margin': '20px 0'
     });
 
     table.find('th, td').css({
         'border': '1px solid #ddd',
         'padding': '8px',
-        'text-align': 'left',
-        'will-change': 'transform' // Hardware acceleration hint
+        'text-align': 'left'
     });
-
-    // Register table with optimized filter
-    window.tableStorage.registerTable('table2', filterTableByToday);
 });

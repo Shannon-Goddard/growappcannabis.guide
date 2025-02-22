@@ -1,3 +1,5 @@
+// table2.js for mytask.html - with throttled updates to reduce mobile lag
+
 document.addEventListener('DOMContentLoaded', function() {
     setTimeout(async function() {
         if (!window.tableStorage) {
@@ -30,19 +32,28 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         }
 
+        // Throttle setup for table updates
+        let lastUpdate = 0;
+        async function updateTable() {
+            if (Date.now() - lastUpdate >= 1000) { // Limit to 1 update per second
+                const savedContent = await window.tableStorage.loadTableData('table2');
+                if (savedContent) {
+                    table.html(savedContent);
+                    filterTableByToday();
+                    table.find(":input").hide();
+                }
+                lastUpdate = Date.now();
+            }
+        }
+
         try {
             // Initial load
-            const savedContent = await window.tableStorage.loadTableData('table2');
-            if (savedContent) {
-                table.html(savedContent);
-                filterTableByToday();
-                table.find(":input").hide();
-            }
+            await updateTable();
 
             // Register table
             window.tableStorage.registerTable('table2', filterTableByToday);
 
-            // Save handler
+            // Save handler (keep this, but save.js overrides it)
             let saveTimeout;
             table.on('input', 'td', function() {
                 if (saveButton) {
@@ -80,4 +91,12 @@ document.addEventListener('DOMContentLoaded', function() {
             console.error('Error initializing table2:', error);
         }
     }, 100);
+
+    // Throttle any storage event updates
+    window.addEventListener('storage', async () => {
+        if (Date.now() - lastUpdate >= 1000) {
+            await updateTable();
+            lastUpdate = Date.now();
+        }
+    });
 });

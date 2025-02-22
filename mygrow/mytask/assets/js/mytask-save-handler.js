@@ -1,57 +1,54 @@
-// mytask-save-handler.js
+// mytask-save-handler.js - slimmed down
 
 (function() {
     "use strict";
 
-    // Handle saving complete table data
-    const saveCompleteTableData = async (tableId) => {
-        const table = document.getElementById(tableId);
-        if (!table) return;
+    function debounce(fn, delay) {
+      let timeout;
+      return function (...args) {
+        clearTimeout(timeout);
+        timeout = setTimeout(() => fn.apply(this, args), delay);
+      };
+    }
 
-        // Create a clone for saving complete data
+    const saveCompleteTableData = async (tableId) => {
+      const table = document.getElementById(tableId);
+      if (!table) return;
+
+      try {
         const tableClone = table.cloneNode(true);
         const hiddenRows = tableClone.querySelectorAll('tr[style*="display: none"]');
-        hiddenRows.forEach(row => {
-            row.style.display = '';
-        });
+        hiddenRows.forEach(row => row.style.display = '');
 
-        // Save using existing tableStorage
         if (window.tableStorage) {
-            await window.tableStorage.saveTableData(tableId, tableClone.innerHTML);
+          await window.tableStorage.saveTableData(tableId, tableClone.innerHTML);
         }
+      } catch (error) {
+        console.error(`Save failed for ${tableId}:`, error);
+      }
     };
 
-    // Auto-save handler with debouncing
-    let autoSaveTimeout;
-    const handleAutoSave = (tableId) => {
-        clearTimeout(autoSaveTimeout);
-        autoSaveTimeout = setTimeout(() => {
-            saveCompleteTableData(tableId);
-        }, 5000); // 5 second delay
-    };
-
-    // Set up event listeners when document is ready
     document.addEventListener('DOMContentLoaded', () => {
-        const tables = ['table1', 'table2', 'table3', 'table4'];
-        
-        // Set up input listeners for auto-save
-        tables.forEach(tableId => {
-            const table = document.getElementById(tableId);
-            if (table) {
-                table.addEventListener('input', () => handleAutoSave(tableId));
-            }
-        });
+      const tables = ['table1', 'table2', 'table3', 'table4'];
 
-        // Save on visibility change
-        document.addEventListener('visibilitychange', () => {
-            if (document.hidden) {
-                tables.forEach(tableId => saveCompleteTableData(tableId));
-            }
-        });
+      tables.forEach(tableId => {
+        const table = document.getElementById(tableId);
+        if (table) {
+          const inputs = table.querySelectorAll('.notes');
+          inputs.forEach(input => {
+            input.addEventListener('input', debounce(() => saveCompleteTableData(tableId), 200));
+          });
+        }
+      });
 
-        // Save before unload
-        window.addEventListener('beforeunload', () => {
-            tables.forEach(tableId => saveCompleteTableData(tableId));
-        });
+      document.addEventListener('visibilitychange', () => {
+        if (document.hidden) {
+          tables.forEach(tableId => saveCompleteTableData(tableId));
+        }
+      });
+
+      window.addEventListener('beforeunload', () => {
+        tables.forEach(tableId => saveCompleteTableData(tableId));
+      });
     });
 })();

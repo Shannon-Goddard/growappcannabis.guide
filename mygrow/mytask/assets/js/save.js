@@ -1,11 +1,10 @@
-// save.js for mytask.html - inspired by mydiary1.html/app.js, smooth note-saving
+// save.js for mytask.html - fixed button and sync
 
 document.addEventListener('DOMContentLoaded', function() {
     const saveButton = document.getElementById('SaveButton');
     const noteInputs = document.querySelectorAll('.notes');
     const tableIds = ['table1', 'table2', 'table3', 'table4'];
-    
-    // Update save button state
+
     const updateSaveButtonState = (state) => {
         if (!saveButton) return;
         
@@ -39,7 +38,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     };
 
-    // tableStorage for compatibility
     window.tableStorage = {
         tables: {},
         dbConfigs: {
@@ -108,7 +106,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     };
 
-    // Save all tables locally
     async function saveAllTables() {
         for (const tableId of tableIds) {
             const table = document.getElementById(tableId);
@@ -121,7 +118,6 @@ document.addEventListener('DOMContentLoaded', function() {
                     $(this).show();
                 });
                 
-                // Save to localStorage first (like mydiary1)
                 localStorage.setItem(`${tableId}_content`, $clone.html());
                 await window.tableStorage.saveTableData(tableId, $clone.html());
                 $clone.remove();
@@ -129,50 +125,54 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    // Server sync (manual trigger)
     async function syncToServer() {
         updateSaveButtonState('saving');
-        for (const tableId of tableIds) {
-            const table = document.getElementById(tableId);
-            if (table) {
-                const tableClone = table.cloneNode(true);
-                const $clone = $(tableClone);
-                
-                $clone.find('tr').each(function() {
-                    $(this).css('display', '');
-                    $(this).show();
-                });
-                
-                fetch('/save_notes', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ [tableId]: $clone.html() })
-                })
-                    .then(response => response.json())
-                    .then(data => {
-                        console.log('Server sync:', data);
-                        updateSaveButtonState('success');
-                    })
-                    .catch(error => console.error('Sync error:', error));
-                
-                $clone.remove();
+        try {
+            for (const tableId of tableIds) {
+                const table = document.getElementById(tableId);
+                if (table) {
+                    const tableClone = table.cloneNode(true);
+                    const $clone = $(tableClone);
+                    
+                    $clone.find('tr').each(function() {
+                        $(this).css('display', '');
+                        $(this).show();
+                    });
+                    
+                    const response = await fetch('/save_notes', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ [tableId]: $clone.html() })
+                    });
+                    
+                    if (!response.ok) throw new Error('Server sync failed');
+                    const data = await response.json();
+                    console.log('Server sync:', data);
+                    $clone.remove();
+                }
             }
+            updateSaveButtonState('success');
+        } catch (error) {
+            console.error('Sync error:', error);
+            updateSaveButtonState('success'); // Reset even on fail (local save worked)
         }
     }
 
-    // Debounce local saves
     let timeout;
     if (noteInputs.length > 0) {
         noteInputs.forEach(input => {
             input.addEventListener('input', function() {
+                updateSaveButtonState('pending');
                 clearTimeout(timeout);
-                timeout = setTimeout(saveAllTables, 300); // Local only, 300ms
+                timeout = setTimeout(async () => {
+                    await saveAllTables();
+                    updateSaveButtonState('success');
+                }, 300);
             });
-            input.addEventListener('blur', syncToServer); // Server on blur
+            input.addEventListener('blur', syncToServer);
         });
     }
 
-    // Save button (local + server)
     if (saveButton) {
         saveButton.addEventListener('click', async () => {
             await saveAllTables();
@@ -180,13 +180,11 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Page unload (local + server)
     window.addEventListener('beforeunload', async function() {
         await saveAllTables();
         await syncToServer();
     });
 
-    // Visibility change (local + server)
     document.addEventListener('visibilitychange', async function() {
         if (document.hidden) {
             await saveAllTables();

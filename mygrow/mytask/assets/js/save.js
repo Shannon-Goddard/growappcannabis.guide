@@ -1,11 +1,11 @@
-// save.js for mytask.html - save all present tables, fetch on blur to fix lag
+// save.js for mytask.html - inspired by mydiary1.html/app.js, smooth note-saving
 
 document.addEventListener('DOMContentLoaded', function() {
     const saveButton = document.getElementById('SaveButton');
-    const noteInputs = document.querySelectorAll('.notes'); // All .notes inputs across tables
-    const tableIds = ['table1', 'table2', 'table3', 'table4']; // Possible tables
+    const noteInputs = document.querySelectorAll('.notes');
+    const tableIds = ['table1', 'table2', 'table3', 'table4'];
     
-    // Function to update save button state
+    // Update save button state
     const updateSaveButtonState = (state) => {
         if (!saveButton) return;
         
@@ -39,7 +39,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     };
 
-    // tableStorage for table1.js to table4.js compatibility
+    // tableStorage for compatibility
     window.tableStorage = {
         tables: {},
         dbConfigs: {
@@ -52,10 +52,7 @@ document.addEventListener('DOMContentLoaded', function() {
         async initDB(tableId) {
             return new Promise((resolve, reject) => {
                 const config = this.dbConfigs[tableId];
-                if (!config) {
-                    reject(new Error(`No config found for table ${tableId}`));
-                    return;
-                }
+                if (!config) reject(new Error(`No config found for ${tableId}`));
                 const request = indexedDB.open(config.dbName, config.dbVersion);
 
                 request.onerror = () => reject(request.error);
@@ -72,23 +69,18 @@ document.addEventListener('DOMContentLoaded', function() {
 
         async saveTableData(tableId, content) {
             try {
-                updateSaveButtonState('saving');
                 const db = await this.initDB(tableId);
                 return new Promise((resolve, reject) => {
                     const transaction = db.transaction(this.dbConfigs[tableId].storeName, 'readwrite');
                     const store = transaction.objectStore(this.dbConfigs[tableId].storeName);
                     const request = store.put(content, 'mainTable');
                     
-                    request.onsuccess = () => {
-                        updateSaveButtonState('success');
-                        resolve(true);
-                    };
+                    request.onsuccess = () => resolve(true);
                     request.onerror = () => reject(request.error);
                     transaction.oncomplete = () => db.close();
                 });
             } catch (error) {
                 console.error('Error saving to IndexedDB:', error);
-                updateSaveButtonState('pending');
                 return false;
             }
         },
@@ -112,14 +104,11 @@ document.addEventListener('DOMContentLoaded', function() {
         },
 
         registerTable(tableId, filterFunction) {
-            this.tables[tableId] = {
-                filterFunction,
-                lastContent: $(`#${tableId}`).html()
-            };
+            this.tables[tableId] = { filterFunction, lastContent: $(`#${tableId}`).html() };
         }
     };
 
-    // Save all present tables (local only)
+    // Save all tables locally
     async function saveAllTables() {
         for (const tableId of tableIds) {
             const table = document.getElementById(tableId);
@@ -132,14 +121,17 @@ document.addEventListener('DOMContentLoaded', function() {
                     $(this).show();
                 });
                 
+                // Save to localStorage first (like mydiary1)
+                localStorage.setItem(`${tableId}_content`, $clone.html());
                 await window.tableStorage.saveTableData(tableId, $clone.html());
                 $clone.remove();
             }
         }
     }
 
-    // Server sync function
+    // Server sync (manual trigger)
     async function syncToServer() {
+        updateSaveButtonState('saving');
         for (const tableId of tableIds) {
             const table = document.getElementById(tableId);
             if (table) {
@@ -157,7 +149,10 @@ document.addEventListener('DOMContentLoaded', function() {
                     body: JSON.stringify({ [tableId]: $clone.html() })
                 })
                     .then(response => response.json())
-                    .then(data => console.log('Server sync:', data))
+                    .then(data => {
+                        console.log('Server sync:', data);
+                        updateSaveButtonState('success');
+                    })
                     .catch(error => console.error('Sync error:', error));
                 
                 $clone.remove();
@@ -165,34 +160,33 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    // Debounce setup for local saves
+    // Debounce local saves
     let timeout;
     if (noteInputs.length > 0) {
         noteInputs.forEach(input => {
             input.addEventListener('input', function() {
                 clearTimeout(timeout);
-                timeout = setTimeout(saveAllTables, 300); // Local save after 300ms
+                timeout = setTimeout(saveAllTables, 300); // Local only, 300ms
             });
-            input.addEventListener('blur', syncToServer); // Server sync on blur
+            input.addEventListener('blur', syncToServer); // Server on blur
         });
     }
 
-    // Save button click handler (local + server)
+    // Save button (local + server)
     if (saveButton) {
         saveButton.addEventListener('click', async () => {
-            updateSaveButtonState('saving');
             await saveAllTables();
             await syncToServer();
         });
     }
 
-    // Save on page unload (local + server)
+    // Page unload (local + server)
     window.addEventListener('beforeunload', async function() {
         await saveAllTables();
         await syncToServer();
     });
 
-    // Visibility change handler (local + server)
+    // Visibility change (local + server)
     document.addEventListener('visibilitychange', async function() {
         if (document.hidden) {
             await saveAllTables();

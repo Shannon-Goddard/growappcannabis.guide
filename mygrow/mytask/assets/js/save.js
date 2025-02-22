@@ -1,4 +1,4 @@
-// save.js for mytask.html - save all present tables (1-4) with today's tasks and notes, debounced, with tableStorage
+// save.js for mytask.html - save all present tables, fetch on blur to fix lag
 
 document.addEventListener('DOMContentLoaded', function() {
     const saveButton = document.getElementById('SaveButton');
@@ -39,7 +39,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     };
 
-    // Restore tableStorage for table1.js to table4.js compatibility
+    // tableStorage for table1.js to table4.js compatibility
     window.tableStorage = {
         tables: {},
         dbConfigs: {
@@ -119,16 +119,16 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     };
 
-    // Save all present tables
+    // Save all present tables (local only)
     async function saveAllTables() {
         for (const tableId of tableIds) {
             const table = document.getElementById(tableId);
-            if (table) { // Only save if table exists
+            if (table) {
                 const tableClone = table.cloneNode(true);
                 const $clone = $(tableClone);
                 
                 $clone.find('tr').each(function() {
-                    $(this).css('display', ''); // Keep all rows visible in storage
+                    $(this).css('display', '');
                     $(this).show();
                 });
                 
@@ -138,34 +138,65 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    // Debounce setup
+    // Server sync function
+    async function syncToServer() {
+        for (const tableId of tableIds) {
+            const table = document.getElementById(tableId);
+            if (table) {
+                const tableClone = table.cloneNode(true);
+                const $clone = $(tableClone);
+                
+                $clone.find('tr').each(function() {
+                    $(this).css('display', '');
+                    $(this).show();
+                });
+                
+                fetch('/save_notes', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ [tableId]: $clone.html() })
+                })
+                    .then(response => response.json())
+                    .then(data => console.log('Server sync:', data))
+                    .catch(error => console.error('Sync error:', error));
+                
+                $clone.remove();
+            }
+        }
+    }
+
+    // Debounce setup for local saves
     let timeout;
     if (noteInputs.length > 0) {
         noteInputs.forEach(input => {
             input.addEventListener('input', function() {
                 clearTimeout(timeout);
-                timeout = setTimeout(saveAllTables, 300); // Save all tables after 300ms
+                timeout = setTimeout(saveAllTables, 300); // Local save after 300ms
             });
+            input.addEventListener('blur', syncToServer); // Server sync on blur
         });
     }
 
-    // Save button click handler
+    // Save button click handler (local + server)
     if (saveButton) {
         saveButton.addEventListener('click', async () => {
             updateSaveButtonState('saving');
             await saveAllTables();
+            await syncToServer();
         });
     }
 
-    // Save on page unload
+    // Save on page unload (local + server)
     window.addEventListener('beforeunload', async function() {
         await saveAllTables();
+        await syncToServer();
     });
 
-    // Visibility change handler
+    // Visibility change handler (local + server)
     document.addEventListener('visibilitychange', async function() {
         if (document.hidden) {
             await saveAllTables();
+            await syncToServer();
         }
     });
 });

@@ -1,5 +1,9 @@
+// save.js for mytask.html - save all present tables (1-4) with today's tasks and notes, debounced, with tableStorage
+
 document.addEventListener('DOMContentLoaded', function() {
     const saveButton = document.getElementById('SaveButton');
+    const noteInputs = document.querySelectorAll('.notes'); // All .notes inputs across tables
+    const tableIds = ['table1', 'table2', 'table3', 'table4']; // Possible tables
     
     // Function to update save button state
     const updateSaveButtonState = (state) => {
@@ -19,11 +23,9 @@ document.addEventListener('DOMContentLoaded', function() {
             case 'success':
                 saveButton.classList.add('save-button-success');
                 saveButton.innerHTML = '<i class="fa fa-check"></i> Saved';
-                // Reset to original state after 2 seconds
                 setTimeout(() => {
                     saveButton.classList.remove('save-button-success');
                     saveButton.innerHTML = '<i class="fa fa-save"></i> Save';
-                    // Reset background to transparent
                     saveButton.style.background = 'transparent';
                     saveButton.style.color = '#FFFFFF';
                     saveButton.style.borderColor = '#04AA6D';
@@ -31,14 +33,13 @@ document.addEventListener('DOMContentLoaded', function() {
                 break;
             default:
                 saveButton.innerHTML = '<i class="fa fa-save"></i> Save';
-                // Reset to original state
                 saveButton.style.background = 'transparent';
                 saveButton.style.color = '#FFFFFF';
                 saveButton.style.borderColor = '#04AA6D';
         }
     };
-    
 
+    // Restore tableStorage for table1.js to table4.js compatibility
     window.tableStorage = {
         tables: {},
         dbConfigs: {
@@ -118,41 +119,16 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     };
 
-    // Save button click handler
-    if (saveButton) {
-        saveButton.addEventListener('click', async () => {
-            const tables = ['table1', 'table2', 'table3', 'table4'];
-            updateSaveButtonState('saving');
-            
-            for (const tableId of tables) {
-                const table = $(`#${tableId}`);
-                if (table.length) {
-                    const tableClone = table[0].cloneNode(true);
-                    const $clone = $(tableClone);
-                    
-                    $clone.find('tr').each(function() {
-                        $(this).css('display', '');
-                        $(this).show();
-                    });
-                    
-                    await window.tableStorage.saveTableData(tableId, $clone.html());
-                    $clone.remove();
-                }
-            }
-        });
-    }
-
-    // Save on page unload
-    window.addEventListener('beforeunload', async function() {
-        const tables = ['table1', 'table2', 'table3', 'table4'];
-        for (const tableId of tables) {
-            const table = $(`#${tableId}`);
-            if (table.length) {
-                const tableClone = table[0].cloneNode(true);
+    // Save all present tables
+    async function saveAllTables() {
+        for (const tableId of tableIds) {
+            const table = document.getElementById(tableId);
+            if (table) { // Only save if table exists
+                const tableClone = table.cloneNode(true);
                 const $clone = $(tableClone);
                 
                 $clone.find('tr').each(function() {
-                    $(this).css('display', '');
+                    $(this).css('display', ''); // Keep all rows visible in storage
                     $(this).show();
                 });
                 
@@ -160,27 +136,36 @@ document.addEventListener('DOMContentLoaded', function() {
                 $clone.remove();
             }
         }
+    }
+
+    // Debounce setup
+    let timeout;
+    if (noteInputs.length > 0) {
+        noteInputs.forEach(input => {
+            input.addEventListener('input', function() {
+                clearTimeout(timeout);
+                timeout = setTimeout(saveAllTables, 300); // Save all tables after 300ms
+            });
+        });
+    }
+
+    // Save button click handler
+    if (saveButton) {
+        saveButton.addEventListener('click', async () => {
+            updateSaveButtonState('saving');
+            await saveAllTables();
+        });
+    }
+
+    // Save on page unload
+    window.addEventListener('beforeunload', async function() {
+        await saveAllTables();
     });
 
     // Visibility change handler
     document.addEventListener('visibilitychange', async function() {
         if (document.hidden) {
-            const tables = ['table1', 'table2', 'table3', 'table4'];
-            for (const tableId of tables) {
-                const table = $(`#${tableId}`);
-                if (table.length) {
-                    const tableClone = table[0].cloneNode(true);
-                    const $clone = $(tableClone);
-                    
-                    $clone.find('tr').each(function() {
-                        $(this).css('display', '');
-                        $(this).show();
-                    });
-                    
-                    await window.tableStorage.saveTableData(tableId, $clone.html());
-                    $clone.remove();
-                }
-            }
+            await saveAllTables();
         }
     });
 });

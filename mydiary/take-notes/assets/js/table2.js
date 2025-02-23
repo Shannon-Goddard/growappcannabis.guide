@@ -1,0 +1,169 @@
+document.addEventListener('DOMContentLoaded', async () => {
+    if (typeof IndexedDBService === 'undefined') {
+        console.error('IndexedDBService is not defined. Ensure indexedDBService.js is loaded.');
+        return;
+    }
+
+    const table = $('#table2');
+    let fullTableContent = '';
+    let hiddenTable = null;
+    let saveTimeout = null;
+    let isUpdating = false;
+    
+    function createHiddenTable() {
+        hiddenTable = table.clone();
+        hiddenTable.attr('id', 'hiddenTable');
+        hiddenTable.css({
+            'position': 'absolute',
+            'left': '-9999px',
+            'visibility': 'hidden'
+        });
+        hiddenTable.find('tr').show();
+        hiddenTable.find(':input').show();
+        $('body').append(hiddenTable);
+    }
+
+    function updateVisibleTable() {
+        const activeElement = document.activeElement;
+        const selection = window.getSelection();
+        const range = selection.getRangeAt(0);
+        const cursorPosition = range.startOffset;
+        
+        const activeCell = activeElement.closest('td, th');
+        const cellIndex = activeCell ? Array.from(activeCell.parentElement.children).indexOf(activeCell) : -1;
+        const rowIndex = activeCell ? activeCell.parentElement.rowIndex : -1;
+        
+        table.html(hiddenTable.html());
+        table.find('tr:not(:first)').hide();
+        table.find('.notes').show();
+        table.find(":input").hide();
+        
+        if (activeCell && table[0].rows[rowIndex]) {
+            const newCell = table[0].rows[rowIndex].cells[cellIndex];
+            if (newCell) {
+                const range = document.createRange();
+                const selection = window.getSelection();
+                const textNode = newCell.firstChild || newCell;
+                range.setStart(textNode, Math.min(cursorPosition, textNode.length));
+                range.setEnd(textNode, Math.min(cursorPosition, textNode.length));
+                selection.removeAllRanges();
+                selection.addRange(range);
+                newCell.focus();
+            }
+        }
+    }
+    
+    try {
+        const savedContent = await IndexedDBService.loadTable();
+        if (savedContent) {
+            fullTableContent = savedContent;
+            table.html(savedContent);
+            createHiddenTable();
+            table.find('tr:not(:first)').hide();
+            table.find('.notes').show();
+            table.find(":input").hide();
+        } else {
+            createHiddenTable();
+            table.html('<table><tr><td>No data</td></tr></table>');
+        }
+    } catch (error) {
+        console.error('Error loading table:', error);
+        createHiddenTable();
+        table.html('<table><tr><td>Error loading table data</td></tr></table>');
+    }
+
+    table.attr('contenteditable', 'true');
+
+    function debouncedSave() {
+        if (saveTimeout) clearTimeout(saveTimeout);
+        saveTimeout = setTimeout(async () => {
+            const selection = window.getSelection();
+            const range = selection.getRangeAt(0);
+            const cursorPosition = range.startOffset;
+            const activeCell = document.activeElement.closest('td, th');
+            
+            const currentContent = table.html();
+            hiddenTable.html(currentContent);
+            hiddenTable.find('tr').show();
+            hiddenTable.find(':input').show();
+            fullTableContent = hiddenTable.html();
+            
+            try {
+                await IndexedDBService.saveTable(fullTableContent);
+                console.log("Table2 content saved successfully");
+                
+                table.find('tr:not(:first)').hide();
+                table.find('.notes').show();
+                table.find(':input').hide();
+                
+                if (activeCell && table[0].rows[activeCell.parentElement.rowIndex]) {
+                    const newCell = table[0].rows[activeCell.parentElement.rowIndex].cells[Array.from(activeCell.parentElement.children).indexOf(activeCell)];
+                    if (newCell) {
+                        const range = document.createRange();
+                        const textNode = newCell.firstChild || newCell;
+                        range.setStart(textNode, Math.min(cursorPosition, textNode.length));
+                        range.setEnd(textNode, Math.min(cursorPosition, textNode.length));
+                        selection.removeAllRanges();
+                        selection.addRange(range);
+                        newCell.focus();
+                    }
+                }
+            } catch (error) {
+                console.error('Error saving table:', error);
+            }
+        }, 250);
+    }
+
+    table.on('input', function() {
+        if (!isUpdating) {
+            isUpdating = true;
+            debouncedSave();
+            isUpdating = false;
+        }
+    });
+
+    $(window).on('beforeunload', function() {
+        clearTimeout(saveTimeout);
+        
+        table.find('tr').show();
+        table.find(':input').show();
+        
+        hiddenTable.html(table.html());
+        hiddenTable.find('tr').show();
+        hiddenTable.find(':input').show();
+        
+        fullTableContent = hiddenTable.html();
+        
+        const db = indexedDB.open(IndexedDBService.dbName, IndexedDBService.dbVersion);
+        db.onsuccess = function(event) {
+            const database = event.target.result;
+            const transaction = database.transaction([IndexedDBService.storeName], 'readwrite');
+            const store = transaction.objectStore(IndexedDBService.storeName);
+            store.put(fullTableContent, 'mainTable');
+        };
+        
+        table.find('tr:not(:first)').hide();
+        table.find('.notes').show();
+        table.find(':input').hide();
+    });
+
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            clearTimeout(saveTimeout);
+            
+            table.find('tr').show();
+            table.find(':input').show();
+            
+            hiddenTable.html(table.html());
+            hiddenTable.find('tr').show();
+            hiddenTable.find(':input').show();
+            
+            fullTableContent = hiddenTable.html();
+            IndexedDBService.saveTable(fullTableContent);
+            
+            table.find('tr:not(:first)').hide();
+            table.find('.notes').show();
+            table.find(':input').hide();
+        }
+    });
+});

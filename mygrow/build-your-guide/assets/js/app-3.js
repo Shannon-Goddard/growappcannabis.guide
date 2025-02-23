@@ -25,7 +25,7 @@ $(function(){
   const saveAllTables = () => {
     if (content) {
       $('.strain').each(function(){
-        $(this).html(StorageService.getPlant3Strain());
+        $(this).html(StorageService.getPlantStrain());
       });
       StorageService.saveTable(content.innerHTML);
     }
@@ -39,7 +39,7 @@ $(function(){
   if (savedContent) {
     content.innerHTML = savedContent;
     $('.strain').each(function(){
-      $(this).html(StorageService.getPlant3Strain());
+      $(this).html(StorageService.getPlantStrain());
     });
   }
 
@@ -59,35 +59,35 @@ $(function(){
     $("#start").click(() => $("#taskButton").show());
     
     // Display stored values
-    $("#strain").html(StorageService.getPlant3Strain());
-    $("#Grow").html(StorageService.getPlant3Height());
-    $("#image").attr("src", StorageService.getPlant3Logo()).show();
+    $("#strain").html(StorageService.getPlantStrain());
+    $("#Grow").html(StorageService.getPlantHeight());
+    $("#image").attr("src", StorageService.getPlantLogo()).show();
     
     // Calculate total days using PlantConfig
-    const plant3Height = StorageService.getPlant3Height();
-    const plant3Grow = parseInt(StorageService.getPlant3Grow()) || 0;
-    const vegWeeks = parseInt(PlantConfig.heightToVegWeeks[plant3Height] || "0");
-    const totalDays = (plant3Grow * 7) + (vegWeeks * 7) + 18;
+    const plantHeight = StorageService.getPlantHeight();
+    const plantGrow = parseInt(StorageService.getPlantGrow()) || 0;
+    const vegWeeks = parseInt(PlantConfig.heightToVegWeeks[plantHeight] || "0");
+    const totalDays = (plantGrow * 7) + (vegWeeks * 7) + 18;
     
     if (document.getElementById("info")) {
       document.getElementById("info").innerHTML = `${totalDays} days`;
     }
     
     // Update light inches using PlantConfig
-    const watts = StorageService.getPlant3Watts();
+    const watts = StorageService.getPlantWatts();
     if (PlantConfig.wattageToInches[watts]) {
       $(".lightInches").text(PlantConfig.wattageToInches[watts]);
     }
 
-    // Remove classes based on plant3 height using PlantConfig
-    const classesToRemove = PlantConfig.heightFilters[plant3Height] || [];
+    // Remove classes based on plant height using PlantConfig
+    const classesToRemove = PlantConfig.heightFilters[plantHeight] || [];
     classesToRemove.forEach(className => {
       $(className).remove();
       StorageService.removeItem(className.replace('.', ''));
     });
 
     // Handle flowering week classes
-    const floweringWeek = parseInt(StorageService.getPlant3Grow());
+    const floweringWeek = parseInt(StorageService.getPlantGrow());
     if (floweringWeek >= 4 && floweringWeek <= 11) {
       const floweringClassesToRemove = createFloweringClasses(floweringWeek + 1, 34);
       floweringClassesToRemove.forEach(className => {

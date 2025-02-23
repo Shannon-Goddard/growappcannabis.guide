@@ -1,7 +1,7 @@
 const IndexedDBService = {
-    dbName: 'myDatabase',
+    dbName: 'myGrow',
     dbVersion: 1,
-    storeName: 'tables',
+    storeName: 'table1',
     
     // Initialize the database
     initDB() {
@@ -12,9 +12,12 @@ const IndexedDBService = {
             
             request.onupgradeneeded = (event) => {
                 const db = event.target.result;
-                if (!db.objectStoreNames.contains(this.storeName)) {
-                    db.createObjectStore(this.storeName);
-                }
+                const stores = ['table1', 'table2', 'table3', 'table4'];
+                stores.forEach(store => {
+                    if (!db.objectStoreNames.contains(store)) {
+                        db.createObjectStore(store, { keyPath: 'id' });
+                    }
+                });
             };
             
             request.onsuccess = () => resolve(request.result);
@@ -33,7 +36,8 @@ const IndexedDBService = {
                 let content = typeof tableContent === 'string' ? 
                     JSON.parse(tableContent) : tableContent;
 
-                const request = store.put(content, 'mainTable');
+                // Store content with 'id' as the key path
+                const request = store.put({ id: 'mainTable', data: content });
                 
                 request.onsuccess = () => {
                     // After successful save to IndexedDB, remove from localStorage
@@ -65,7 +69,7 @@ const IndexedDBService = {
                 const request = store.get('mainTable');
                 
                 request.onsuccess = () => {
-                    const result = request.result;
+                    const result = request.result ? request.result.data : null;
                     db.close();
                     resolve(result);
                 };
@@ -122,7 +126,6 @@ document.addEventListener('DOMContentLoaded', async () => {
             notesRows.forEach(row => {
                 row.style.display = 'none';
             });
-
 
             // Update strain information
             const strainElements = document.getElementsByClassName('strain');

@@ -18,7 +18,34 @@ DeleteButton.addEventListener('click', function () {
   localStorage.removeItem('plantLogo');
   localStorage.removeItem('startDate');
 ///////////////////////////////////  
-  window.indexedDB.deleteDatabase('myDatabase');
+  // Clear all records in the 'table1' object store of 'myGrow'
+const request = indexedDB.open('myGrow', 1); // Use the same version as in your IndexedDBService
+
+request.onsuccess = (event) => {
+    const db = event.target.result;
+    const transaction = db.transaction(['table1'], 'readwrite'); // Specify 'table1' object store
+    const store = transaction.objectStore('table1');
+
+    const clearRequest = store.clear(); // Clear all records in table1
+
+    clearRequest.onsuccess = () => {
+        console.log('All records in table1 have been deleted.');
+        db.close();
+    };
+
+    clearRequest.onerror = (error) => {
+        console.error('Error clearing table1:', error);
+        db.close();
+    };
+
+    transaction.oncomplete = () => {
+        db.close();
+    };
+};
+
+request.onerror = (error) => {
+    console.error('Error opening database:', error);
+};
 ///////////////////////////////////////
   location.reload();
 });
@@ -41,7 +68,33 @@ Delete2Button.addEventListener('click', function () {
   localStorage.removeItem('plant2watts');
   localStorage.removeItem('plant2Logo');
   localStorage.removeItem('start2Date');
-  window.indexedDB.deleteDatabase('myDatabase2');
+  const request = indexedDB.open('myGrow', 1); // Use the same version as in your IndexedDBService
+
+request.onsuccess = (event) => {
+    const db = event.target.result;
+    const transaction = db.transaction(['table2'], 'readwrite'); // Specify 'table2' object store
+    const store = transaction.objectStore('table2');
+
+    const clearRequest = store.clear(); // Clear all records in table2
+
+    clearRequest.onsuccess = () => {
+        console.log('All records in table2 have been deleted.');
+        db.close();
+    };
+
+    clearRequest.onerror = (error) => {
+        console.error('Error clearing table2:', error);
+        db.close();
+    };
+
+    transaction.oncomplete = () => {
+        db.close();
+    };
+};
+
+request.onerror = (error) => {
+    console.error('Error opening database:', error);
+};
   location.reload();
 });
 
@@ -63,7 +116,33 @@ Delete3Button.addEventListener('click', function () {
   localStorage.removeItem('plant3watts');
   localStorage.removeItem('plant3Logo');
   localStorage.removeItem('start3Date');
-  window.indexedDB.deleteDatabase('myDatabase3');
+  const request = indexedDB.open('myGrow', 1); // Use the same version as in your IndexedDBService
+
+request.onsuccess = (event) => {
+    const db = event.target.result;
+    const transaction = db.transaction(['table3'], 'readwrite'); // Specify 'table3' object store
+    const store = transaction.objectStore('table3');
+
+    const clearRequest = store.clear(); // Clear all records in table3
+
+    clearRequest.onsuccess = () => {
+        console.log('All records in table3 have been deleted.');
+        db.close();
+    };
+
+    clearRequest.onerror = (error) => {
+        console.error('Error clearing table3:', error);
+        db.close();
+    };
+
+    transaction.oncomplete = () => {
+        db.close();
+    };
+};
+
+request.onerror = (error) => {
+    console.error('Error opening database:', error);
+};
   location.reload();
 });
 
@@ -85,6 +164,32 @@ Delete4Button.addEventListener('click', function () {
   localStorage.removeItem('plant4watts');
   localStorage.removeItem('plant4Logo');
   localStorage.removeItem('start4Date');
-  window.indexedDB.deleteDatabase('myDatabase4');
+  const request = indexedDB.open('myGrow', 1); // Use the same version as in your IndexedDBService
+
+request.onsuccess = (event) => {
+    const db = event.target.result;
+    const transaction = db.transaction(['table4'], 'readwrite'); // Specify 'table4' object store
+    const store = transaction.objectStore('table4');
+
+    const clearRequest = store.clear(); // Clear all records in table4
+
+    clearRequest.onsuccess = () => {
+        console.log('All records in table4 have been deleted.');
+        db.close();
+    };
+
+    clearRequest.onerror = (error) => {
+        console.error('Error clearing table4:', error);
+        db.close();
+    };
+
+    transaction.oncomplete = () => {
+        db.close();
+    };
+};
+
+request.onerror = (error) => {
+    console.error('Error opening database:', error);
+};
   location.reload();
 });

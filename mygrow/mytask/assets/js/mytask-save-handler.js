@@ -1,40 +1,32 @@
 // mytask-save-handler.js
-
 (function() {
     "use strict";
 
-    // Handle saving complete table data
-    const saveCompleteTableData = async (tableId) => {
+    const saveTableData = async (tableId) => {
         const table = document.getElementById(tableId);
-        if (!table) return;
+        if (!table || !window.tableStorage) return;
 
-        // Create a clone for saving complete data
         const tableClone = table.cloneNode(true);
         const hiddenRows = tableClone.querySelectorAll('tr[style*="display: none"]');
-        hiddenRows.forEach(row => {
-            row.style.display = '';
-        });
+        hiddenRows.forEach(row => row.style.display = '');
 
-        // Save using existing tableStorage
-        if (window.tableStorage) {
+        try {
             await window.tableStorage.saveTableData(tableId, tableClone.innerHTML);
+            console.log(`Auto-saved ${tableId}`);
+        } catch (error) {
+            console.error(`Error auto-saving ${tableId}:`, error);
         }
     };
 
-    // Auto-save handler with debouncing
-    let autoSaveTimeout;
+    let saveTimeouts = {};
     const handleAutoSave = (tableId) => {
-        clearTimeout(autoSaveTimeout);
-        autoSaveTimeout = setTimeout(() => {
-            saveCompleteTableData(tableId);
-        }, 5000); // 5 second delay
+        clearTimeout(saveTimeouts[tableId]);
+        saveTimeouts[tableId] = setTimeout(() => saveTableData(tableId), 3000); // 3s debounce
     };
 
-    // Set up event listeners when document is ready
     document.addEventListener('DOMContentLoaded', () => {
         const tables = ['table1', 'table2', 'table3', 'table4'];
         
-        // Set up input listeners for auto-save
         tables.forEach(tableId => {
             const table = document.getElementById(tableId);
             if (table) {
@@ -42,16 +34,15 @@
             }
         });
 
-        // Save on visibility change
+        // Keep these for robustness, but they’re less frequent on mobile
         document.addEventListener('visibilitychange', () => {
             if (document.hidden) {
-                tables.forEach(tableId => saveCompleteTableData(tableId));
+                tables.forEach(tableId => saveTableData(tableId));
             }
         });
 
-        // Save before unload
         window.addEventListener('beforeunload', () => {
-            tables.forEach(tableId => saveCompleteTableData(tableId));
+            tables.forEach(tableId => saveTableData(tableId));
         });
     });
 })();

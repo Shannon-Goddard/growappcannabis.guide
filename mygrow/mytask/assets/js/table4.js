@@ -1,3 +1,4 @@
+// table4.js
 document.addEventListener('DOMContentLoaded', function() {
     setTimeout(async function() {
         if (!window.tableStorage) {
@@ -9,7 +10,6 @@ document.addEventListener('DOMContentLoaded', function() {
         const saveButton = document.getElementById('SaveButton');
         table.attr('contenteditable', 'true');
 
-        // Pre-calculate today's date once
         const today = new Date();
         const formattedToday = `${today.getMonth() + 1}/${today.getDate()}/${today.getFullYear()}`;
 
@@ -41,27 +41,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
             // Register table
             window.tableStorage.registerTable('table4', filterTableByToday);
-
-            // Save handler
-            let saveTimeout;
-            table.on('input', 'td', function() {
-                if (saveButton) {
-                    saveButton.classList.add('save-button-pending');
-                }
-                
-                clearTimeout(saveTimeout);
-                saveTimeout = setTimeout(async () => {
-                    const tableClone = table[0].cloneNode(true);
-                    const $clone = $(tableClone);
-                    
-                    $clone.find('tr').each(function() {
-                        $(this).css('display', '');
-                    });
-                    
-                    await window.tableStorage.saveTableData('table4', $clone.html());
-                    $clone.remove();
-                }, 2000);
-            });
 
             // Style application
             table.css({

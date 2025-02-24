@@ -1,15 +1,13 @@
+// indexedDBService.js
 const IndexedDBService = {
     dbName: 'myGrow',
     dbVersion: 1,
-    storeName: 'table1',
+    storeName: 'table1', // We'll override this per table
     
-    // Initialize the database
     initDB() {
         return new Promise((resolve, reject) => {
             const request = indexedDB.open(this.dbName, this.dbVersion);
-            
             request.onerror = () => reject(request.error);
-            
             request.onupgradeneeded = (event) => {
                 const db = event.target.result;
                 const stores = ['table1', 'table2', 'table3', 'table4'];
@@ -19,29 +17,38 @@ const IndexedDBService = {
                     }
                 });
             };
-            
             request.onsuccess = () => resolve(request.result);
         });
     },
 
-
-
-    // Load table from IndexedDB
-    async loadTable() {
+    async saveTable(storeName, tableContent) {
         try {
             const db = await this.initDB();
             return new Promise((resolve, reject) => {
-                const transaction = db.transaction(this.storeName, 'readonly');
-                const store = transaction.objectStore(this.storeName);
-                
+                const transaction = db.transaction(storeName, 'readwrite');
+                const store = transaction.objectStore(storeName);
+                const request = store.put({ id: 'mainTable', data: tableContent });
+                request.onsuccess = () => resolve(true);
+                request.onerror = () => reject(request.error);
+                transaction.oncomplete = () => db.close();
+            });
+        } catch (error) {
+            console.error('Error saving to IndexedDB:', error);
+            return false;
+        }
+    },
+
+    async loadTable(storeName) {
+        try {
+            const db = await this.initDB();
+            return new Promise((resolve, reject) => {
+                const transaction = db.transaction(storeName, 'readonly');
+                const store = transaction.objectStore(storeName);
                 const request = store.get('mainTable');
-                
                 request.onsuccess = () => {
-                    const result = request.result ? request.result.data : null;
                     db.close();
-                    resolve(result);
+                    resolve(request.result ? request.result.data : null);
                 };
-                
                 request.onerror = () => {
                     db.close();
                     reject(request.error);
@@ -53,4 +60,3 @@ const IndexedDBService = {
         }
     }
 };
-

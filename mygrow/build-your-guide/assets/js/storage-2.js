@@ -8,23 +8,23 @@ const StorageService = {
     return JSON.parse(localStorage.getItem('page_html2'));
   },
 
-  getPlantStrain: () => {
+  getPlant2Strain: () => {
     return localStorage.plant2Strain;
   },
 
-  getPlantHeight: () => {
+  getPlant2Height: () => {
     return localStorage.plant2Height;
   },
 
-  getPlantGrow: () => {
+  getPlant2Grow: () => {
     return localStorage.plant2Grow;
   },
 
-  getPlantWatts: () => {
+  getPlant2Watts: () => {
     return localStorage.plant2watts;
   },
 
-  getPlantLogo: () => {
+  getPlant2Logo: () => {
     return localStorage.getItem('plant2Logo');
   },
 

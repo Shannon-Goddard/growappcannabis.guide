@@ -1,7 +1,7 @@
 const IndexedDBService = {
-    dbName: 'myGrow',
-    dbVersion: 1,
-    storeName: 'table4',
+    dbName: 'myDatabase4',
+    dbVersion: 4,
+    storeName: 'tables4',
     
     // Initialize the database
     initDB() {
@@ -12,12 +12,9 @@ const IndexedDBService = {
             
             request.onupgradeneeded = (event) => {
                 const db = event.target.result;
-                const stores = ['table1', 'table2', 'table3', 'table4'];
-                stores.forEach(store => {
-                    if (!db.objectStoreNames.contains(store)) {
-                        db.createObjectStore(store, { keyPath: 'id' });
-                    }
-                });
+                if (!db.objectStoreNames.contains(this.storeName)) {
+                    db.createObjectStore(this.storeName);
+                }
             };
             
             request.onsuccess = () => resolve(request.result);
@@ -36,8 +33,7 @@ const IndexedDBService = {
                 let content = typeof tableContent === 'string' ? 
                     JSON.parse(tableContent) : tableContent;
 
-                // Store content with 'id' as the key path
-                const request = store.put({ id: 'mainTable', data: content });
+                const request = store.put(content, 'mainTable');
                 
                 request.onsuccess = () => {
                     // After successful save to IndexedDB, remove from localStorage
@@ -69,7 +65,7 @@ const IndexedDBService = {
                 const request = store.get('mainTable');
                 
                 request.onsuccess = () => {
-                    const result = request.result ? request.result.data : null;
+                    const result = request.result;
                     db.close();
                     resolve(result);
                 };
@@ -129,41 +125,41 @@ document.addEventListener('DOMContentLoaded', async () => {
 
             // Update strain information
             const strainElements = document.getElementsByClassName('strain');
-            const plantStrain = StorageService.getPlantStrain();
+            const plant4Strain = StorageService.getPlant4Strain();
             Array.from(strainElements).forEach(element => {
-                element.textContent = plantStrain;
+                element.textContent = plant4Strain;
             });
 
             // Update other elements
-            const plantHeight = StorageService.getPlantHeight();
-            if (plantHeight) {
+            const plant4Height = StorageService.getPlant4Height();
+            if (plant4Height) {
                 const heightElements = document.getElementsByClassName('height');
                 Array.from(heightElements).forEach(element => {
-                    element.textContent = plantHeight;
+                    element.textContent = plant4Height;
                 });
             }
 
-            const plantGrow = StorageService.getPlantGrow();
-            if (plantGrow) {
+            const plant4Grow = StorageService.getPlant4Grow();
+            if (plant4Grow) {
                 const growElements = document.getElementsByClassName('grow');
                 Array.from(growElements).forEach(element => {
-                    element.textContent = plantGrow;
+                    element.textContent = plant4Grow;
                 });
             }
 
-            const plantLogo = StorageService.getPlantLogo();
-            if (plantLogo) {
+            const plant4Logo = StorageService.getPlant4Logo();
+            if (plant4Logo) {
                 const logoElements = document.getElementsByClassName('logo');
                 Array.from(logoElements).forEach(element => {
-                    element.src = plantLogo;
+                    element.src = plant4Logo;
                 });
             }
 
-            const plantWatts = StorageService.getPlantWatts();
-            if (plantWatts) {
+            const plant4Watts = StorageService.getPlant4Watts();
+            if (plant4Watts) {
                 const wattsElements = document.getElementsByClassName('watts');
                 Array.from(wattsElements).forEach(element => {
-                    element.textContent = plantWatts;
+                    element.textContent = plant4Watts;
                 });
             }
         } else {

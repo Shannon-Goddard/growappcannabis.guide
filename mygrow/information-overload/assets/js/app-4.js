@@ -27,44 +27,44 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Update strain information
         const strainElements = document.getElementsByClassName('strain');
-        const plantStrain = StorageService.getPlantStrain();
+        const plant4Strain = StorageService.getPlant4Strain();
         Array.from(strainElements).forEach(element => {
-            element.textContent = plantStrain;
+            element.textContent = plant4Strain;
         });
 
         // Update height information if needed
-        const plantHeight = StorageService.getPlantHeight();
-        if (plantHeight) {
+        const plant4Height = StorageService.getPlant4Height();
+        if (plant4Height) {
             const heightElements = document.getElementsByClassName('height');
             Array.from(heightElements).forEach(element => {
-                element.textContent = plantHeight;
+                element.textContent = plant4Height;
             });
         }
 
         // Update grow information if needed
-        const plantGrow = StorageService.getPlantGrow();
-        if (plantGrow) {
+        const plant4Grow = StorageService.getPlant4Grow();
+        if (plant4Grow) {
             const growElements = document.getElementsByClassName('grow');
             Array.from(growElements).forEach(element => {
-                element.textContent = plantGrow;
+                element.textContent = plant4Grow;
             });
         }
 
         // Update logo if it exists
-        const plantLogo = StorageService.getPlantLogo();
-        if (plantLogo) {
+        const plant4Logo = StorageService.getPlant4Logo();
+        if (plant4Logo) {
             const logoElements = document.getElementsByClassName('logo');
             Array.from(logoElements).forEach(element => {
-                element.src = plantLogo;
+                element.src = plant4Logo;
             });
         }
 
         // Update watts if needed
-        const plantWatts = StorageService.getPlantWatts();
-        if (plantWatts) {
+        const plant4Watts = StorageService.getPlant4Watts();
+        if (plant4Watts) {
             const wattsElements = document.getElementsByClassName('watts');
             Array.from(wattsElements).forEach(element => {
-                element.textContent = plantWatts;
+                element.textContent = plant4Watts;
             });
         }
     } else {

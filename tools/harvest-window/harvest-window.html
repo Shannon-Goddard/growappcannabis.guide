@@ -72,19 +72,21 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh; /* Full viewport height */
+            height: 100vh;
             margin: 0;
             flex-direction: column;
-            padding-bottom: 60px; /* Add padding at the bottom to account for nav bar height (adjust as needed) */
+            padding-bottom: 60px;
+            background-color: #1a1a1a; /* Dark background for contrast */
         }
         .container {
             text-align: center;
             width: 100%;
-            max-width: 600px; /* Limit container width for better centering */
-            flex-grow: 1; /* Allow container to grow but not exceed viewport */
+            max-width: 600px;
+            flex-grow: 1;
             display: flex;
             flex-direction: column;
             justify-content: center;
+            color: white;
         }
         .button {
             background: #000;
@@ -97,12 +99,10 @@
             display: inline-block;
             border: 2px solid #04AA6D;
         }
-
         .button:hover {
             background: #04AA6D;
             color: #343a40;
         }
-
         @media (max-width: 992px) {
             .button {
                 padding: 7px 20px 8px 20px;
@@ -112,6 +112,7 @@
         #result {
             margin-top: 20px;
             font-size: 1.2em;
+            padding-bottom: 60px;
         }
         input[type="file"] {
             display: none;
@@ -126,6 +127,7 @@
             font-size: 14px;
             display: inline-block;
             border: 2px solid #04AA6D;
+            cursor: pointer;
         }
         label:hover {
             background: #04AA6D;
@@ -138,16 +140,14 @@
             }
         }
         #uploadedImage {
-            display: none; /* Hidden by default, shown after upload */
+            display: none;
             border: 2px solid #fff;
             border-radius: 5px;
+            max-width: 300px;
+            margin: 20px auto;
         }
-        #result {
-            margin-top: 20px;
-            font-size: 1.2em;
-            padding-bottom: 60px; /* Add padding at the bottom to ensure space below text (match or adjust nav bar height) */
-        }
-        .loading {
+        #loadingSpinner {
+            display: none;
             text-align: center;
             padding: 20px;
         }
@@ -168,8 +168,6 @@
 </head>
 
 <body class="customBody">
-
-
     <!-- ======= Header ======= -->
     <header id="header" class="fixed-top">
         <div class="container d-flex align-items-center justify-content-lg-between">
@@ -196,6 +194,7 @@
                     <span id="fileName">No image chosen</span>
                     <br>
                     <button class="button" id="checkBud">Check My Bud</button>
+                    <div id="loadingSpinner"><span class="spinner"></span> Loading...</div>
                 </div>
                 <br>
                 <br>
@@ -205,6 +204,10 @@
 
     <!-- ======= .navbar ======= -->
     <div id="preloader"></div>
+    <div id="loader-wrapper" style="display: block;">
+    <!-- Optional loader content, e.g., a spinner -->
+    <div class="spinner"></div>
+    </div>
     <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="fa-sharp fa-solid fa-angle-up"></i></a>
 
     <nav id="navbar" class="navbar order-last order-lg-0">
@@ -220,15 +223,15 @@
     <!-- Essential libraries from CDN -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest/dist/tf.min.js"></script> <!-- Updated to latest for Teachable Machine -->
-    <script src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@latest/dist/teachablemachine-image.min.js"></script> <!-- Ensure this is included -->
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest/dist/tf.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@latest/dist/teachablemachine-image.min.js"></script>
     <!-- Non-critical vendor scripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/swiper@11.1.15/swiper-bundle.min.js" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/glightbox/3.2.0/js/glightbox.min.js" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.6/isotope.pkgd.min.js" crossorigin="anonymous"></script>
-    <!-- Custom scripts -->
-    <script src="../../assets/js/main.js"></script>
+    <!-- Custom scripts (load custom script before main.js to ensure initialization) -->
     <script src="../../tools/harvest-window/assets/js/script.js"></script>
+    <script src="../../assets/js/main.js"></script>
 </body>
 </html>

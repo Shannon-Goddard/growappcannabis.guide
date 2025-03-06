@@ -320,15 +320,15 @@ function getRandomFunnyResponse(className) {
 function getRandomNonCannabisResponse() {
     const responses = [
         "I wouldn’t smoke that, dude—looks like a bad trip waiting to happen!",
-        "Bruh, that’s not a cannabis plant—did you get lost in the kitchen?",
+        "Bruh, that’s not a cannabis plant.",
         "Dude, huh-what? That’s not even close to a bud!",
         "Nice try, man—that’s not weed, that’s just... weird.",
-        "Yo, what’s this? Your lunch doesn’t count as a harvest!",
+        "Yo, what is this...?",
         "Seriously, bro? That’s not a plant, that’s a cry for help!",
-        "No trichomes here, dude—did you upload your dog or something?",
+        "Really? This is how you want to spend our time?",
         "C’mon, man—that’s not cannabis, that’s a science experiment gone wrong!",
         "What the hell, dude? That’s not bud, that’s just... nope!",
-        "Hey, genius—that’s not a cannabis plant, it’s a total buzzkill!"
+        "Hey, genius—that’s not a cannabis plant! Try again."
     ];
     const randomIndex = Math.floor(Math.random() * responses.length);
     return responses[randomIndex];

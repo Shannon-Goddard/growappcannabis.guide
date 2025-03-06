@@ -1,36 +1,15 @@
-// Immediate check to ensure script is loaded
-console.log('script.js is loaded and running on ' + window.location.href);
-
-// Load TensorFlow.js for Teachable Machine (ensuring latest version for compatibility)
+// Load TensorFlow.js for Teachable Machine
 const tf = window.tf;
 if (tf) {
-    console.log('TensorFlow.js loaded, checking backend...');
     tf.ready().then(() => {
-        console.log('TensorFlow.js backend:', tf.getBackend());
-        // Force CPU backend to avoid WebGL issues
         tf.setBackend('cpu').then(() => {
-            console.log('Forced CPU backend successfully');
-            // Disable WebGL backend to ensure it’s not used
             tf.ENV.set('WEBGL_CPU_FORWARD', false);
             tf.ENV.set('WEBGL_SIZE_UPLOAD_UNIFORM', 0);
-            // Verify backend is actually CPU
-            if (tf.getBackend() !== 'cpu') {
-                console.warn('Backend is not CPU after forcing—possible TensorFlow.js issue');
-                errorHandler(new Error('Failed to force CPU backend—backend is ' + tf.getBackend()));
-            } else {
-                console.log('Confirmed CPU backend is active');
-                setup(); // Run setup after confirming CPU backend
+            if (tf.getBackend() === 'cpu') {
+                setup();
             }
-        }).catch(backendError => {
-            console.error('Failed to force CPU backend:', backendError);
-            errorHandler(new Error(`Failed to set CPU backend: ${backendError.message}`));
         });
-    }).catch(tfError => {
-        console.error('TensorFlow.js initialization error:', tfError);
-        errorHandler(new Error(`TensorFlow.js initialization failed: ${tfError.message}`));
     });
-} else {
-    errorHandler(new Error('TensorFlow.js not loaded. Check script includes in harvest-window.html.'));
 }
 
 // Teachable Machine model and state variables
@@ -38,79 +17,16 @@ let model, maxPredictions;
 
 // Initialize the model when the page loads
 async function setup() {
-    console.log('Attempting to load model from server URL...');
     const modelUrl = 'https://growappcannabis.guide/tools/harvest-window/assets/js/model.json';
     const metadataUrl = 'https://growappcannabis.guide/tools/harvest-window/assets/js/metadata.json';
-    console.log('modelUrl defined as:', modelUrl); // Add this line
-    console.log(`Trying URLs: Model - ${modelUrl}, Metadata - ${metadataUrl}`);
-    try {
-        // Check if tmImage is defined before using it
-        if (typeof tmImage === 'undefined') {
-            throw new Error('Teachable Machine image library (tmImage) is not loaded. Ensure @teachablemachine/image is included in harvest-window.html.');
-        }
-
-        // Verify model.json exists and is accessible
-        const modelResponse = await fetch(modelUrl, { mode: 'cors' });
-        if (!modelResponse.ok) throw new Error(`Model file HTTP error! status: ${modelResponse.status}`);
-        console.log(`Model file exists at ${modelUrl}`);
-
-        // Verify metadata.json exists and is accessible
-        const metadataResponse = await fetch(metadataUrl, { mode: 'cors' });
-        if (!metadataResponse.ok) throw new Error(`Metadata file HTTP error! status: ${metadataResponse.status}`);
-        console.log(`Metadata file exists at ${metadataUrl}`);
-
-        // Load the model using Teachable Machine image library
-        model = await tmImage.load(modelUrl, metadataUrl);
-        maxPredictions = model.getTotalClasses();
-
-        // Add debug code here
-        const loadedLabels = model.getClassLabels();
-        const metadataLabels = (await (await fetch(metadataUrl)).json()).labels;
-        console.log('Loaded labels:', loadedLabels);
-        console.log('Metadata labels:', metadataLabels);
-
-        console.log('Teachable Machine model loaded successfully!');
-        console.log(`Model has ${maxPredictions} classes:`, model.getClassLabels());
-    } catch (e) {
-        console.warn(`Failed to initialize model loading:`, e);
-        errorHandler(new Error(`General error loading model: ${e.message}`));
-    }
-}
-
-// Error handler for model loading failures with detailed logging
-function errorHandler(err) {
-    console.error('Error loading model:', err);
-    let errorMessage = 'Error: Failed to load the model. Check console for details.';
-    let errorDetails = err ? (typeof err === 'string' ? err : (err.message || JSON.stringify(err, null, 2))) : 'No error details available';
-
-    if (errorDetails.includes('404') || errorDetails.includes('Not Found')) {
-        errorMessage += ' The model file (model.json), weights.bin, or metadata.json was not found. Verify server URLs and file integrity.';
-    } else if (errorDetails.includes('CORS') || errorDetails.includes('Cross-Origin')) {
-        errorMessage += ' CORS issue detected. Ensure you’re using a local web server (e.g., localhost:8000) and not opening directly from file://. Verify server headers allow cross-origin requests.';
-    } else if (errorDetails.includes('Invalid model') || errorDetails.includes('Format error')) {
-        errorMessage += ' The model file may be invalid or incompatible with Teachable Machine. Verify the model was exported correctly from Teachable Machine as a TensorFlow.js model and is compatible with @teachablemachine/image.';
-    } else if (errorDetails.includes('Weights file error')) {
-        errorMessage += ' The weights.bin file is missing or inaccessible. Ensure it’s in tools/harvest-window/assets/js/ and accessible at https://growappcannabis.guide/tools/harvest-window/assets/js/weights.bin.';
-    } else if (errorDetails.includes('NetworkError')) {
-        errorMessage += ' Network error detected. Ensure the local web server is running and accessible at localhost:8000, and check your network connection.';
-    } else if (errorDetails.includes('Failed to fetch')) {
-        errorMessage += ' Fetch error detected. Ensure the local server is running, files exist, and there are no typos in the URL or paths. Verify the server root is C:\Users\User\Desktop\growappcannabis.guide\ and serving all files correctly.';
-    } else if (errorDetails.includes('tmImage is not defined')) {
-        errorMessage += ' Teachable Machine image library (tmImage) is not loaded. Ensure the script tag for @teachablemachine/image is included in harvest-window.html and loads correctly.';
-    } else {
-        errorMessage += ` Unknown error: ${errorDetails}. Check Teachable Machine documentation or GitHub issues for similar problems.`;
-    }
-    
-    document.getElementById('result').textContent = errorMessage;
-    const loadingSpinner = document.getElementById('loadingSpinner');
-    if (loadingSpinner) loadingSpinner.style.display = 'none';
+    model = await tmImage.load(modelUrl, metadataUrl);
+    maxPredictions = model.getTotalClasses();
 }
 
 // Handle file upload (store image but don’t classify immediately)
 document.getElementById('imageUpload').addEventListener('change', function(e) {
     const file = e.target.files[0];
     if (file) {
-        console.log('File upload triggered for:', file.name);
         document.getElementById('fileName').textContent = file.name;
         const img = new Image();
         const reader = new FileReader();
@@ -118,15 +34,11 @@ document.getElementById('imageUpload').addEventListener('change', function(e) {
         reader.onload = function(e) {
             img.src = e.target.result;
             img.onload = function() {
-                console.log('Image loaded into memory for classification');
-                // Display the image above the buttons
                 const imageDisplay = document.getElementById('uploadedImage');
                 imageDisplay.src = img.src;
                 imageDisplay.style.display = 'block';
                 imageDisplay.style.maxWidth = '300px';
                 imageDisplay.style.margin = '20px auto';
-
-                // Store the image in sessionStorage temporarily
                 sessionStorage.setItem('uploadedImage', img.src);
             };
         };
@@ -134,35 +46,30 @@ document.getElementById('imageUpload').addEventListener('change', function(e) {
     }
 });
 
-// Classify the image using Teachable Machine with image resizing and loading spinner
+// Classify the image using Teachable Machine with enhanced preprocessing
 async function classifyImage(img) {
     if (!model) {
-        console.log('Model not loaded, showing error');
         document.getElementById('result').textContent = 'Error: Model not loaded. Please refresh and try again.';
         const loadingSpinner = document.getElementById('loadingSpinner');
         if (loadingSpinner) loadingSpinner.style.display = 'none';
         return;
     }
 
-    // Show loading spinner
     const loadingSpinner = document.getElementById('loadingSpinner');
     if (loadingSpinner) loadingSpinner.style.display = 'block';
-    document.getElementById('result').textContent = ''; // Clear previous result
+    document.getElementById('result').textContent = '';
 
     try {
-        console.log('Attempting to resize and classify image');
-        // Resize the image to 224x224
         const resizedCanvas = document.createElement('canvas');
         resizedCanvas.width = 224;
         resizedCanvas.height = 224;
         const ctx = resizedCanvas.getContext('2d');
+        ctx.imageSmoothingEnabled = true;
+        ctx.imageSmoothingQuality = 'high';
         ctx.drawImage(img, 0, 0, 224, 224);
+        ctx.filter = 'contrast(110%) brightness(110%)';
 
-        // Predict using Teachable Machine model
         const prediction = await model.predict(resizedCanvas);
-        console.log('Raw prediction results:', prediction);
-
-        // Find the top prediction
         let maxProbability = 0;
         let predictionLabel = 'unknown';
         for (let i = 0; i < prediction.length; i++) {
@@ -174,16 +81,14 @@ async function classifyImage(img) {
                 predictionLabel = label;
             }
         }
-
         console.log(`Top prediction: ${predictionLabel} with probability ${maxProbability.toFixed(2)}`);
 
-        // Define confidence and difference thresholds
-        const confidenceThreshold = 0.8; // Minimum probability for a confident prediction
-        const minProbabilityDifference = 0.5; // Minimum difference from the second-highest probability
-        const secondMaxProbability = prediction[1]?.probability || 0; // Second highest, if exists
+        const confidenceThreshold = 0.7;
+        const minProbabilityDifference = 0.3;
+        const secondMaxProbability = prediction[1]?.probability || 0;
         const probabilityDifference = maxProbability - secondMaxProbability;
+        console.log(`Difference from second-highest: ${probabilityDifference.toFixed(2)}`);
 
-        // Class mapping to funny responses
         const classMapping = {
             'amber': getRandomFunnyResponse('amber'),
             'clear': getRandomFunnyResponse('clear'),
@@ -198,32 +103,32 @@ async function classifyImage(img) {
         };
 
         let resultText;
-        if (
-            maxProbability >= confidenceThreshold &&
-            probabilityDifference >= minProbabilityDifference
-        ) {
-            // Confident prediction with clear lead
-            const funnyResponse = classMapping[predictionLabel] || "Hmm, I’m not sure—try a clearer pic of those trichomes!";
+        if (maxProbability >= 0.99) { // Handle perfect or near-perfect predictions
+            const funnyResponse = classMapping[predictionLabel] || "Hmm, I’m not sure—try a sharper pic!";
             resultText = `
                 <strong>Prediction:</strong> ${predictionLabel}<br>
                 <strong>Advice:</strong> ${funnyResponse}
             `;
-            console.log('Classified as', predictionLabel, 'with high confidence');
+        } else if (
+            maxProbability >= confidenceThreshold &&
+            probabilityDifference >= minProbabilityDifference
+        ) {
+            const funnyResponse = classMapping[predictionLabel] || "Hmm, I’m not sure—try a sharper pic!";
+            resultText = `
+                <strong>Prediction:</strong> ${predictionLabel}<br>
+                <strong>Advice:</strong> ${funnyResponse}
+            `;
         } else {
-            // Not confident enough or unclear lead
-            const fallbackResponse = classMapping['non-cannabis'] || "Dude, I’m lost—upload a better pic!";
+            const fallbackResponse = classMapping['non-cannabis'] || "Dude, I’m stumped—upload a crisper image!";
             resultText = `
                 <strong>Prediction:</strong> Uncertain<br>
                 <strong>Yo:</strong> ${fallbackResponse}
             `;
-            console.log('Flagged as uncertain:', predictionLabel, '(probability', maxProbability.toFixed(2), '<', confidenceThreshold, 'or difference', probabilityDifference.toFixed(2), '<', minProbabilityDifference, ')');
         }
 
-        console.log('Final result:', resultText);
         document.getElementById('result').innerHTML = resultText;
     } catch (error) {
-        console.error('Error resizing or classifying image:', error);
-        document.getElementById('result').textContent = 'Error processing image. Check console for details.';
+        document.getElementById('result').textContent = 'Error processing image.';
     } finally {
         if (loadingSpinner) loadingSpinner.style.display = 'none';
     }
@@ -231,7 +136,6 @@ async function classifyImage(img) {
 
 // Handle the "Check My Bud" button click (trigger classification)
 document.getElementById('checkBud').addEventListener('click', () => {
-    console.log('Check My Bud button clicked');
     const uploadedImage = sessionStorage.getItem('uploadedImage');
     if (uploadedImage) {
         const img = new Image();
@@ -311,7 +215,7 @@ function getRandomFunnyResponse(className) {
             "Vegetative stage, dude—patience, wait for flowers before chopping time!"
         ]
     };
-    const responsesForClass = responses[className] || ["Hmm, I’m not sure—try a clearer pic of those trichomes!"];
+    const responsesForClass = responses[className] || ["Hmm, I’m not sure—try a sharper pic of those trichomes!"];
     const randomIndex = Math.floor(Math.random() * responsesForClass.length);
     return responsesForClass[randomIndex];
 }
@@ -336,7 +240,6 @@ function getRandomNonCannabisResponse() {
 
 // Clear sessionStorage when the user leaves or refreshes
 window.onunload = () => {
-    console.log('Page unloading, clearing sessionStorage');
     sessionStorage.removeItem('uploadedImage');
 };
 

@@ -201,14 +201,14 @@
 
 .sticky-cta {
   position: fixed;
-  bottom: 20px;
-  right: 20px;
-  z-index: 1000;
-  display: none;
+  top: 20px; /* Aligns with the top edge, matching back-to-blog */
+  right: 20px; /* Positions it in the top-right corner */
+  z-index: 1000; /* Matches back-to-blog to ensure visibility */
+  display: none; /* Maintains existing behavior */
 }
 
 .sticky-cta.show {
-  display: block;
+  display: block; /* Maintains existing behavior */
 }
 
 #breadcrumbs {

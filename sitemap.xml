@@ -815,6 +815,13 @@
     <priority>0.8</priority>
   </url>
 
+  <url>
+    <loc>https://growappcannabis.guide/tools/blog/assets/article/lost-coast-plant-therapy.html</loc>
+    <lastmod>2025-06-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
   <!-- GetTheApp Page -->
   <url>
     <loc>https://growappcannabis.guide/GetTheApp.html</loc>

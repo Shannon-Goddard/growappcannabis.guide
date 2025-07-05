@@ -229,10 +229,10 @@ document.addEventListener('DOMContentLoaded', async () => {
             const schedule = await IndexedDBService.loadSchedule(currentGrowId);
             if (!schedule) return;
             
-            // Get today's date with leading zeros to match schedule format
+            // Get today's date without leading zeros to match schedule format
             const today = new Date();
-            const month = String(today.getMonth() + 1).padStart(2, '0');
-            const day = String(today.getDate()).padStart(2, '0');
+            const month = today.getMonth() + 1;
+            const day = today.getDate();
             const year = today.getFullYear();
             const todayStr = `${month}/${day}/${year}`;
             

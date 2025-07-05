@@ -119,8 +119,14 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.6/isotope.pkgd.min.js" crossorigin="anonymous"></script>
 <!-- Keep your custom scripts local -->
 <script src="../../assets/js/main.js"></script> 
-<script type="module" src="../../mygrow/common/js/indexedDBService.js"></script>
+<script type="module">
+    import { IndexedDBService } from '../../mygrow/common/js/indexedDBService.js';
+    window.IndexedDBService = IndexedDBService;
+</script>
 <script type="module" src="../../mygrow/information-overload/assets/js/nutrient-display.js"></script>
+<script type="module" src="../../mygrow/information-overload/assets/js/grow-selector.js"></script>
+<script type="module" src="../../mygrow/information-overload/assets/js/plant-size-filter.js"></script>
+<script type="module" src="../../mygrow/information-overload/assets/js/table-renderer.js"></script>
 <script type="module" src="../../mygrow/mytask/assets/js/mytask.js"></script>
 
  </body>

@@ -242,7 +242,10 @@ document.addEventListener('DOMContentLoaded', () => {
         localStorage.setItem('currentGrowName', growName);
         localStorage.setItem(`growName_${growId}`, growName);
         localStorage.setItem(`plantStrain_${growId}`, strainName);
-        localStorage.setItem(`plantLogo_${growId}`, '/mygrow/assets/img/default.jpg');
+        // Randomly select from default-1.png to default-15.png
+        const randomLogoNum = Math.floor(Math.random() * 15) + 1;
+        const randomLogo = `/mygrow/assets/img/default-${randomLogoNum}.png`;
+        localStorage.setItem(`plantLogo_${growId}`, randomLogo);
         localStorage.setItem('plantHeight', '3-4 feet');
 
 if (isAuto) {
@@ -266,7 +269,7 @@ try {
         type: 'grow', 
         growName: growName, 
         strain: strainName, 
-        logo: '/mygrow/assets/img/default.jpg' 
+        logo: randomLogo 
     }, growId); // Key is growId
     console.log(`Saved grow to tables: ${growId}`);
     

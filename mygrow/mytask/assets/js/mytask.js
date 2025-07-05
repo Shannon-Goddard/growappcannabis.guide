@@ -46,15 +46,18 @@ document.addEventListener('DOMContentLoaded', async () => {
                 return;
             }
             
-            // Get today's date with leading zeros to match schedule format
+            // Get today's date without leading zeros to match schedule format
             const today = new Date();
-            const month = String(today.getMonth() + 1).padStart(2, '0');
-            const day = String(today.getDate()).padStart(2, '0');
+            const month = today.getMonth() + 1;
+            const day = today.getDate();
             const year = today.getFullYear();
             const todayStr = `${month}/${day}/${year}`;
             
             console.log('Looking for today\'s date:', todayStr);
             console.log('First few schedule dates:', schedule.slice(0, 5).map(d => d.date));
+            console.log('Current actual date:', new Date().toLocaleDateString());
+            console.log('Schedule start date:', schedule[0]?.date);
+            console.log('Schedule end date:', schedule[schedule.length - 1]?.date);
             
             // Filter schedule for today's entry
             const todayEntry = schedule.find(row => row.date === todayStr);

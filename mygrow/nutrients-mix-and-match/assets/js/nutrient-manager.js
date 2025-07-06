@@ -147,6 +147,17 @@ document.addEventListener('DOMContentLoaded', async () => {
                 });
             }
 
+            // Ensure all predefined nutrient sections are visible
+            const predefinedSections = document.querySelectorAll('.row .col-xl-2 .icon-box');
+            predefinedSections.forEach(section => {
+                section.style.display = 'block';
+                section.style.visibility = 'visible';
+                if (section.parentElement) {
+                    section.parentElement.style.display = 'block';
+                    section.parentElement.style.visibility = 'visible';
+                }
+            });
+            
             const staticCheckboxes = document.querySelectorAll('.listPrint input[type="checkbox"]');
             console.log('Found static checkboxes:', staticCheckboxes.length);
             staticCheckboxes.forEach(checkbox => {

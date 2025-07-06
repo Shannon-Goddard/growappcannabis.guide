@@ -43,6 +43,9 @@ export const adjustDates = (size) => {
     for (let i = 1; i < visibleRows.length; i++) {
         const newDate = new Date(startDate);
         newDate.setDate(startDate.getDate() + i);
-        visibleRows[i].cells[1].textContent = `${newDate.getMonth() + 1}/${newDate.getDate()}/${newDate.getFullYear()}`;
+        const month = String(newDate.getMonth() + 1).padStart(2, '0');
+        const day = String(newDate.getDate()).padStart(2, '0');
+        const year = newDate.getFullYear();
+        visibleRows[i].cells[1].textContent = `${month}/${day}/${year}`;
     }
 };

@@ -1,4 +1,4 @@
-// table-editor.js
+// table-editable.js
 export const makeTableEditable = async () => {
     const table = document.getElementById('table1');
     if (!table) {

@@ -161,25 +161,28 @@ document.addEventListener('DOMContentLoaded', async () => {
                 });
             });
 
-            const selectedTransaction = db.transaction(['selectedNutrients'], 'readonly');
-            const selectedStore = selectedTransaction.objectStore('selectedNutrients');
-            const selectedRequest = selectedStore.get('selected');
-            selectedRequest.onsuccess = () => {
-                if (selectedRequest.result && selectedRequest.result.nutrients) {
-                    const selectedNutrients = selectedRequest.result.nutrients;
-                    console.log('Restoring selected nutrients:', selectedNutrients);
-                    selectedNutrients.forEach(nutrient => {
-                        const checkbox = document.getElementById(nutrient) || document.getElementById(`custom-${nutrient}`);
-                        if (checkbox) {
-                            checkbox.checked = true;
-                            console.log(`Restored checkbox ${nutrient} to checked`);
-                        } else {
-                            console.warn(`Checkbox for nutrient ${nutrient} not found`);
-                        }
-                    });
-                    updateTaskButtonVisibility();
-                }
-            };
+            // Only restore nutrients for existing grows, not new ones
+            const currentGrowId = localStorage.getItem('currentGrowId');
+            const existingGrowNutrients = localStorage.getItem(`nutrients_${currentGrowId}`);
+            
+            if (existingGrowNutrients) {
+                // This is an existing grow, restore its specific nutrients
+                const selectedNutrients = JSON.parse(existingGrowNutrients);
+                console.log('Restoring nutrients for existing grow:', selectedNutrients);
+                selectedNutrients.forEach(nutrient => {
+                    const checkbox = document.getElementById(nutrient) || document.getElementById(`custom-${nutrient}`);
+                    if (checkbox) {
+                        checkbox.checked = true;
+                        console.log(`Restored checkbox ${nutrient} to checked`);
+                    } else {
+                        console.warn(`Checkbox for nutrient ${nutrient} not found`);
+                    }
+                });
+                updateTaskButtonVisibility();
+            } else {
+                // New grow - all predefined nutrients are visible by default
+                console.log('New grow detected, all predefined nutrients available');
+            }
         };
 
         request.onerror = () => {

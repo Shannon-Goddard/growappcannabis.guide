@@ -88,6 +88,15 @@
     display: block !important;
     visibility: visible !important;
 }
+/* DEBUG: Force all nutrient sections visible */
+.row .col-xl-2,
+.row .col-md-4,
+.icon-box {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    height: auto !important;
+}
 @media (max-width: 768px) {
     .force-visible {
         display: block !important;
@@ -408,6 +417,12 @@
    <script src="../../assets/js/main.js"></script>
    <script type="module" src="../common/js/indexedDBService.js"></script>
    <script type="module" src="assets/js/nutrient-manager.js"></script>
+   <script>
+   // Ensure content is visible by adding loaded class
+   document.addEventListener('DOMContentLoaded', function() {
+       document.body.classList.add('loaded');
+   });
+   </script>
  
  </body>
  </html>

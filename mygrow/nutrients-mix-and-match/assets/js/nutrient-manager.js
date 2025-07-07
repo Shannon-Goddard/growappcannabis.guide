@@ -102,8 +102,28 @@ document.addEventListener('DOMContentLoaded', async () => {
     if (taskButton) taskButton.style.display = 'none';
 
     try {
-        console.log('Checking IndexedDBService methods:', Object.getOwnPropertyNames(Object.getPrototypeOf(IndexedDBService)));
         const db = await IndexedDBService.initDB();
+        const currentGrowId = localStorage.getItem('currentGrowId');
+        const existingGrowNutrients = localStorage.getItem(`nutrients_${currentGrowId}`);
+
+        // Clear legacy 'selected' record for new grows
+        if (!existingGrowNutrients) {
+            const transaction = db.transaction(['selectedNutrients'], 'readwrite');
+            const store = transaction.objectStore('selectedNutrients');
+            await new Promise((resolve, reject) => {
+                const request = store.delete('selected');
+                request.onsuccess = () => {
+                    console.log('Cleared legacy selectedNutrients record');
+                    resolve();
+                };
+                request.onerror = () => {
+                    console.warn('No legacy selectedNutrients record found');
+                    resolve(); // Non-critical, continue
+                };
+            });
+        }
+
+        console.log('Checking IndexedDBService methods:', Object.getOwnPropertyNames(Object.getPrototypeOf(IndexedDBService)));
         console.log('Database initialized with stores:', Array.from(db.objectStoreNames));
 
         const transaction = db.transaction(['nutrients'], 'readonly');
@@ -147,16 +167,17 @@ document.addEventListener('DOMContentLoaded', async () => {
                 });
             }
 
-            // Ensure all predefined nutrient sections are visible
-            const predefinedSections = document.querySelectorAll('.row .col-xl-2 .icon-box');
-            predefinedSections.forEach(section => {
-                section.style.display = 'block';
-                section.style.visibility = 'visible';
-                if (section.parentElement) {
-                    section.parentElement.style.display = 'block';
-                    section.parentElement.style.visibility = 'visible';
-                }
-            });
+            // Ensure all predefined nutrient sections are visible with timeout for mobile
+            setTimeout(() => {
+                const predefinedSections = document.querySelectorAll('.row .col-xl-2 .icon-box');
+                console.log('Predefined sections found:', predefinedSections.length);
+                predefinedSections.forEach(section => {
+                    section.classList.add('force-visible');
+                    if (section.parentElement) {
+                        section.parentElement.classList.add('force-visible');
+                    }
+                });
+            }, 100);
             
             const staticCheckboxes = document.querySelectorAll('.listPrint input[type="checkbox"]');
             console.log('Found static checkboxes:', staticCheckboxes.length);

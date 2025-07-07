@@ -84,7 +84,15 @@
     display: inline-block !important;
     width: auto !important;
 }
+.force-visible {
+    display: block !important;
+    visibility: visible !important;
+}
 @media (max-width: 768px) {
+    .force-visible {
+        display: block !important;
+        visibility: visible !important;
+    }
     #nutrient-checkboxes .listPrint input[type="checkbox"] {
         margin-right: 15px; /* Slightly smaller gap for mobile */
     }

@@ -418,9 +418,23 @@
    <script type="module" src="../common/js/indexedDBService.js"></script>
    <script type="module" src="assets/js/nutrient-manager.js"></script>
    <script>
-   // Ensure content is visible by adding loaded class
+   // Ensure content is visible and force layout recalculation
    document.addEventListener('DOMContentLoaded', function() {
        document.body.classList.add('loaded');
+       
+       // Force layout recalculation on mobile
+       setTimeout(function() {
+           const predefinedSections = document.querySelectorAll('.row .col-xl-2 .icon-box');
+           predefinedSections.forEach(function(section) {
+               // Force reflow by reading offsetHeight
+               section.offsetHeight;
+               section.style.display = 'block';
+               section.style.visibility = 'visible';
+           });
+           
+           // Trigger a resize event to force layout recalculation
+           window.dispatchEvent(new Event('resize'));
+       }, 200);
    });
    </script>
  

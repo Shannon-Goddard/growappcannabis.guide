@@ -88,6 +88,40 @@
     display: block !important;
     visibility: visible !important;
 }
+/* Fix mobile layout issues */
+.row.gy-4.my-5.justify-content-center {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    width: 100% !important;
+}
+.col-xl-2.col-md-4 {
+    flex: 0 0 auto !important;
+    width: 50% !important;
+    min-height: 1px !important;
+}
+@media (max-width: 768px) {
+    .col-xl-2.col-md-4 {
+        width: 100% !important;
+        margin-bottom: 20px !important;
+    }
+}
+/* Fix mobile layout issues */
+.row.gy-4.my-5.justify-content-center {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    width: 100% !important;
+}
+.col-xl-2.col-md-4 {
+    flex: 0 0 auto !important;
+    width: 50% !important;
+    min-height: 1px !important;
+}
+@media (max-width: 768px) {
+    .col-xl-2.col-md-4 {
+        width: 100% !important;
+        margin-bottom: 20px !important;
+    }
+}
 /* DEBUG: Force all nutrient sections visible */
 .row .col-xl-2,
 .row .col-md-4,
@@ -109,11 +143,16 @@
         width: calc(100% - 35px); /* Adjust for mobile */
     }
 }
-.row .col-xl-2 .icon-box {
-    min-height: 200px !important;
-    min-width: 200px !important;
-    background: red !important;
-    border: 5px solid yellow !important;
+/* EMERGENCY OVERRIDE - Remove after testing */
+body,
+.customBody,
+.row,
+.col-xl-2,
+.col-md-4,
+.icon-box {
+    visibility: visible !important;
+    display: block !important;
+    opacity: 1 !important;
 }
 
     </style>

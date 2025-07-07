@@ -84,75 +84,31 @@
     display: inline-block !important;
     width: auto !important;
 }
-.force-visible {
-    display: block !important;
-    visibility: visible !important;
-}
-/* Fix mobile layout issues */
+/* Fix mobile layout and visibility issues */
 .row.gy-4.my-5.justify-content-center {
     display: flex !important;
     flex-wrap: wrap !important;
     width: 100% !important;
 }
 .col-xl-2.col-md-4 {
-    flex: 0 0 auto !important;
-    width: 50% !important;
-    min-height: 1px !important;
-}
-@media (max-width: 768px) {
-    .col-xl-2.col-md-4 {
-        width: 100% !important;
-        margin-bottom: 20px !important;
-    }
-}
-/* Fix mobile layout issues */
-.row.gy-4.my-5.justify-content-center {
-    display: flex !important;
-    flex-wrap: wrap !important;
-    width: 100% !important;
-}
-.col-xl-2.col-md-4 {
-    flex: 0 0 auto !important;
-    width: 50% !important;
-    min-height: 1px !important;
-}
-@media (max-width: 768px) {
-    .col-xl-2.col-md-4 {
-        width: 100% !important;
-        margin-bottom: 20px !important;
-    }
-}
-/* DEBUG: Force all nutrient sections visible */
-.row .col-xl-2,
-.row .col-md-4,
-.icon-box {
     display: block !important;
     visibility: visible !important;
     opacity: 1 !important;
-    height: auto !important;
+    flex: 0 0 auto !important;
+    width: 50% !important;
+    min-height: 1px !important;
+    margin-bottom: 20px !important;
 }
 @media (max-width: 768px) {
-    .force-visible {
-        display: block !important;
-        visibility: visible !important;
+    .col-xl-2.col-md-4 {
+        width: 100% !important;
     }
     #nutrient-checkboxes .listPrint input[type="checkbox"] {
-        margin-right: 15px; /* Slightly smaller gap for mobile */
+        margin-right: 15px;
     }
     #nutrient-checkboxes .listPrint label {
-        width: calc(100% - 35px); /* Adjust for mobile */
+        width: calc(100% - 35px);
     }
-}
-/* EMERGENCY OVERRIDE - Remove after testing */
-body,
-.customBody,
-.row,
-.col-xl-2,
-.col-md-4,
-.icon-box {
-    visibility: visible !important;
-    display: block !important;
-    opacity: 1 !important;
 }
 
     </style>
@@ -161,9 +117,7 @@ body,
   
   <body class="customBody">
 
-    <div id="loader-wrapper">
-      <!-- Optional: Add a loading spinner or animation here -->
-    </div>
+    <!-- Loader removed to prevent white flash -->
     
     <!-- ======= Header ======= -->
     <header id="header" class="fixed-top">

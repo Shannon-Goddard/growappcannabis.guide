@@ -1658,9 +1658,7 @@ background: url(../img/pot-image.png) no-repeat center center fixed;
   background-color: #fff;
 }
 
-body {
-  visibility: hidden;
-}
+
 
 .loaded body {
   visibility: visible;

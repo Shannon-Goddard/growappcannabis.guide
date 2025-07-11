@@ -120,6 +120,17 @@
         </div>
     </div>
 
+    <!-- Toast container -->
+    <div class="toast-container position-fixed top-0 end-0 p-3">
+        <div id="toast" class="toast" role="alert">
+            <div class="toast-header">
+                <strong class="me-auto">GrowApp</strong>
+                <button type="button" class="btn-close" data-bs-dismiss="toast"></button>
+            </div>
+            <div class="toast-body"></div>
+        </div>
+    </div>
+
     <!-- Essential libraries -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
@@ -170,11 +181,24 @@
             exportBtn.addEventListener('click', exportTable);
         }
         
+        // Toast function
+        function showToast(message, type = 'info') {
+            const toast = document.getElementById('toast');
+            const toastBody = toast.querySelector('.toast-body');
+            toastBody.textContent = message;
+            
+            // Remove existing classes and add new one
+            toast.className = `toast ${type === 'error' ? 'text-bg-danger' : 'text-bg-success'}`;
+            
+            const bsToast = new bootstrap.Toast(toast);
+            bsToast.show();
+        }
+        
         // Share function for mobile
         window.shareTable = function() {
             const tableElement = document.getElementById('printTable');
             if (!tableElement) {
-                alert('Table not found');
+                showToast('Table not found', 'error');
                 return;
             }
             
@@ -187,7 +211,7 @@
                 // Convert canvas to blob
                 canvas.toBlob(function(blob) {
                     if (!blob) {
-                        alert('Failed to create image');
+                        showToast('Failed to create image', 'error');
                         return;
                     }
                     
@@ -208,7 +232,7 @@
                                 text: text,
                                 files: [file]
                             }).then(() => {
-                                console.log('Shared successfully');
+                                showToast('Shared successfully!');
                             }).catch(err => {
                                 console.error('Error sharing:', err);
                                 fallbackDownload(blob, growName);
@@ -220,7 +244,7 @@
                                 text: text,
                                 url: window.location.href
                             }).then(() => {
-                                console.log('Shared successfully');
+                                showToast('Shared successfully!');
                                 fallbackDownload(blob, growName);
                             }).catch(err => {
                                 console.error('Error sharing:', err);
@@ -234,7 +258,7 @@
                 }, 'image/png');
             }).catch(err => {
                 console.error('Error creating canvas:', err);
-                alert('Failed to create image. Please try the Export or Print options instead.');
+                showToast('Failed to create image. Please try Export or Print instead.', 'error');
             });
         };
         
@@ -248,7 +272,7 @@
             link.click();
             document.body.removeChild(link);
             URL.revokeObjectURL(url);
-            alert('Image downloaded! You can now share it manually.');
+            showToast('Image downloaded! You can now share it manually.');
         }
         
         // Helper function to get selected nutrients

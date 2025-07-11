@@ -92,25 +92,36 @@ main {
 #  Get Startet Button
 --------------------------------------------------------------*/
 .get-started-btn {
-  color: #fff;
+  color: #fff !important;
+  background: transparent;
   border-radius: 4px;
   padding: 7px 25px 8px 25px;
   white-space: nowrap;
-  transition: 0.3s;
+  transition: background-color 0.3s ease, color 0.3s ease;
   font-size: 14px;
+  font-weight: 600;
   display: inline-block;
-  border: 2px solid #04AA6D; 
+  border: 2px solid #04AA6D;
+  text-decoration: none !important;
+  position: relative;
+  z-index: 10;
+  box-sizing: border-box;
 }
 
-.get-started-btn:hover {
-  background: #04AA6D; 
-  color: #343a40;
+.get-started-btn:hover,
+.get-started-btn:focus,
+.get-started-btn:active {
+  background: #04AA6D !important;
+  color: #343a40 !important;
+  text-decoration: none !important;
+  transform: none;
 }
 
 @media (max-width: 992px) {
   .get-started-btn {
     padding: 7px 20px 8px 20px;
     margin-right: 15px;
+    font-size: 13px;
   }
 }
 
@@ -1658,9 +1669,9 @@ background: url(../img/pot-image.png) no-repeat center center fixed;
   background-color: #fff;
 }
 
-body {
-  visibility: hidden;
-}
+ body { 
+  visibility: hidden; 
+ } 
 
 .loaded body {
   visibility: visible;

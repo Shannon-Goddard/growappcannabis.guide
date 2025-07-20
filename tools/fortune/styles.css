@@ -1,0 +1,121 @@
+body {
+    background: linear-gradient(135deg, #0a0a1a, #1a0033);
+    color: #e0e0e0;
+    font-family: 'Arial', sans-serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container {
+    background: rgba(0, 0, 0, 0.7);
+    border-radius: 15px;
+    padding: 2rem;
+    box-shadow: 0 0 20px rgba(0, 191, 255, 0.5);
+    width: 100%;
+    max-width: 500px; /* Limits max width for better mobile centering */
+    text-align: center;
+}
+
+h1 {
+    font-size: 2.5em;
+    text-shadow: 0 0 10px #00bfff, 0 0 20px #ff00ff;
+    color: #00bfff;
+}
+
+.crystal-ball {
+    width: 200px;
+    filter: drop-shadow(0 0 15px #00bfff);
+    transition: transform 0.3s ease;
+    display: block;
+    margin: 0 auto; /* Centers the image */
+}
+
+.crystal-ball:hover {
+    transform: scale(1.05);
+}
+
+.input-area {
+    max-width: 400px;
+    margin: 0 auto; /* Centers the input area */
+}
+
+.form-select, .btn-primary {
+    background: #1a0033;
+    border: 1px solid #00bfff;
+    color: #e0e0e0;
+}
+
+.form-select:focus, .btn-primary:focus {
+    box-shadow: 0 0 10px #00bfff;
+}
+
+.btn-primary {
+    background: #00bfff;
+    border: none;
+}
+
+.btn-primary:hover {
+    background: #00ccff;
+}
+
+.horoscope {
+    min-height: 120px;
+    padding: 20px;
+    border-radius: 10px;
+    background: linear-gradient(45deg, #0a0a1a, #1a0033);
+    position: relative;
+    overflow: hidden;
+    font-size: 1.3em;
+    color: #fff;
+    text-shadow: 0 0 5px #fff, 0 0 10px #00bfff;
+    animation: pulse 2s infinite;
+    margin: 0 auto; /* Centers the horoscope div */
+    max-width: 90%; /* Ensures it doesn't stretch too wide on mobile */
+}
+
+.horoscope::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(0, 191, 255, 0.2) 0%, rgba(255, 0, 255, 0.1) 70%, transparent 100%);
+    animation: smoke 10s infinite linear;
+    z-index: 0;
+}
+
+.horoscope > * {
+    position: relative;
+    z-index: 1;
+}
+
+@keyframes smoke {
+    0% { transform: rotate(0deg) translate(-50%, -50%); }
+    100% { transform: rotate(360deg) translate(-50%, -50%); }
+}
+
+@keyframes pulse {
+    0% { box-shadow: 0 0 5px #00bfff; }
+    50% { box-shadow: 0 0 15px #ff00ff; }
+    100% { box-shadow: 0 0 5px #00bfff; }
+}
+
+@media (max-width: 768px) {
+    .crystal-ball {
+        width: 150px;
+    }
+    h1 {
+        font-size: 2em;
+    }
+    .horoscope {
+        font-size: 1.1em;
+    }
+    .container {
+        padding: 1rem; /* Reduce padding on mobile */
+    }
+}

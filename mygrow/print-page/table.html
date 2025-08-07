@@ -194,7 +194,7 @@
             bsToast.show();
         }
         
-        // Share function with mobile-friendly approach
+        // Share function with full table capture
         window.shareTable = function(event) {
             const tableElement = document.getElementById('printTable');
             if (!tableElement) {
@@ -202,18 +202,32 @@
                 return;
             }
             
-            // Show loading indicator
             showToast('Creating image...', 'info');
             
-            // Create a canvas from the table for image sharing
+            // Remove table-responsive wrapper temporarily to capture full table
+            const wrapper = tableElement.closest('.table-responsive');
+            const originalOverflow = wrapper ? wrapper.style.overflow : '';
+            if (wrapper) {
+                wrapper.style.overflow = 'visible';
+                wrapper.style.height = 'auto';
+            }
+            
             html2canvas(tableElement, {
                 backgroundColor: '#ffffff',
-                scale: 2,
+                scale: 1,
                 useCORS: true,
                 allowTaint: true,
-                logging: false
+                logging: false,
+                height: tableElement.scrollHeight,
+                width: tableElement.scrollWidth,
+                scrollX: 0,
+                scrollY: 0
             }).then(canvas => {
-                // Convert canvas to blob
+                // Restore original overflow
+                if (wrapper) {
+                    wrapper.style.overflow = originalOverflow;
+                }
+                
                 canvas.toBlob(function(blob) {
                     if (!blob) {
                         showToast('Failed to create image', 'error');
@@ -222,84 +236,53 @@
                     
                     const growName = localStorage.getItem('currentGrowName') || 'grow';
                     
-                    // Try Web Share API first (mobile-friendly)
-                    if (navigator.share && navigator.canShare) {
-                        const file = new File([blob], `${growName}_schedule.png`, { type: 'image/png' });
-                        
-                        if (navigator.canShare({ files: [file] })) {
-                            navigator.share({
-                                title: 'Grow Schedule',
-                                text: `${growName} grow schedule`,
-                                files: [file]
-                            }).then(() => {
-                                showToast('Shared successfully!');
-                            }).catch(err => {
-                                console.log('Share cancelled or failed:', err);
-                                fallbackDownload(blob, growName);
-                            });
-                            return;
-                        }
+                    // For mobile, convert to data URL and open in new tab
+                    if (/Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+                        const reader = new FileReader();
+                        reader.onload = function() {
+                            const dataUrl = reader.result;
+                            const newWindow = window.open();
+                            if (newWindow) {
+                                newWindow.document.write(`
+                                    <html>
+                                        <head><title>${growName} Schedule</title></head>
+                                        <body style="margin:0;text-align:center;background:#f5f5f5;">
+                                            <img src="${dataUrl}" style="max-width:100%;height:auto;border:1px solid #ddd;">
+                                            <p style="margin:20px;color:#666;">Long press the image to save or share</p>
+                                        </body>
+                                    </html>
+                                `);
+                                showToast('Image opened in new tab!');
+                            } else {
+                                showToast('Please allow popups and try again', 'error');
+                            }
+                        };
+                        reader.readAsDataURL(blob);
+                    } else {
+                        // Desktop: download the image
+                        const url = URL.createObjectURL(blob);
+                        const link = document.createElement('a');
+                        link.href = url;
+                        link.download = `${growName}_schedule.png`;
+                        link.style.display = 'none';
+                        document.body.appendChild(link);
+                        link.click();
+                        document.body.removeChild(link);
+                        URL.revokeObjectURL(url);
+                        showToast('Image downloaded!');
                     }
-                    
-                    // Fallback to download
-                    fallbackDownload(blob, growName);
-                    
                 }, 'image/png');
             }).catch(err => {
+                // Restore original overflow on error
+                if (wrapper) {
+                    wrapper.style.overflow = originalOverflow;
+                }
                 console.error('Error creating canvas:', err);
-                showToast('Failed to create image. Please try Export or Print instead.', 'error');
+                showToast('Failed to create image. Try Export or Print instead.', 'error');
             });
         };
         
-        // Fallback function to download the image
-        function fallbackDownload(blob, growName) {
-            try {
-                const url = URL.createObjectURL(blob);
-                
-                // For mobile browsers, try opening in new tab
-                if (/Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
-                    // Convert blob to data URL for mobile
-                    const reader = new FileReader();
-                    reader.onload = function() {
-                        const dataUrl = reader.result;
-                        const newWindow = window.open();
-                        if (newWindow) {
-                            newWindow.document.write(`
-                                <html>
-                                    <head><title>${growName} Schedule</title></head>
-                                    <body style="margin:0;text-align:center;">
-                                        <img src="${dataUrl}" style="max-width:100%;height:auto;">
-                                        <br><br>
-                                        <p>Long press the image above and select "Save Image" or "Download Image"</p>
-                                    </body>
-                                </html>
-                            `);
-                            showToast('Image opened in new tab. Long press to save!');
-                        } else {
-                            showToast('Please allow popups and try again', 'error');
-                        }
-                    };
-                    reader.readAsDataURL(blob);
-                } else {
-                    // Desktop fallback
-                    const link = document.createElement('a');
-                    link.href = url;
-                    link.download = `${growName}_schedule.png`;
-                    link.style.display = 'none';
-                    document.body.appendChild(link);
-                    link.click();
-                    document.body.removeChild(link);
-                    showToast('Image downloaded!');
-                }
-                
-                // Clean up
-                setTimeout(() => URL.revokeObjectURL(url), 1000);
-                
-            } catch (error) {
-                console.error('Download failed:', error);
-                showToast('Download failed. Please try Print instead.', 'error');
-            }
-        }
+
         
         // Helper function to get selected nutrients
         window.getSelectedNutrients = async function(growId) {

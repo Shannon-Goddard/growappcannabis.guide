@@ -37410,5 +37410,6 @@ var data = [
           Sativa: "70% SATIVA",
           Grow: "10",
           logo: "../../mygrow/assets/img/watermelon-mimosa.png"
-        }
+                },
+
 ];

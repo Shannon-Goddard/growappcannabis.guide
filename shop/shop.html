@@ -252,18 +252,23 @@
             </div>
             
             <div class="error-overlay" id="errorOverlay">
-                <div class="error-icon">⚠️</div>
-                <div class="error-title">Connection Error</div>
+                <div class="error-icon">🛒</div>
+                <div class="error-title">Opening Shop</div>
                 <div class="error-message">
-                    Unable to load the shop. Please check your internet connection and try again.
+                    Taking you to GrowApp Gear store...
                 </div>
-                <button class="retry-btn" onclick="retryLoad()">Retry</button>
+                <button class="retry-btn" onclick="handleIframeBlocked()">Continue to Shop</button>
             </div>
             
             <iframe 
                 id="shopifyFrame"
                 class="shopify-iframe"
-                src="https://growapp-gear.myshopify.com"
+                id="shopifyFrame"
+                class="shopify-iframe"
+                title="GrowApp Gear Shop"
+                allow="payment; geolocation"
+                sandbox="allow-same-origin allow-scripts allow-forms allow-popups allow-top-navigation"
+                loading="eager">
                 title="GrowApp Gear Shop"
                 allow="payment; geolocation"
                 sandbox="allow-same-origin allow-scripts allow-forms allow-popups allow-top-navigation"
@@ -282,33 +287,98 @@
         let errorOverlay;
         let loadTimeout;
         
+        // Shop URL for this domain
+        const shopUrl = 'https://shop.growappcannabis.guide';
+        
         // Initialize when DOM is loaded
         document.addEventListener('DOMContentLoaded', function() {
             iframe = document.getElementById('shopifyFrame');
             loadingOverlay = document.getElementById('loadingOverlay');
             errorOverlay = document.getElementById('errorOverlay');
             
+            // Check if returning from Shopify
+            checkReturnFromShopify();
+            
+            // Set iframe source based on current domain
+            iframe.src = shopUrl;
+            
             setupIframeHandlers();
             setupMobileOptimizations();
         });
         
+        // Check if user is returning from Shopify
+        function checkReturnFromShopify() {
+            const returnUrl = sessionStorage.getItem('growapp_return_url');
+            if (returnUrl && document.referrer.includes('growappcannabis.guide')) {
+                sessionStorage.removeItem('growapp_return_url');
+                showReturnMessage();
+            }
+        }
+        
+        // Show return message
+        function showReturnMessage() {
+            const message = document.createElement('div');
+            message.style.cssText = `
+                position: fixed;
+                top: 20px;
+                left: 50%;
+                transform: translateX(-50%);
+                background: #04AA6D;
+                color: white;
+                padding: 12px 24px;
+                border-radius: 25px;
+                z-index: 2000;
+                font-size: 14px;
+                box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            `;
+            message.textContent = 'Welcome back! 🛍️';
+            document.body.appendChild(message);
+            
+            setTimeout(() => {
+                message.remove();
+            }, 3000);
+        }
+        
         // Setup iframe event handlers
         function setupIframeHandlers() {
-            // Set loading timeout
-            loadTimeout = setTimeout(showError, 15000);
+            // Check if iframe is blocked by CSP
+            loadTimeout = setTimeout(function() {
+                // If iframe hasn't loaded after 3 seconds, assume CSP block
+                handleIframeBlocked();
+            }, 3000);
             
             iframe.addEventListener('load', function() {
                 clearTimeout(loadTimeout);
+                // Check if iframe actually loaded content
+                try {
+                    if (iframe.contentWindow.location.href === 'about:blank') {
+                        handleIframeBlocked();
+                        return;
+                    }
+                } catch (e) {
+                    // Cross-origin, but loaded successfully
+                }
                 hideLoading();
-                
-                // Skip mobile style injection for cross-origin iframe
                 console.log('Shopify iframe loaded successfully');
             });
             
             iframe.addEventListener('error', function() {
                 clearTimeout(loadTimeout);
-                showError();
+                handleIframeBlocked();
             });
+        }
+        
+        // Handle iframe blocking - redirect to Shopify with return capability
+        function handleIframeBlocked() {
+            // Store return URL for seamless return
+            sessionStorage.setItem('growapp_return_url', window.location.href);
+            
+            // Add return parameter and UTM tracking
+            const returnParam = encodeURIComponent(window.location.href);
+            const shopifyUrl = `${shopUrl}?return_to=${returnParam}&utm_source=growapp&utm_medium=webapp&utm_campaign=shop_redirect`;
+            
+            // Redirect to Shopify store
+            window.location.href = shopifyUrl;
         }
         
         // Setup mobile-specific optimizations
@@ -382,9 +452,9 @@
             loadingOverlay.style.display = 'flex';
             loadingOverlay.classList.remove('hidden');
             
-            // Reload iframe
-            iframe.src = iframe.src;
-            loadTimeout = setTimeout(showError, 15000);
+            // Try iframe again, fallback to redirect
+            iframe.src = shopUrl;
+            loadTimeout = setTimeout(handleIframeBlocked, 3000);
         }
         
         // Refresh shop

@@ -102,11 +102,39 @@
             overflow: hidden;
         }
         
-        .shopify-iframe {
-            width: 100%;
+        .shop-message {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
             height: 100%;
-            border: none;
-            background: #fff;
+            text-align: center;
+            color: #fff;
+            padding: 40px 20px;
+        }
+        
+        .shop-icon {
+            font-size: 64px;
+            margin-bottom: 20px;
+            animation: bounce 2s infinite;
+        }
+        
+        .shop-message h2 {
+            font-size: 24px;
+            margin-bottom: 10px;
+            color: #04AA6D;
+        }
+        
+        .shop-message p {
+            font-size: 16px;
+            color: #ccc;
+            margin-bottom: 0;
+        }
+        
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            60% { transform: translateY(-5px); }
         }
         
         .loading-overlay {
@@ -258,17 +286,14 @@
                 <div class="error-message">
                     Taking you to GrowApp Gear store...
                 </div>
-                <button class="retry-btn" onclick="handleIframeBlocked()">Continue to Shop</button>
+                <button class="retry-btn" onclick="redirectToShop()">Continue to Shop</button>
             </div>
             
-            <iframe 
-                id="shopifyFrame"
-                class="shopify-iframe"
-                title="GrowApp Gear Shop"
-                allow="payment; geolocation"
-                sandbox="allow-scripts allow-forms allow-popups allow-top-navigation"
-                loading="eager">
-            </iframe>
+            <div class="shop-message">
+                <div class="shop-icon">🛍️</div>
+                <h2>Opening GrowApp Gear</h2>
+                <p>Taking you to our premium cannabis growing equipment...</p>
+            </div>
         </div>
     </div>
 
@@ -287,17 +312,17 @@
         
         // Initialize when DOM is loaded
         document.addEventListener('DOMContentLoaded', function() {
-            iframe = document.getElementById('shopifyFrame');
             loadingOverlay = document.getElementById('loadingOverlay');
             errorOverlay = document.getElementById('errorOverlay');
             
             // Check if returning from Shopify
             checkReturnFromShopify();
             
-            // Set iframe source based on current domain
-            iframe.src = shopUrl;
+            // Shopify blocks iframes - redirect immediately with smooth transition
+            setTimeout(function() {
+                redirectToShop();
+            }, 800);
             
-            setupIframeHandlers();
             setupMobileOptimizations();
         });
         
@@ -334,58 +359,8 @@
             }, 3000);
         }
         
-        // Setup iframe event handlers
-        function setupIframeHandlers() {
-            let hasLoaded = false;
-            
-            // Check if iframe is blocked by CSP
-            loadTimeout = setTimeout(function() {
-                if (!hasLoaded) {
-                    console.log('Iframe timeout - redirecting to shop');
-                    handleIframeBlocked();
-                }
-            }, 2000);
-            
-            iframe.addEventListener('load', function() {
-                hasLoaded = true;
-                clearTimeout(loadTimeout);
-                
-                // Check if iframe shows error page or blank
-                setTimeout(function() {
-                    try {
-                        // Try to access iframe content
-                        const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
-                        if (!iframeDoc || iframeDoc.body.innerHTML.trim() === '' || 
-                            iframeDoc.documentElement.innerHTML.includes('error') ||
-                            iframe.contentWindow.location.href === 'about:blank') {
-                            console.log('Iframe blocked or empty - redirecting');
-                            handleIframeBlocked();
-                            return;
-                        }
-                        hideLoading();
-                        console.log('Shopify iframe loaded successfully');
-                    } catch (e) {
-                        // Cross-origin restriction - check if page loaded by looking at iframe size
-                        if (iframe.offsetHeight > 100) {
-                            hideLoading();
-                            console.log('Shopify iframe loaded (cross-origin)');
-                        } else {
-                            console.log('Iframe appears blocked - redirecting');
-                            handleIframeBlocked();
-                        }
-                    }
-                }, 500);
-            });
-            
-            iframe.addEventListener('error', function() {
-                clearTimeout(loadTimeout);
-                console.log('Iframe error - redirecting');
-                handleIframeBlocked();
-            });
-        }
-        
-        // Handle iframe blocking - redirect to Shopify with return capability
-        function handleIframeBlocked() {
+        // Direct redirect to shop
+        function redirectToShop() {
             // Store return URL for seamless return
             sessionStorage.setItem('growapp_return_url', window.location.href);
             
@@ -396,6 +371,8 @@
             // Redirect to Shopify store
             window.location.href = shopifyUrl;
         }
+        
+
         
         // Setup mobile-specific optimizations
         function setupMobileOptimizations() {
@@ -464,13 +441,7 @@
         
         // Retry loading
         function retryLoad() {
-            hideError();
-            loadingOverlay.style.display = 'flex';
-            loadingOverlay.classList.remove('hidden');
-            
-            // Try iframe again, fallback to redirect
-            iframe.src = shopUrl;
-            loadTimeout = setTimeout(handleIframeBlocked, 3000);
+            redirectToShop();
         }
         
         // Refresh shop
@@ -478,11 +449,7 @@
             const refreshBtn = document.querySelector('.refresh-btn i');
             refreshBtn.style.animation = 'spin 1s linear infinite';
             
-            iframe.src = iframe.src;
-            
-            setTimeout(() => {
-                refreshBtn.style.animation = '';
-            }, 1000);
+            redirectToShop();
         }
         
         // Go back function

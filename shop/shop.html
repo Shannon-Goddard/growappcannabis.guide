@@ -336,29 +336,50 @@
         
         // Setup iframe event handlers
         function setupIframeHandlers() {
+            let hasLoaded = false;
+            
             // Check if iframe is blocked by CSP
             loadTimeout = setTimeout(function() {
-                // If iframe hasn't loaded after 1 second, assume CSP block
-                handleIframeBlocked();
-            }, 1000);
+                if (!hasLoaded) {
+                    console.log('Iframe timeout - redirecting to shop');
+                    handleIframeBlocked();
+                }
+            }, 2000);
             
             iframe.addEventListener('load', function() {
+                hasLoaded = true;
                 clearTimeout(loadTimeout);
-                // Check if iframe actually loaded content
-                try {
-                    if (iframe.contentWindow.location.href === 'about:blank') {
-                        handleIframeBlocked();
-                        return;
+                
+                // Check if iframe shows error page or blank
+                setTimeout(function() {
+                    try {
+                        // Try to access iframe content
+                        const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
+                        if (!iframeDoc || iframeDoc.body.innerHTML.trim() === '' || 
+                            iframeDoc.documentElement.innerHTML.includes('error') ||
+                            iframe.contentWindow.location.href === 'about:blank') {
+                            console.log('Iframe blocked or empty - redirecting');
+                            handleIframeBlocked();
+                            return;
+                        }
+                        hideLoading();
+                        console.log('Shopify iframe loaded successfully');
+                    } catch (e) {
+                        // Cross-origin restriction - check if page loaded by looking at iframe size
+                        if (iframe.offsetHeight > 100) {
+                            hideLoading();
+                            console.log('Shopify iframe loaded (cross-origin)');
+                        } else {
+                            console.log('Iframe appears blocked - redirecting');
+                            handleIframeBlocked();
+                        }
                     }
-                } catch (e) {
-                    // Cross-origin, but loaded successfully
-                }
-                hideLoading();
-                console.log('Shopify iframe loaded successfully');
+                }, 500);
             });
             
             iframe.addEventListener('error', function() {
                 clearTimeout(loadTimeout);
+                console.log('Iframe error - redirecting');
                 handleIframeBlocked();
             });
         }

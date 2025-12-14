@@ -302,10 +302,8 @@
 
     <script>
         // Global variables
-        let iframe;
         let loadingOverlay;
         let errorOverlay;
-        let loadTimeout;
         
         // Shop URL for this domain
         const shopUrl = 'https://shop.growappcannabis.guide';
@@ -385,9 +383,7 @@
             
             // Handle orientation changes
             window.addEventListener('orientationchange', function() {
-                setTimeout(function() {
-                    iframe.style.height = window.innerHeight - 60 + 'px';
-                }, 100);
+                // Orientation handling for mobile
             });
             
             // Optimize for webview
@@ -454,17 +450,11 @@
         
         // Go back function
         function goBack() {
-            // Try to go back in iframe history first
-            try {
-                iframe.contentWindow.history.back();
-            } catch (e) {
-                // If that fails, go back in main window
-                if (window.history.length > 1) {
-                    window.history.back();
-                } else {
-                    // Navigate to main app
-                    window.location.href = '../index.html';
-                }
+            if (window.history.length > 1) {
+                window.history.back();
+            } else {
+                // Navigate to main app
+                window.location.href = '../index.html';
             }
         }
         

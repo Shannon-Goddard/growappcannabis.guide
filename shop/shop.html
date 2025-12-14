@@ -19,6 +19,7 @@
     <!-- Security Headers -->
     <meta http-equiv="X-Content-Type-Options" content="nosniff">
     <meta http-equiv="Strict-Transport-Security" content="max-age=31536000; includeSubDomains">
+    <meta http-equiv="Content-Security-Policy" content="frame-src 'self' https://shop.growappcannabis.guide https://*.shopify.com;">
     
     <title>GrowApp Gear - Cannabis Growing Equipment</title>
     
@@ -263,15 +264,9 @@
             <iframe 
                 id="shopifyFrame"
                 class="shopify-iframe"
-                id="shopifyFrame"
-                class="shopify-iframe"
                 title="GrowApp Gear Shop"
                 allow="payment; geolocation"
-                sandbox="allow-same-origin allow-scripts allow-forms allow-popups allow-top-navigation"
-                loading="eager">
-                title="GrowApp Gear Shop"
-                allow="payment; geolocation"
-                sandbox="allow-same-origin allow-scripts allow-forms allow-popups allow-top-navigation"
+                sandbox="allow-scripts allow-forms allow-popups allow-top-navigation"
                 loading="eager">
             </iframe>
         </div>
@@ -343,9 +338,9 @@
         function setupIframeHandlers() {
             // Check if iframe is blocked by CSP
             loadTimeout = setTimeout(function() {
-                // If iframe hasn't loaded after 3 seconds, assume CSP block
+                // If iframe hasn't loaded after 1 second, assume CSP block
                 handleIframeBlocked();
-            }, 3000);
+            }, 1000);
             
             iframe.addEventListener('load', function() {
                 clearTimeout(loadTimeout);

@@ -157,9 +157,9 @@
           
           <div class="col-xl-2 col-md-4">
             <div class="icon-box">
-              <a href="games/games.html" aria-label="Navigate to Shop">
-                <i class="fa-solid fa-gamepad"></i>
-                <h3>Games</h3>
+              <a href="shop/seed-money.html" aria-label="Navigate to Seed Money">
+                <i id="seed-money-icon" class="fa-solid fa-skull-crossbones"></i>
+                <h3>SeedMoney</h3>
               </a>
             </div>
           </div>
@@ -201,5 +201,12 @@
         </div>
     </div>
 
+ <script>
+ (function(){
+   var icons=['fa-bomb','fa-ghost','fa-robot','fa-rocket','fa-pizza-slice','fa-dice','fa-hat-wizard','fa-skull','fa-skull-crossbones','fa-paw','fa-snowman','fa-piggy-bank','fa-face-meh-blank','fa-fire','fa-bolt','fa-meteor','fa-dragon','fa-biohazard','fa-cannabis'];
+   var el=document.getElementById('seed-money-icon');
+   if(el) el.className='fa-solid '+icons[Math.floor(Math.random()*icons.length)];
+ })();
+ </script>
  </body>
  </html>

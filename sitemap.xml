@@ -8,23 +8,23 @@
   <!-- Homepage -->
   <url>
     <loc>https://growappcannabis.guide</loc>
-    <lastmod>2025-04-18</lastmod>
+    <lastmod>2026-06-18</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
 
-  <!-- Shop Page -->
+  <!-- Seed Money - Affiliate Comparison -->
   <url>
-    <loc>https://growappcannabis.guide/shop.html</loc>
-    <lastmod>2025-04-18</lastmod>
-    <changefreq>daily</changefreq>
+    <loc>https://growappcannabis.guide/shop/seed-money.html</loc>
+    <lastmod>2026-06-18</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
 
   <!-- Plant Doctor Main Page -->
   <url>
     <loc>https://growappcannabis.guide/tools/plant-doctor/plant-doctor.html</loc>
-    <lastmod>2025-04-18</lastmod>
+    <lastmod>2026-06-18</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
   </url>
@@ -32,7 +32,7 @@
   <!-- Plant Doctor - Accidental Re-Vegging -->
   <url>
     <loc>https://growappcannabis.guide/tools/plant-doctor/assets/html/Accidental-Re-Vegging.html</loc>
-    <lastmod>2025-04-18</lastmod>
+    <lastmod>2026-06-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
     <video:video>
@@ -47,7 +47,7 @@
   <!-- Plant Doctor - Aphids -->
   <url>
     <loc>https://growappcannabis.guide/tools/plant-doctor/assets/html/Aphids.html</loc>
-    <lastmod>2025-04-18</lastmod>
+    <lastmod>2026-06-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
     <video:video>
@@ -62,7 +62,7 @@
   <!-- Plant Doctor - Barnacle Scales -->
   <url>
     <loc>https://growappcannabis.guide/tools/plant-doctor/assets/html/Barnacle-Scales.html</loc>
-    <lastmod>2025-04-18</lastmod>
+    <lastmod>2026-06-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
     <video:video>
@@ -77,7 +77,7 @@
   <!-- Plant Doctor - Boron Deficiency -->
   <url>
     <loc>https://growappcannabis.guide/tools/plant-doctor/assets/html/Boron-Deficiency.html</loc>
-    <lastmod>2025-04-18</lastmod>
+    <lastmod>2026-06-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
     <video:video>
@@ -92,7 +92,7 @@
   <!-- Plant Doctor - Broad Mites -->
   <url>
     <loc>https://growappcannabis.guide/tools/plant-doctor/assets/html/Broad-Mites.html</loc>
-    <lastmod>2025-04-18</lastmod>
+    <lastmod>2026-06-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
     <video:video>
@@ -107,7 +107,7 @@
   <!-- Plant Doctor - Bud Rot or Mold -->
   <url>
     <loc>https://growappcannabis.guide/tools/plant-doctor/assets/html/Bud-Rot-or-Mold.html</loc>
-    <lastmod>2025-04-18</lastmod>
+    <lastmod>2026-06-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
     <video:video>
@@ -122,7 +122,7 @@
   <!-- Plant Doctor - Calcium Deficiency -->
   <url>
     <loc>https://growappcannabis.guide/tools/plant-doctor/assets/html/Calcium-Deficiency.html</loc>
-    <lastmod>2025-04-18</lastmod>
+    <lastmod>2026-06-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
     <video:video>
@@ -137,7 +137,7 @@
   <!-- Plant Doctor - Caterpillars and Inchworms -->
   <url>
     <loc>https://growappcannabis.guide/tools/plant-doctor/assets/html/Caterpillars-Inchworms.html</loc>
-    <lastmod>2025-04-18</lastmod>
+    <lastmod>2026-06-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
     <video:video>
@@ -152,7 +152,7 @@
   <!-- Plant Doctor - Copper Deficiency -->
   <url>
     <loc>https://growappcannabis.guide/tools/plant-doctor/assets/html/Copper-Deficiency.html</loc>
-    <lastmod>2025-04-18</lastmod>
+    <lastmod>2026-06-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
     <video:video>
@@ -167,7 +167,7 @@
   <!-- Plant Doctor - Crickets -->
   <url>
     <loc>https://growappcannabis.guide/tools/plant-doctor/assets/html/Crickets.html</loc>
-    <lastmod>2025-04-18</lastmod>
+    <lastmod>2026-06-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
     <video:video>
@@ -182,7 +182,7 @@
   <!-- Plant Doctor - Fungus Gnats -->
   <url>
     <loc>https://growappcannabis.guide/tools/plant-doctor/assets/html/Fungus-Gnats.html</loc>
-    <lastmod>2025-04-18</lastmod>
+    <lastmod>2026-06-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
     <video:video>
@@ -197,7 +197,7 @@
   <!-- Plant Doctor - Grasshoppers -->
   <url>
     <loc>https://growappcannabis.guide/tools/plant-doctor/assets/html/Grasshoppers.html</loc>
-    <lastmod>2025-04-18</lastmod>
+    <lastmod>2026-06-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
     <video:video>
@@ -212,7 +212,7 @@
   <!-- Plant Doctor - Heat Stress -->
   <url>
     <loc>https://growappcannabis.guide/tools/plant-doctor/assets/html/Heat-Stress.html</loc>
-    <lastmod>2025-04-18</lastmod>
+    <lastmod>2026-06-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
     <video:video>
@@ -227,7 +227,7 @@
   <!-- Plant Doctor - Hemp Russet Mites -->
   <url>
     <loc>https://growappcannabis.guide/tools/plant-doctor/assets/html/Hemp-Russet-Mites.html</loc>
-    <lastmod>2025-04-18</lastmod>
+    <lastmod>2026-06-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
     <video:video>
@@ -242,7 +242,7 @@
   <!-- Plant Doctor - Hermies, Pollen Sacs and Bananas -->
   <url>
     <loc>https://growappcannabis.guide/tools/plant-doctor/assets/html/Hermies-Pollen-Sacs-Bananas.html</loc>
-    <lastmod>2025-04-18</lastmod>
+    <lastmod>2026-06-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
     <video:video>
@@ -250,14 +250,14 @@
       <video:title>Hermies, Pollen Sacs and Bananas</video:title>
       <video:description>How to Treat Hermies, Pollen Sacs, and Bananas on Cannabis Plants</video:description>
       <video:content_loc>https://growappcannabis.guide/tools/plant-doctor/assets/video/Hermies_Pollen-Sacs_and_Bananas.mp4</video:content_loc>
-      <video:duration>59</video: DIY:duration>
+      <video:duration>59</video:duration>
     </video:video>
   </url>
 
   <!-- Plant Doctor - Iron Deficiency -->
   <url>
     <loc>https://growappcannabis.guide/tools/plant-doctor/assets/html/Iron-Deficiency.html</loc>
-    <lastmod>2025-04-18</lastmod>
+    <lastmod>2026-06-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
     <video:video>
@@ -272,7 +272,7 @@
   <!-- Plant Doctor - Leaf Miners -->
   <url>
     <loc>https://growappcannabis.guide/tools/plant-doctor/assets/html/Leaf-Miners.html</loc>
-    <lastmod>2025-04-18</lastmod>
+    <lastmod>2026-06-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
     <video:video>
@@ -287,7 +287,7 @@
   <!-- Plant Doctor - Leaf Septoria / Yellow Leaf Spots -->
   <url>
     <loc>https://growappcannabis.guide/tools/plant-doctor/assets/html/Leaf-Septoria-Yellow-Leaf-Spot.html</loc>
-    <lastmod>2025-04-18</lastmod>
+    <lastmod>2026-06-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
     <video:video>
@@ -302,7 +302,7 @@
   <!-- Plant Doctor - Leafhoppers -->
   <url>
     <loc>https://growappcannabis.guide/tools/plant-doctor/assets/html/Leafhoppers.html</loc>
-    <lastmod>2025-04-18</lastmod>
+    <lastmod>2026-06-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
     <video:video>
@@ -317,7 +317,7 @@
   <!-- Plant Doctor - Light Burn or Light Stress -->
   <url>
     <loc>https://growappcannabis.guide/tools/plant-doctor/assets/html/Light-Burn-or-Light-Stress.html</loc>
-    <lastmod>2025-04-18</lastmod>
+    <lastmod>2026-06-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
     <video:video>
@@ -332,7 +332,7 @@
   <!-- Plant Doctor - Magnesium Deficiency -->
   <url>
     <loc>https://growappcannabis.guide/tools/plant-doctor/assets/html/Magnesium-Deficiency.html</loc>
-    <lastmod>2025-04-18</lastmod>
+    <lastmod>2026-06-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
     <video:video>
@@ -347,7 +347,7 @@
   <!-- Plant Doctor - Manganese Deficiency -->
   <url>
     <loc>https://growappcannabis.guide/tools/plant-doctor/assets/html/Manganese-Deficiency.html</loc>
-    <lastmod>2025-04-18</lastmod>
+    <lastmod>2026-06-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
     <video:video>
@@ -362,7 +362,7 @@
   <!-- Plant Doctor - Mealybugs -->
   <url>
     <loc>https://growappcannabis.guide/tools/plant-doctor/assets/html/Mealybugs.html</loc>
-    <lastmod>2025-04-18</lastmod>
+    <lastmod>2026-06-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
     <video:video>
@@ -377,7 +377,7 @@
   <!-- Plant Doctor - Molybdenum Deficiency -->
   <url>
     <loc>https://growappcannabis.guide/tools/plant-doctor/assets/html/Molybdenum-Deficiency.html</loc>
-    <lastmod>2025-04-18</lastmod>
+    <lastmod>2026-06-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
     <video:video>
@@ -392,7 +392,7 @@
   <!-- Plant Doctor - Nitrogen Deficiency -->
   <url>
     <loc>https://growappcannabis.guide/tools/plant-doctor/assets/html/Nitrogen-Deficiency.html</loc>
-    <lastmod>2025-04-18</lastmod>
+    <lastmod>2026-06-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
     <video:video>
@@ -407,7 +407,7 @@
   <!-- Plant Doctor - Nitrogen Toxicity -->
   <url>
     <loc>https://growappcannabis.guide/tools/plant-doctor/assets/html/Nitrogen-Toxicity.html</loc>
-    <lastmod>2025-04-18</lastmod>
+    <lastmod>2026-06-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
     <video:video>
@@ -422,7 +422,7 @@
   <!-- Plant Doctor - Nutrient Burn -->
   <url>
     <loc>https://growappcannabis.guide/tools/plant-doctor/assets/html/Nutrient-Burn.html</loc>
-    <lastmod>2025-04-18</lastmod>
+    <lastmod>2026-06-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
     <video:video>
@@ -437,7 +437,7 @@
   <!-- Plant Doctor - Over-Watering -->
   <url>
     <loc>https://growappcannabis.guide/tools/plant-doctor/assets/html/Over-Watering.html</loc>
-    <lastmod>2025-04-18</lastmod>
+    <lastmod>2026-06-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
     <video:video>
@@ -452,7 +452,7 @@
   <!-- Plant Doctor - pH Fluctuations -->
   <url>
     <loc>https://growappcannabis.guide/tools/plant-doctor/assets/html/pH-Fluctuations.html</loc>
-    <lastmod>2025-04-18</lastmod>
+    <lastmod>2026-06-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
     <video:video>
@@ -467,7 +467,7 @@
   <!-- Plant Doctor - Phosphorus Deficiency -->
   <url>
     <loc>https://growappcannabis.guide/tools/plant-doctor/assets/html/Phosphorus-Deficiency.html</loc>
-    <lastmod>2025-04-18</lastmod>
+    <lastmod>2026-06-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
     <video:video>
@@ -482,7 +482,7 @@
   <!-- Plant Doctor - Planthoppers -->
   <url>
     <loc>https://growappcannabis.guide/tools/plant-doctor/assets/html/Planthoppers.html</loc>
-    <lastmod>2025-04-18</lastmod>
+    <lastmod>2026-06-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
     <video:video>
@@ -497,7 +497,7 @@
   <!-- Plant Doctor - Potassium Deficiency -->
   <url>
     <loc>https://growappcannabis.guide/tools/plant-doctor/assets/html/Potassium-Deficiency.html</loc>
-    <lastmod>2025-04-18</lastmod>
+    <lastmod>2026-06-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
     <video:video>
@@ -512,7 +512,7 @@
   <!-- Plant Doctor - Root Problems -->
   <url>
     <loc>https://growappcannabis.guide/tools/plant-doctor/assets/html/Root-Problems.html</loc>
-    <lastmod>2025-04-18</lastmod>
+    <lastmod>2026-06-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
     <video:video>
@@ -527,7 +527,7 @@
   <!-- Plant Doctor - Root Rot -->
   <url>
     <loc>https://growappcannabis.guide/tools/plant-doctor/assets/html/Root-Rot.html</loc>
-    <lastmod>2025-04-18</lastmod>
+    <lastmod>2026-06-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
     <video:video>
@@ -542,7 +542,7 @@
   <!-- Plant Doctor - Slugs or Snails -->
   <url>
     <loc>https://growappcannabis.guide/tools/plant-doctor/assets/html/Slugs-or-Snails.html</loc>
-    <lastmod>2025-04-18</lastmod>
+    <lastmod>2026-06-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
     <video:video>
@@ -557,7 +557,7 @@
   <!-- Plant Doctor - Spider Mites -->
   <url>
     <loc>https://growappcannabis.guide/tools/plant-doctor/assets/html/Spider-Mites.html</loc>
-    <lastmod>2025-04-18</lastmod>
+    <lastmod>2026-06-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
     <video:video>
@@ -572,7 +572,7 @@
   <!-- Plant Doctor - Stink Bugs -->
   <url>
     <loc>https://growappcannabis.guide/tools/plant-doctor/assets/html/Stink-Bug.html</loc>
-    <lastmod>2025-04-18</lastmod>
+    <lastmod>2026-06-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
     <video:video>
@@ -587,7 +587,7 @@
   <!-- Plant Doctor - Sulfur Deficiency -->
   <url>
     <loc>https://growappcannabis.guide/tools/plant-doctor/assets/html/Sulfur-Deficiency.html</loc>
-    <lastmod>2025-04-18</lastmod>
+    <lastmod>2026-06-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
     <video:video>
@@ -602,7 +602,7 @@
   <!-- Plant Doctor - Thrips -->
   <url>
     <loc>https://growappcannabis.guide/tools/plant-doctor/assets/html/Thrips.html</loc>
-    <lastmod>2025-04-18</lastmod>
+    <lastmod>2026-06-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
     <video:video>
@@ -617,7 +617,7 @@
   <!-- Plant Doctor - Tobacco Mosaic Virus (TMV) -->
   <url>
     <loc>https://growappcannabis.guide/tools/plant-doctor/assets/html/Tobacco-Mosaic-Virus.html</loc>
-    <lastmod>2025-04-18</lastmod>
+    <lastmod>2026-06-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
     <video:video>
@@ -632,7 +632,7 @@
   <!-- Plant Doctor - Under-watering -->
   <url>
     <loc>https://growappcannabis.guide/tools/plant-doctor/assets/html/Under-watering.html</loc>
-    <lastmod>2025-04-18</lastmod>
+    <lastmod>2026-06-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
     <video:video>
@@ -647,7 +647,7 @@
   <!-- Plant Doctor - White Powdery Mildew -->
   <url>
     <loc>https://growappcannabis.guide/tools/plant-doctor/assets/html/White-Powdery-Mildew.html</loc>
-    <lastmod>2025-04-18</lastmod>
+    <lastmod>2026-06-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
     <video:video>
@@ -662,7 +662,7 @@
 <!-- Plant Doctor - Whiteflies -->
   <url>
     <loc>https://growappcannabis.guide/tools/plant-doctor/assets/html/Whiteflies.html</loc>
-    <lastmod>2025-04-18</lastmod>
+    <lastmod>2026-06-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
     <video:video>
@@ -677,7 +677,7 @@
   <!-- Plant Doctor - Wind Burn -->
   <url>
     <loc>https://growappcannabis.guide/tools/plant-doctor/assets/html/Wind-Burn.html</loc>
-    <lastmod>2025-04-18</lastmod>
+    <lastmod>2026-06-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
     <video:video>
@@ -692,7 +692,7 @@
   <!-- Plant Doctor - Zinc Deficiency -->
   <url>
     <loc>https://growappcannabis.guide/tools/plant-doctor/assets/html/Zinc-Deficiency.html</loc>
-    <lastmod>2025-04-18</lastmod>
+    <lastmod>2026-06-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
     <video:video>
@@ -707,7 +707,7 @@
   <!-- Blog Landing Page -->
   <url>
     <loc>https://growappcannabis.guide/tools/blog/blog.html</loc>
-    <lastmod>2025-04-18</lastmod>
+    <lastmod>2026-06-18</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
   </url>
@@ -715,7 +715,7 @@
   <!-- Blog Article: Growers Choice AC Infinity 8 Fan Kit -->
   <url>
     <loc>https://growappcannabis.guide/tools/blog/assets/article/growers-choice-ac-infinity-8-fan-kit.html</loc>
-    <lastmod>2025-04-18</lastmod>
+    <lastmod>2026-06-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -723,7 +723,7 @@
   <!-- Blog Article: Best LED Grow Lights -->
   <url>
     <loc>https://growappcannabis.guide/tools/blog/assets/article/best-led-grow-lights.html</loc>
-    <lastmod>2025-04-18</lastmod>
+    <lastmod>2026-06-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -731,7 +731,7 @@
   <!-- Blog Article: Nutrients for Fire Bud -->
   <url>
     <loc>https://growappcannabis.guide/tools/blog/assets/article/nutrients-for-fire-bud.html</loc>
-    <lastmod>2025-04-18</lastmod>
+    <lastmod>2026-06-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -739,7 +739,7 @@
   <!-- Blog Article: Pimp Your Grow Tent -->
   <url>
     <loc>https://growappcannabis.guide/tools/blog/assets/article/pimp-your-grow-tent.html</loc>
-    <lastmod>2025-04-18</lastmod>
+    <lastmod>2026-06-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -747,7 +747,7 @@
   <!-- Blog Article: Hydro for Newbies -->
   <url>
     <loc>https://growappcannabis.guide/tools/blog/assets/article/hydro-for-newbies.html</loc>
-    <lastmod>2025-04-18</lastmod>
+    <lastmod>2026-06-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -755,7 +755,7 @@
   <!-- Blog Article: Soil vs Hydro Showdown -->
   <url>
     <loc>https://growappcannabis.guide/tools/blog/assets/article/soil-vs-hydro-showdown.html</loc>
-    <lastmod>2025-04-18</lastmod>
+    <lastmod>2026-06-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -763,7 +763,7 @@
   <!-- Blog Article: Coco Guide -->
   <url>
     <loc>https://growappcannabis.guide/tools/blog/assets/article/coco-guide.html</loc>
-    <lastmod>2025-04-18</lastmod>
+    <lastmod>2026-06-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -771,7 +771,7 @@
   <!-- Blog Article: Cooling Guide -->
   <url>
     <loc>https://growappcannabis.guide/tools/blog/assets/article/cooling-guide.html</loc>
-    <lastmod>2025-04-18</lastmod>
+    <lastmod>2026-06-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -779,7 +779,7 @@
   <!-- Blog Article: Lighting Guide -->
   <url>
     <loc>https://growappcannabis.guide/tools/blog/assets/article/lighting-guide.html</loc>
-    <lastmod>2025-04-18</lastmod>
+    <lastmod>2026-06-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -787,7 +787,7 @@
   <!-- Blog Article: Tent Sizing Guide -->
   <url>
     <loc>https://growappcannabis.guide/tools/blog/assets/article/tent-sizing-guide.html</loc>
-    <lastmod>2025-04-18</lastmod>
+    <lastmod>2026-06-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -795,7 +795,7 @@
   <!-- Blog Article: Terpene Guide -->
   <url>
     <loc>https://growappcannabis.guide/tools/blog/assets/article/terpene-guide.html</loc>
-    <lastmod>2025-04-18</lastmod>
+    <lastmod>2026-06-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -803,7 +803,7 @@
   <!-- Blog Article: Ventilation Guide -->
   <url>
     <loc>https://growappcannabis.guide/tools/blog/assets/article/ventilation-guide.html</loc>
-    <lastmod>2025-04-18</lastmod>
+    <lastmod>2026-06-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -822,10 +822,42 @@
     <priority>0.8</priority>
   </url>
 
+  <!-- Blog Article: New Hemp Law 2026 -->
+  <url>
+    <loc>https://growappcannabis.guide/tools/blog/assets/article/new-hemp-law.html</loc>
+    <lastmod>2026-06-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Blog Article: Best Seeds 2026 -->
+  <url>
+    <loc>https://growappcannabis.guide/tools/blog/assets/article/seeds-2026.html</loc>
+    <lastmod>2026-06-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Blog Article: Rapid Rooters -->
+  <url>
+    <loc>https://growappcannabis.guide/tools/blog/assets/article/rapid-rooters.html</loc>
+    <lastmod>2025-06-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Blog Article: How to Grow Fire Weed on a Budget -->
+  <url>
+    <loc>https://growappcannabis.guide/tools/blog/assets/article/how-to-grow-fire-weed-on-a-budget.html</loc>
+    <lastmod>2025-06-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
   <!-- GetTheApp Page -->
   <url>
     <loc>https://growappcannabis.guide/GetTheApp.html</loc>
-    <lastmod>2025-04-18</lastmod>
+    <lastmod>2026-06-18</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
   </url>
@@ -833,7 +865,7 @@
   <!-- How-To Page -->
   <url>
     <loc>https://growappcannabis.guide/tools/how-to/how-to.html</loc>
-    <lastmod>2025-04-18</lastmod>
+    <lastmod>2026-06-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
     <video:video>
@@ -848,7 +880,7 @@
   <!-- Search Strains Page -->
   <url>
     <loc>https://growappcannabis.guide/tools/search-strains/search-strains.html</loc>
-    <lastmod>2025-04-18</lastmod>
+    <lastmod>2026-06-18</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
   </url>

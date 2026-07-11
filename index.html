@@ -266,5 +266,42 @@
    if(el) el.className='fa-solid '+icons[Math.floor(Math.random()*icons.length)];
  })();
  </script>
+
+ <!-- MyTask Sticky Button -->
+ <a id="mytaskBtn" href="#" style="position:fixed;bottom:20px;right:20px;z-index:998;background:#04AA6D;color:#fff;width:56px;height:56px;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 15px rgba(4,170,109,0.4);text-decoration:none;font-size:22px;transition:transform 0.2s;" aria-label="Go to MyTask">
+   <i class="fa-solid fa-leaf"></i>
+ </a>
+
+ <!-- MyTask Overlay -->
+ <div id="mytaskOverlay" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.85);z-index:9998;display:none;align-items:center;justify-content:center;">
+   <div style="background:#1a1a1a;border:1px solid #333;border-radius:12px;padding:30px;text-align:center;max-width:320px;margin:20px;">
+     <i class="fa-solid fa-seedling" style="font-size:40px;color:#04AA6D;margin-bottom:15px;"></i>
+     <h3 style="color:#fff;margin:0 0 10px;font-size:20px;">No Grow Found</h3>
+     <p style="color:#aaa;margin:0 0 20px;font-size:14px;">Create a grow first to start tracking your daily tasks.</p>
+     <a href="mygrow/mygrow.html" style="display:inline-block;background:#04AA6D;color:#fff;padding:12px 24px;border-radius:8px;text-decoration:none;font-weight:600;font-size:14px;">Create Grow</a>
+     <button id="closeOverlay" style="display:block;margin:15px auto 0;background:none;border:none;color:#666;cursor:pointer;font-size:13px;">Cancel</button>
+   </div>
+ </div>
+
+ <script>
+ (function(){
+   var btn = document.getElementById('mytaskBtn');
+   var overlay = document.getElementById('mytaskOverlay');
+   var closeBtn = document.getElementById('closeOverlay');
+   btn.addEventListener('click', function(e){
+     e.preventDefault();
+     var growId = localStorage.getItem('currentGrowId');
+     if(growId){
+       window.location.href = 'mygrow/mytask/mytask.html';
+     } else {
+       overlay.style.display = 'flex';
+     }
+   });
+   btn.addEventListener('mousedown', function(){ btn.style.transform='scale(0.9)'; });
+   btn.addEventListener('mouseup', function(){ btn.style.transform='scale(1)'; });
+   closeBtn.addEventListener('click', function(){ overlay.style.display='none'; });
+   overlay.addEventListener('click', function(e){ if(e.target===overlay) overlay.style.display='none'; });
+ })();
+ </script>
  </body>
  </html>

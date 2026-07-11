@@ -579,7 +579,7 @@
                 }
                 
                 // Update title with grow name
-                const growName = localStorage.getItem('currentGrowName') || 'Grow';
+                const growName = localStorage.getItem(`growName_${currentGrowId}`) || localStorage.getItem('currentGrowName') || 'Grow';
                 document.getElementById('growTitle').textContent = growName;
                 
             } catch (error) {

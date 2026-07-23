@@ -169,10 +169,25 @@
     <section id="hero" class="d-flex align-items-center justify-content-center">
       <div class="container">
 
-                <!-- ======= banner ======= 
-                <a href="https://www.seedsupreme.com/?utm_source=affiliate&utm_campaign=generic&utm_medium=banner&utm_content=dark-728x90-leaderboard&amp;a_aid=loyal9&amp;a_bid=0defa9cc" target="_top"><img src="https://partners.seedsupreme.com/accounts/default1/5l3bvv/0defa9cc.gif" alt="seed supreme ad" title="" width="100%" height="auto" /></a>
-                <img style="border:0" src="https://partners.seedsupreme.com/scripts/5l3ivv?a_aid=loyal9&amp;a_bid=0defa9cc" width="1" height="1" alt="Tracking pixel" />
-                 ======= banner END ======= -->
+<!-- ======= banner ======= -->
+<div id="hero-banner" style="width:100%;max-width:320px;margin:0 auto 16px;">
+  <a id="hero-banner-link" href="" target="_blank" rel="noopener sponsored">
+    <img id="hero-banner-img" src="" alt="" width="320" height="50" style="width:100%;height:auto;border-radius:6px;display:block;">
+  </a>
+</div>
+<script>
+(function(){
+  var banners=[
+    {href:'https://homegrowncannabis.com/autoflower-seeds-usa?a_aid=loyal9', src:'assets/Homegrown Cannabis/320x50_animated (1).gif', alt:'Homegrown Cannabis Co - Autoflower Seeds'},
+    {href:'https://seedsupreme.com/cannabis-seeds/bogos-of-the-month.html?a_aid=loyal9', src:'assets/Seed Supreme/320x50_animated.gif', alt:'Seed Supreme - BOGOs of the Month'}
+  ];
+  var b=banners[Math.floor(Math.random()*banners.length)];
+  document.getElementById('hero-banner-link').href=b.href;
+  document.getElementById('hero-banner-img').src=b.src;
+  document.getElementById('hero-banner-img').alt=b.alt;
+})();
+</script>
+<!-- ======= banner END ======= -->
 
         <div class="row justify-content-center" data-aos="fade-up" data-aos-delay="150">
           <div class="col-xl-6 col-lg-8">

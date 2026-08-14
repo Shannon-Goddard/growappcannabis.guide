@@ -1,322 +1,615 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <!-- Google Analytics - Keep for user insights -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-KWP9QD7GPL"></script>
-    <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-KWP9QD7GPL');
-    </script>
-    
-    <!-- Essential Meta Tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    
-    <!-- Mobile WebView Optimizations -->
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="mobile-web-app-capable" content="yes">
-    <meta name="msapplication-tap-highlight" content="no">
-    
-    <!-- App Icons -->
-    <link rel="icon" href="assets/img/favicon.png">
-    <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
-    
-    <!-- Security Headers -->
-    <meta http-equiv="X-Content-Type-Options" content="nosniff">
-    <meta http-equiv="Strict-Transport-Security" content="max-age=31536000; includeSubDomains">
-    
-    <!-- Performance Optimizations -->
-    <meta http-equiv="Cache-Control" content="max-age=31536000, public">
-    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css" as="style" crossorigin="anonymous">
-    <link rel="preload" href="assets/css/style.css" as="style">
-    
-    <!-- CSS Files -->
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i&display=swap" rel="stylesheet" crossorigin>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet" crossorigin="anonymous">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
-    <link href="https://cdn.jsdelivr.net/npm/swiper@11.1.15/swiper-bundle.min.css" rel="stylesheet" crossorigin="anonymous">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/glightbox/3.2.0/css/glightbox.min.css" rel="stylesheet" crossorigin="anonymous">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" rel="stylesheet" crossorigin="anonymous">
-    <link href="assets/css/style.css" rel="stylesheet">
-
-    
-    <title>GrowApp - Cannabis Growing Guide & Schedule Generator | 2,800+ Strains | Free</title>
-    <meta name="description" content="Free cannabis grow schedule generator. Pick from 2,800+ strains, choose your nutrients (Advanced Nutrients, FoxFarm, BioBizz, CANNA +more), and get a personalized day-by-day grow guide from seed to harvest. Plus: Plant Doctor, Harvest Window tool, and grow diary.">
-    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
-    <meta name="keywords" content="cannabis grow app, cannabis growing guide, grow schedule generator, weed growing app, cannabis nutrient schedule, strain database, plant doctor cannabis, grow diary, seed to harvest guide">
-    <meta name="author" content="Loyal9 LLC">
-    <meta name="copyright" content="2025 Loyal9 LLC">
-    <link rel="canonical" href="https://growappcannabis.guide/">
-    <!-- Open Graph -->
-    <meta property="og:title" content="GrowApp - Free Cannabis Grow Schedule Generator | 2,800+ Strains" />
-    <meta property="og:type" content="website" />
-    <meta property="og:description" content="Pick your strain, choose your nutrients, get a personalized day-by-day growing guide. Free tools: Plant Doctor, Harvest Window, 2,800+ strain database." />
-    <meta property="og:image" content="https://growappcannabis.guide/assets/img/apple-touch-icon.png" />
-    <meta property="og:url" content="https://growappcannabis.guide/" />
-    <meta property="og:site_name" content="GrowApp Cannabis Guide" />
-    <meta property="og:locale" content="en_US" />
-    <!-- Twitter -->
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:site" content="@Loyal9GrowApp" />
-    <meta name="twitter:creator" content="@Loyal9GrowApp" />
-    <meta name="twitter:title" content="GrowApp - Free Cannabis Grow Schedule Generator" />
-    <meta name="twitter:description" content="2,800+ strains. 6 nutrient brands. Personalized daily grow schedules. Plant diagnostics. All free." />
-    <meta name="twitter:image" content="https://growappcannabis.guide/assets/img/apple-touch-icon.png" />
-    
-      
-          
-      <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@graph": [
-        {
-          "@type": "WebSite",
-          "name": "GrowApp Cannabis Guide",
-          "url": "https://growappcannabis.guide/",
-          "description": "Free cannabis grow schedule generator with 2,800+ strains, personalized nutrient scheduling, plant diagnostics, and daily task management.",
-          "potentialAction": {
-            "@type": "SearchAction",
-            "target": "https://growappcannabis.guide/tools/search-strains/search-strains.html?q={search_term_string}",
-            "query-input": "required name=search_term_string"
-          }
-        },
-        {
-          "@type": "Organization",
-          "name": "Loyal9 LLC",
-          "url": "https://loyal9.com",
-          "logo": "https://growappcannabis.guide/assets/img/apple-touch-icon.png",
-          "sameAs": [
-            "https://twitter.com/Loyal9GrowApp",
-            "https://www.facebook.com/Loyal9GrowApp/",
-            "https://www.instagram.com/loyal9growapp/",
-            "https://www.youtube.com/@GrowApp-Cannabisguide"
-          ]
-        },
-        {
-          "@type": "WebApplication",
-          "name": "GrowApp - Cannabis Growing Guide",
-          "url": "https://growappcannabis.guide/",
-          "applicationCategory": "LifestyleApplication",
-          "operatingSystem": "Web, iOS, Android",
-          "description": "Personalized cannabis grow schedule generator. Select from 2,800+ strains, choose nutrients from 6 brands, set your start date, and receive a complete day-by-day growing guide with daily tasks, nutrient dosing, and growth stage tracking.",
-          "featureList": "2800+ strain database, Personalized grow schedules, 6 nutrient brand schedules (Advanced Nutrients, General Hydroponics, FoxFarm, BioBizz, CANNA, Athena), Plant Doctor with 38 diagnosable conditions, Harvest Window trichome analyzer, Grow diary with camera overlay, Daily task management, Plant size optimization (small/medium/large/auto), How-to video library",
-          "offers": {
-            "@type": "Offer",
-            "price": "0",
-            "priceCurrency": "USD"
-          },
-          "author": {
-            "@type": "Organization",
-            "name": "Loyal9 LLC"
-          },
-          "downloadUrl": [
-            "https://play.google.com/store/apps/details?id=com.GrowAppCannabisGuide",
-            "https://apps.apple.com/us/app/growapp-cannabis-guide/id6471381461"
-          ]
-        },
-        {
-          "@type": "FAQPage",
-          "mainEntity": [
-            {
-              "@type": "Question",
-              "name": "What is GrowApp and how does it work?",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "GrowApp is a free cannabis grow schedule generator. You select your strain from 2,800+ options, choose your nutrient brand (Advanced Nutrients, FoxFarm, BioBizz, General Hydroponics, CANNA, or Athena), set your start date, and GrowApp generates a personalized day-by-day growing guide with nutrient dosing, daily tasks, and growth stage tracking from seed to harvest."
-              }
-            },
-            {
-              "@type": "Question",
-              "name": "Is GrowApp free to use?",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "Yes, GrowApp is completely free. The web version at growappcannabis.guide has full functionality including the grow schedule generator, 2,800+ strain database, Plant Doctor diagnostics, Harvest Window tool, and grow diary. Native apps are also available on iOS App Store and Google Play."
-              }
-            },
-            {
-              "@type": "Question",
-              "name": "What nutrient brands does GrowApp support?",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "GrowApp includes complete feeding schedules for Advanced Nutrients (pH Perfect line), General Hydroponics (Flora series), FoxFarm (Dirty Dozen), BioBizz (organic line), CANNA, and Athena. Select your specific products and GrowApp builds nutrient dosing into your daily schedule automatically."
-              }
-            },
-            {
-              "@type": "Question",
-              "name": "How many cannabis strains are in the GrowApp database?",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "GrowApp contains over 2,800 cannabis strains including popular varieties like Blue Dream, OG Kush, Gorilla Glue #4, Girl Scout Cookies, Wedding Cake, Gelato, Runtz, and thousands more. Each strain includes THC/CBD data, indica/sativa/hybrid classification, flowering time, and genetic lineage."
-              }
-            }
-          ]
-        }
-      ]
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GrowApp — Cannabis Cultivation Hub</title>
+  <link rel="icon" href="assets/img/favicon.png">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    :root {
+      --bg: #0a0c0e;
+      --surface: #13181d;
+      --surface-2: #1c2329;
+      --border: #2a333d;
+      --text: #e8eaed;
+      --text-muted: #8b949e;
+      --green: #04AA6D;
+      --green-dim: #038a57;
+      --green-bg: rgba(4, 170, 109, 0.08);
+      --radius: 14px;
+      --radius-sm: 8px;
     }
-    </script>
-  </head>
 
-  <body class="customBody">
+    * { margin: 0; padding: 0; box-sizing: border-box; }
 
-    <div id="loader-wrapper">
-      <!-- Optional: Add a loading spinner or animation here -->
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    /* ── TOP NAV ── */
+    .top-nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(10, 12, 14, 0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 2rem;
+      height: 60px;
+    }
+
+    .nav-logo { font-size: 1.3rem; font-weight: 800; letter-spacing: -0.5px; color: #fff; }
+    .nav-logo i { color: var(--green); margin-right: 0.35rem; }
+
+    .nav-links { display: flex; gap: 2rem; font-size: 0.9rem; color: var(--text-muted); }
+    .nav-links a:hover, .nav-links a.active { color: var(--green); }
+    .nav-links span { color: #3a444e; cursor: default; }
+
+    .nav-actions { display: flex; gap: 1rem; align-items: center; color: var(--text-muted); font-size: 1.1rem; }
+
+    /* ── HERO ── */
+    .hero {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 5rem 2rem 3rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: center;
+    }
+
+    .hero-text h1 {
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      font-weight: 800;
+      line-height: 1.15;
+      margin-bottom: 1rem;
+    }
+    .hero-text h1 em { color: var(--green); font-style: normal; }
+    .hero-text p { color: var(--text-muted); font-size: 1.1rem; line-height: 1.7; margin-bottom: 2rem; }
+
+    .hero-ctas { display: flex; gap: 1rem; flex-wrap: wrap; }
+
+    .btn-primary {
+      background: var(--green);
+      color: #000;
+      font-weight: 700;
+      padding: 0.75rem 1.5rem;
+      border-radius: var(--radius-sm);
+      font-size: 0.95rem;
+      transition: opacity 0.2s;
+      display: inline-block;
+    }
+    .btn-primary:hover { opacity: 0.85; }
+
+    .btn-secondary {
+      background: transparent;
+      color: var(--text);
+      font-weight: 600;
+      padding: 0.75rem 1.5rem;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border);
+      font-size: 0.95rem;
+      transition: border-color 0.2s;
+      display: inline-block;
+    }
+    .btn-secondary:hover { border-color: var(--green); color: var(--green); }
+
+    .hero-visual {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      height: 320px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+    .hero-visual i { font-size: 4rem; color: var(--green); display: block; margin-bottom: 1rem; text-align: center; }
+
+    /* ── STATS BAR ── */
+    .stats-bar {
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      background: var(--surface);
+      display: flex;
+      justify-content: center;
+    }
+
+    .stat {
+      flex: 1;
+      max-width: 220px;
+      text-align: center;
+      padding: 1.2rem 1rem;
+      border-right: 1px solid var(--border);
+    }
+    .stat:last-child { border-right: none; }
+    .stat-value { font-size: 1.5rem; font-weight: 800; color: var(--green); }
+    .stat-label { font-size: 0.78rem; color: var(--text-muted); margin-top: 0.2rem; }
+
+    /* ── SECTION LABEL ── */
+    .section-label {
+      text-align: center;
+      padding: 3rem 2rem 1.5rem;
+      color: var(--text-muted);
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+
+    /* ── CATEGORY GRID ── */
+    .category-grid {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem 4rem;
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 1rem;
+    }
+
+    .cat-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.8rem 1.2rem;
+      text-align: center;
+      transition: border-color 0.2s, transform 0.2s;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.8rem;
+    }
+    .cat-card:hover { border-color: var(--green); transform: translateY(-3px); }
+
+    .cat-icon {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: var(--green-bg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      color: var(--green);
+    }
+
+    .cat-card h3 { font-size: 0.95rem; font-weight: 700; }
+    .cat-card p { font-size: 0.78rem; color: var(--text-muted); line-height: 1.5; }
+    .cat-arrow { color: var(--text-muted); font-size: 0.75rem; margin-top: auto; }
+    .cat-card:hover .cat-arrow { color: var(--green); }
+
+    /* ── GROW SPACE SECTION ── */
+    .content-section {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem 4rem;
+    }
+
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 1.5rem;
+    }
+    .section-header h2 { font-size: 1.2rem; font-weight: 700; }
+    .section-header a { font-size: 0.85rem; color: var(--green); }
+
+    .tent-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1rem;
+    }
+
+    .tent-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .tent-card:hover { border-color: var(--green); transform: translateY(-2px); }
+
+    .tent-card-img {
+      background: var(--surface-2);
+      height: 130px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .tent-card-body { padding: 1rem; }
+    .tent-card-body h4 { font-size: 0.95rem; font-weight: 700; margin-bottom: 0.3rem; }
+    .tent-card-body p { font-size: 0.78rem; color: var(--text-muted); line-height: 1.5; margin-bottom: 0.8rem; }
+
+    .tent-tag {
+      display: inline-block;
+      background: var(--green-bg);
+      color: var(--green);
+      border: 1px solid var(--green-dim);
+      border-radius: 4px;
+      font-size: 0.68rem;
+      padding: 0.15rem 0.45rem;
+      margin-right: 0.3rem;
+      margin-bottom: 0.3rem;
+    }
+
+    /* ── TOOLS SPOTLIGHT ── */
+    .tools-section {
+      background: var(--surface);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 3rem 2rem;
+    }
+
+    .tools-inner { max-width: 1200px; margin: 0 auto; }
+
+    .tools-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 1.5rem;
+    }
+    .tools-header h2 { font-size: 1.2rem; font-weight: 700; }
+    .tools-header a { font-size: 0.85rem; color: var(--green); }
+
+    .tools-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1rem;
+    }
+
+    .tool-card {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 1.2rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      transition: border-color 0.2s;
+    }
+    .tool-card:hover { border-color: var(--green); }
+
+    .tool-icon { font-size: 1.4rem; color: var(--green); flex-shrink: 0; }
+    .tool-info h4 { font-size: 0.9rem; font-weight: 600; margin-bottom: 0.2rem; }
+    .tool-info p { font-size: 0.75rem; color: var(--text-muted); }
+
+    /* ── FEATURED BANNER ── */
+    .featured-banner { max-width: 1200px; margin: 3rem auto; padding: 0 2rem; }
+
+    .banner-card {
+      background: linear-gradient(135deg, var(--surface) 0%, rgba(4,170,109,0.12) 100%);
+      border: 1px solid var(--green-dim);
+      border-radius: var(--radius);
+      padding: 2.5rem;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 2rem;
+      align-items: center;
+    }
+    .banner-card h2 { font-size: 1.5rem; font-weight: 800; margin-bottom: 0.5rem; }
+    .banner-card p { color: var(--text-muted); font-size: 0.95rem; }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 2rem;
+      text-align: center;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+    footer a { color: var(--green); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      .hero { grid-template-columns: 1fr; padding: 3rem 1.5rem 2rem; }
+      .hero-visual { height: 200px; order: -1; }
+      .category-grid { grid-template-columns: repeat(2, 1fr); }
+      .cat-card:last-child { grid-column: span 2; }
+      .tent-grid { grid-template-columns: repeat(2, 1fr); }
+      .tools-grid { grid-template-columns: repeat(2, 1fr); }
+      .banner-card { grid-template-columns: 1fr; }
+      .nav-links { display: none; }
+      .mobile-nav { display: none; }
+      body { padding-bottom: 0; }
+    }
+
+    @media (max-width: 480px) {
+      .category-grid { grid-template-columns: repeat(2, 1fr); padding: 0 1rem 3rem; }
+      .cat-card:last-child { grid-column: span 2; }
+      .tent-grid { grid-template-columns: 1fr; }
+      .tools-grid { grid-template-columns: 1fr; }
+      .stats-bar { flex-wrap: wrap; }
+      .stat { min-width: 50%; border-bottom: 1px solid var(--border); }
+      .top-nav { padding: 0 1rem; }
+      .featured-banner { padding: 0 1rem; }
+      .content-section { padding: 0 1rem 3rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- TOP NAV -->
+  <nav class="top-nav">
+    <div class="nav-logo">GrowApp <i class="fa-solid fa-leaf"></i></div>
+    <div class="nav-links">
+      <a href="grow-space/grow-space.html">Grow Space</a>
+      <a href="lighting/lighting.html">Lighting</a>
+      <span>Airflow & Climate</span>
+      <a href="medium-feeding/medium-feeding.html">Medium & Feeding</a>
+      <span>Tools & Essentials</span>
     </div>
-    
-    <!-- ======= Hero Section ======= -->
-    <section id="hero" class="d-flex align-items-center justify-content-center">
-      <div class="container">
+    <div class="nav-actions"></div>
+  </nav>
 
-<!-- ======= banner ======= -->
-<div id="hero-banner" style="width:100%;max-width:320px;margin:0 auto 16px;">
-  <a id="hero-banner-link" href="" target="_blank" rel="noopener sponsored">
-    <img id="hero-banner-img" src="" alt="" width="320" height="50" style="width:100%;height:auto;border-radius:6px;display:block;">
-  </a>
-</div>
-<script>
-(function(){
-  var banners=[
-    {href:'https://homegrowncannabis.com/autoflower-seeds-usa?a_aid=loyal9', src:'assets/Homegrown Cannabis/320x50_animated (1).gif', alt:'Homegrown Cannabis Co - Autoflower Seeds'},
-    {href:'https://seedsupreme.com/cannabis-seeds/bogos-of-the-month.html?a_aid=loyal9', src:'assets/Seed Supreme/320x50_animated.gif', alt:'Seed Supreme - BOGOs of the Month'}
-  ];
-  var b=banners[Math.floor(Math.random()*banners.length)];
-  document.getElementById('hero-banner-link').href=b.href;
-  document.getElementById('hero-banner-img').src=b.src;
-  document.getElementById('hero-banner-img').alt=b.alt;
-})();
-</script>
-<!-- ======= banner END ======= -->
-
-        <div class="row justify-content-center" data-aos="fade-up" data-aos-delay="150">
-          <div class="col-xl-6 col-lg-8">
-            <h1>GrowApp<span>.</span></h1>
-            <h2>Grow what you can't</h2>
-            <h6><a href="GetTheApp.html">Sick of ads? Get The App!</a></h6>
-            <div class="text-center">
-              <small><a target="_blank" href="assets/policies/disclosure.html" >Disclosure: </a>If Loyal9 LLC is not making money through affiliate links on the website you're currently using, it's an oversight and will be corrected soon.</small>
-            </div>
-          </div>
-        </div>
-        
-        <div class="row gy-4 my-5 justify-content-center" data-aos="zoom-in" data-aos-delay="250">
-          
-          <div class="col-xl-2 col-md-4">
-            <div class="icon-box">
-              <a href="mygrow/mygrow.html" rel=”nofollow” aria-label="Navigate to MyGrow">
-                <i class="fa fa-leaf"></i>
-                <h3>MyGrow</h3>
-              </a>
-            </div>
-          </div>
-          
-          <div class="col-xl-2 col-md-4">
-            <div class="icon-box">
-              <a href="mydiary/mydiary.html" rel=”nofollow” aria-label="Navigate to MyDiary">
-                <i class="fa fa-book"></i>
-                <h3>MyDiary</h3>
-              </a>
-            </div>
-          </div>
-          
-          <div class="col-xl-2 col-md-4">
-            <div class="icon-box">
-              <a href="shop/seed-money.html" aria-label="Navigate to Seed Money">
-                <i id="seed-money-icon" class="fa-solid fa-skull-crossbones"></i>
-                <h3>SeedMoney</h3>
-              </a>
-            </div>
-          </div>
-          
-          <div class="col-xl-2 col-md-4">
-            <div class="icon-box">
-              <a href="tools/tools.html" aria-label="Navigate to Tools">
-                <i class="fa fa-cogs"></i>
-                <h3>Tools</h3>
-              </a>
-            </div>
-          </div>
-        
-        </div>
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-text">
+      <h1>Light is <em>everything.</em><br>We'll prove it.</h1>
+      <p>The complete home-grow resource. Calculate costs, build your schedule, diagnose problems, and find the right gear — all in one place.</p>
+      <div class="hero-ctas">
+        <a href="#" id="growCTA" class="btn-primary"><i class="fa-solid fa-seedling"></i> Start My Grow</a>
+        <a href="lighting/lighting.html" class="btn-secondary"><i class="fa-solid fa-bolt"></i> Find My Light</a>
       </div>
-    </section><!-- End Hero -->
+    </div>
+    <div class="hero-visual">
+      <img src="lighting/brand/ac-infinity/images/ionframe-evo8.png" alt="AC Infinity IONframe EVO8" style="width:100%;height:100%;object-fit:cover;">
+    </div>
+  </section>
 
-    <!-- Essential libraries from CDN -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-    <!-- Non-critical vendor scripts -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/swiper@11.1.15/swiper-bundle.min.js" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/glightbox/3.2.0/js/glightbox.min.js" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.6/isotope.pkgd.min.js" crossorigin="anonymous"></script>
-    <!-- Keep your custom scripts local -->
-    <script src="assets/js/main.js"></script>
-    <script src="assets/js/banner.js"></script>
-    
-    
-    <!-- SEO Content Block -->
-    <section style="max-width:800px;margin:0 auto;padding:0 15px 40px;color:#ccc;font-size:0.95em;line-height:1.7;text-align:center;">
-      <h2 style="color:#04AA6D;font-size:1.2em;">Your Personal Cannabis Grow Schedule Generator</h2>
-      <p>GrowApp builds a <strong>personalized day-by-day growing guide</strong> based on your strain selection, nutrient brand, and plant size. From germination through harvest, know exactly what to do every single day.</p>
-      <p><strong>2,800+ strains</strong> | <strong>6 nutrient brands</strong> | <strong>Plant Doctor</strong> (38 conditions) | <strong>Harvest Window</strong> trichome analyzer | <strong>Grow Diary</strong> with camera overlay | <strong>20+ how-to videos</strong></p>
-    </section>
+  <!-- STATS BAR -->
+  <div class="stats-bar">
+    <div class="stat">
+      <div class="stat-value">2,800+</div>
+      <div class="stat-label">Strains in Database</div>
+    </div>
+    <div class="stat">
+      <div class="stat-value">132</div>
+      <div class="stat-label">LED Lights Compared</div>
+    </div>
+    <div class="stat">
+      <div class="stat-value">6</div>
+      <div class="stat-label">Nutrient Brands</div>
+    </div>
+    <div class="stat">
+      <div class="stat-value">38</div>
+      <div class="stat-label">Diagnosable Conditions</div>
+    </div>
+    <div class="stat">
+      <div class="stat-value">15+</div>
+      <div class="stat-label">Seed Banks</div>
+    </div>
+  </div>
 
-    <!-- Age Gate -->
-    <div id="ageGate" class="age-gate">
-        <div class="gate-content">
-            <h2>Age Verification Required</h2>
-            <p>Cannabis cultivation laws vary by location. You must be 21+ to access this site.</p>
-            <p>By entering, you confirm you are of legal age in your jurisdiction.</p>
-            <div class="gate-buttons">
-                <button id="enterBtn" class="btn-enter">I'm 21+</button>
-                <button id="exitBtn" class="btn-exit">Under 21</button>
-            </div>
-        </div>
+  <!-- CATEGORY GRID -->
+  <p class="section-label">Browse by Category</p>
+  <div class="category-grid">
+
+    <a href="grow-space/grow-space.html" class="cat-card">
+      <div class="cat-icon"><i class="fa-solid fa-tent"></i></div>
+      <h3>Grow Space & Setup</h3>
+      <p>Tents, trays, hangers & everything to build your space.</p>
+      <span class="cat-arrow"><i class="fa-solid fa-arrow-right"></i> Explore</span>
+    </a>
+
+    <a href="lighting/lighting.html" class="cat-card">
+      <div class="cat-icon"><i class="fa-solid fa-sun"></i></div>
+      <h3>Lighting</h3>
+      <p>Compare 132 LEDs, calculate costs, find the right light for your tent.</p>
+      <span class="cat-arrow"><i class="fa-solid fa-arrow-right"></i> Explore</span>
+    </a>
+
+    <div class="cat-card" style="opacity:0.35;cursor:default;pointer-events:none;">
+      <div class="cat-icon"><i class="fa-solid fa-wind"></i></div>
+      <h3>Airflow & Climate</h3>
+      <p>Inline fans, carbon filters, humidity & temperature control.</p>
+      <span class="cat-arrow"><i class="fa-solid fa-arrow-right"></i> Explore</span>
     </div>
 
- <script>
- (function(){
-   var icons=['fa-bomb','fa-ghost','fa-robot','fa-rocket','fa-pizza-slice','fa-dice','fa-hat-wizard','fa-skull','fa-skull-crossbones','fa-paw','fa-snowman','fa-piggy-bank','fa-face-meh-blank','fa-fire','fa-bolt','fa-meteor','fa-dragon','fa-biohazard','fa-cannabis'];
-   var el=document.getElementById('seed-money-icon');
-   if(el) el.className='fa-solid '+icons[Math.floor(Math.random()*icons.length)];
- })();
- </script>
+    <a href="medium-feeding/medium-feeding.html" class="cat-card">
+      <div class="cat-icon"><i class="fa-solid fa-flask"></i></div>
+      <h3>Medium & Feeding</h3>
+      <p>Soil, coco, pots, nutrients & personalized feed schedules.</p>
+      <span class="cat-arrow"><i class="fa-solid fa-arrow-right"></i> Explore</span>
+    </a>
 
- <!-- MyTask Sticky Button -->
- <a id="mytaskBtn" href="#" style="position:fixed;bottom:20px;right:20px;z-index:998;background:#04AA6D;color:#fff;width:56px;height:56px;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 15px rgba(4,170,109,0.4);text-decoration:none;font-size:22px;transition:transform 0.2s;" aria-label="Go to MyTask">
-   <i class="fa-solid fa-leaf"></i>
- </a>
+    <div class="cat-card" style="opacity:0.35;cursor:default;pointer-events:none;">
+      <div class="cat-icon"><i class="fa-solid fa-screwdriver-wrench"></i></div>
+      <h3>Tools & Essentials</h3>
+      <p>pH/EC meters, timers, training gear, seeds & starter kits.</p>
+      <span class="cat-arrow"><i class="fa-solid fa-arrow-right"></i> Explore</span>
+    </div>
 
- <!-- MyTask Overlay -->
- <div id="mytaskOverlay" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.85);z-index:9998;display:none;align-items:center;justify-content:center;">
-   <div style="background:#1a1a1a;border:1px solid #333;border-radius:12px;padding:30px;text-align:center;max-width:320px;margin:20px;">
-     <i class="fa-solid fa-seedling" style="font-size:40px;color:#04AA6D;margin-bottom:15px;"></i>
-     <h3 style="color:#fff;margin:0 0 10px;font-size:20px;">No Grow Found</h3>
-     <p style="color:#aaa;margin:0 0 20px;font-size:14px;">Create a grow first to start tracking your daily tasks.</p>
-     <a href="mygrow/mygrow.html" style="display:inline-block;background:#04AA6D;color:#fff;padding:12px 24px;border-radius:8px;text-decoration:none;font-weight:600;font-size:14px;">Create Grow</a>
-     <button id="closeOverlay" style="display:block;margin:15px auto 0;background:none;border:none;color:#666;cursor:pointer;font-size:13px;">Cancel</button>
-   </div>
- </div>
+  </div>
 
- <script>
- (function(){
-   var btn = document.getElementById('mytaskBtn');
-   var overlay = document.getElementById('mytaskOverlay');
-   var closeBtn = document.getElementById('closeOverlay');
-   btn.addEventListener('click', function(e){
-     e.preventDefault();
-     var growId = localStorage.getItem('currentGrowId');
-     if(growId){
-       window.location.href = 'mygrow/mytask/mytask.html';
-     } else {
-       overlay.style.display = 'flex';
-     }
-   });
-   btn.addEventListener('mousedown', function(){ btn.style.transform='scale(0.9)'; });
-   btn.addEventListener('mouseup', function(){ btn.style.transform='scale(1)'; });
-   closeBtn.addEventListener('click', function(){ overlay.style.display='none'; });
-   overlay.addEventListener('click', function(e){ if(e.target===overlay) overlay.style.display='none'; });
- })();
- </script>
- </body>
- </html>
+  <!-- GROW SPACE & SETUP -->
+  <div id="grow-space" class="content-section">
+    <div class="section-header">
+      <h2>🏕 Grow Space & Setup</h2>
+      <a href="grow-space/grow-space.html">View all →</a>
+    </div>
+    <div class="tent-grid">
+
+      <a href="https://amzn.to/4bKhECI" target="_blank" rel="noopener sponsored" class="tent-card">
+        <div class="tent-card-img" style="padding:0;"><img src="grow-space/img/ac-infinity-2x2-tent-kit.jpg" alt="AC Infinity 2x2" style="width:100%;height:130px;object-fit:cover;"></div>
+        <div class="tent-card-body">
+          <h4>2x2 Tent Kit &mdash; AC Infinity</h4>
+          <p>100W LED, 165 CFM fan, app control. Perfect for 1&ndash;2 plants.</p>
+          <span class="tent-tag">100W LED</span>
+          <span class="tent-tag">1&ndash;2 plants</span>
+          <span class="tent-tag">$499</span>
+        </div>
+      </a>
+
+      <a href="https://amzn.to/4cf34Di" target="_blank" rel="noopener sponsored" class="tent-card">
+        <div class="tent-card-img" style="padding:0;"><img src="grow-space/img/ac-infinity-3x3-tent-kit.jpg" alt="AC Infinity 3x3" style="width:100%;height:130px;object-fit:cover;"></div>
+        <div class="tent-card-body">
+          <h4>3x3 Tent Kit &mdash; AC Infinity</h4>
+          <p>240W LED, 352 CFM fan, app control. The sweet spot for home growers.</p>
+          <span class="tent-tag">240W LED</span>
+          <span class="tent-tag">2&ndash;4 plants</span>
+          <span class="tent-tag">$699</span>
+        </div>
+      </a>
+
+      <a href="https://amzn.to/4wY9WgS" target="_blank" rel="noopener sponsored" class="tent-card">
+        <div class="tent-card-img" style="padding:0;"><img src="grow-space/img/ac-infinity-4x4-tent-kit.jpg" alt="AC Infinity 4x4" style="width:100%;height:130px;object-fit:cover;"></div>
+        <div class="tent-card-body">
+          <h4>4x4 Tent Kit &mdash; AC Infinity</h4>
+          <p>400W LED, 352 CFM fan, 2x clip fans. Most popular size.</p>
+          <span class="tent-tag">400W LED</span>
+          <span class="tent-tag">4&ndash;6 plants</span>
+          <span class="tent-tag">$999</span>
+        </div>
+      </a>
+
+      <a href="https://amzn.to/4wTy43Y" target="_blank" rel="noopener sponsored" class="tent-card">
+        <div class="tent-card-img" style="padding:0;"><img src="grow-space/img/ac-infinity-5x5-pro-tent-kit.jpg" alt="AC Infinity 5x5 Pro" style="width:100%;height:130px;object-fit:cover;"></div>
+        <div class="tent-card-body">
+          <h4>5x5 Pro Kit &mdash; AC Infinity</h4>
+          <p>730W LED, 402 CFM fan, 2x clip fans. Serious yields.</p>
+          <span class="tent-tag">730W LED</span>
+          <span class="tent-tag">6&ndash;9 plants</span>
+          <span class="tent-tag">$1,599</span>
+        </div>
+      </a>
+
+
+    </div>
+  </div>
+
+  <!-- FREE TOOLS SPOTLIGHT -->
+  <section class="tools-section">
+    <div class="tools-inner">
+      <div class="tools-header">
+        <h2>🛠 Free Grow Tools</h2>
+        <a href="tools/tools.html">View all tools →</a>
+      </div>
+      <div class="tools-grid">
+
+        <a href="#" id="myGrowGrid" class="tool-card">
+          <div class="tool-icon"><i class="fa-solid fa-seedling"></i></div>
+          <div class="tool-info">
+            <h4>MyGrow</h4>
+            <p>Personalized day-by-day grow schedule from seed to harvest.</p>
+          </div>
+        </a>
+
+        <a href="lighting/lighting.html" class="tool-card">
+          <div class="tool-icon"><i class="fa-solid fa-calculator"></i></div>
+          <div class="tool-info">
+            <h4>Light Cost Calculator</h4>
+            <p>See exactly what your grow light costs per cycle.</p>
+          </div>
+        </a>
+
+        <div class="tool-card" style="opacity:0.35;cursor:default;pointer-events:none;">
+          <div class="tool-icon"><i class="fa-solid fa-stethoscope"></i></div>
+          <div class="tool-info">
+            <h4>Plant Doctor</h4>
+            <p>Diagnose 38 conditions from symptoms. Get treatment fast.</p>
+          </div>
+        </div>
+
+        <div class="tool-card" style="opacity:0.35;cursor:default;pointer-events:none;">
+          <div class="tool-icon"><i class="fa-solid fa-microscope"></i></div>
+          <div class="tool-info">
+            <h4>Harvest Window</h4>
+            <p>Upload a trichome photo. Know exactly when to chop.</p>
+          </div>
+        </div>
+
+        <div class="tool-card" style="opacity:0.35;cursor:default;pointer-events:none;">
+          <div class="tool-icon"><i class="fa-solid fa-magnifying-glass"></i></div>
+          <div class="tool-info">
+            <h4>Strain Search</h4>
+            <p>Browse 2,800+ strains with THC, CBD & flowering data.</p>
+          </div>
+        </div>
+
+        <a href="lighting/lighting.html" class="tool-card">
+          <div class="tool-icon"><i class="fa-solid fa-scale-balanced"></i></div>
+          <div class="tool-info">
+            <h4>Compare Lights</h4>
+            <p>Side-by-side specs, cost of ownership & winner highlights.</p>
+          </div>
+        </a>
+
+        <a href="#" id="myGrowTool" class="tool-card">
+          <div class="tool-icon"><i class="fa-solid fa-leaf"></i></div>
+          <div class="tool-info">
+            <h4>MyGrow → MyTask → MyDiary</h4>
+            <p>Build your schedule, track today's tasks, log with photos. One flow.</p>
+          </div>
+        </a>
+
+        <a href="lighting/lighting.html" class="tool-card">
+          <div class="tool-icon"><i class="fa-solid fa-sun"></i></div>
+          <div class="tool-info">
+            <h4>DLI Calculator</h4>
+            <p>Daily Light Integral — know if your plants are getting enough.</p>
+          </div>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURED BANNER — Seeds -->
+  <div class="featured-banner" style="opacity:0.35;pointer-events:none;">
+    <div class="banner-card">
+      <div>
+        <h2>Find your next strain. 🌱</h2>
+        <p>Compare 15+ seed banks side by side — shipping, payment methods, germination guarantees & exclusive promo codes.</p>
+        <a href="shop/seed-money.html" class="btn-primary" style="margin-top:1.2rem;">Browse Seed Banks</a>
+      </div>
+      <div style="font-size:5rem; opacity:0.15;">🌿</div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <p style="margin-bottom:0.5rem;">
+      <a href="assets/policies/PrivacyPolicy.html">Privacy</a> ·
+      <a href="assets/policies/TermsOfUse.html">Terms</a> ·
+      <a href="assets/policies/disclosure.html">Disclosure</a> ·
+      <a href="assets/policies/contact-us.html">Contact</a>
+    </p>
+    <p>© 2025 <a href="https://loyal9.com">Loyal9 LLC</a> · Built for home growers.</p>
+  </footer>
+
+  <!-- HAMBURGER -->
+  <div id="hamburger-placeholder" data-depth="0"></div>
+
+  <script src="assets/js/hamburger.js"></script>
+
+  <script>
+    (function () {
+      function growRoute() {
+        return localStorage.getItem('currentGrowId')
+          ? 'medium-feeding/mytask.html'
+          : 'medium-feeding/medium-feeding.html';
+      }
+      ['growCTA', 'myGrowTool', 'myGrowGrid'].forEach(function (id) {
+        var el = document.getElementById(id);
+        if (el) el.addEventListener('click', function (e) {
+          e.preventDefault();
+          window.location.href = growRoute();
+        });
+      });
+    })();
+  </script>
+</body>
+</html>

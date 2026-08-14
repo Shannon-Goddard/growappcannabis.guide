@@ -170,9 +170,13 @@
 
     <!-- Tools & Essentials -->
     <div class="hb-section">
-      <button class="hb-section-btn" style="color:#3a444e;cursor:default;" disabled>
-        <span class="hb-section-left"><i class="fa-solid fa-screwdriver-wrench hb-icon" style="color:#3a444e;"></i> Tools & Essentials</span>
+      <button class="hb-section-btn" data-target="hb-tools">
+        <span class="hb-section-left"><i class="fa-solid fa-screwdriver-wrench hb-icon"></i> Tools & Essentials</span>
+        <i class="fa-solid fa-chevron-right hb-chevron"></i>
       </button>
+      <div class="hb-links" id="hb-tools">
+        <a href="${p}strain-search/strain-search.html"${active('strain-search') ? ' class="hb-active"' : ''}><i class="fa-solid fa-magnifying-glass"></i> Strain Search</a>
+      </div>
     </div>
 
     <!-- Seeds -->

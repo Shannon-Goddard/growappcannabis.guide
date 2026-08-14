@@ -176,6 +176,7 @@
       </button>
       <div class="hb-links" id="hb-tools">
         <a href="${p}strain-search/strain-search.html"${active('strain-search') ? ' class="hb-active"' : ''}><i class="fa-solid fa-magnifying-glass"></i> Strain Search</a>
+        <a href="${p}plant-doctor/plant-doctor.html"${active('plant-doctor') ? ' class="hb-active"' : ''}><i class="fa-solid fa-stethoscope"></i> Plant Doctor</a>
       </div>
     </div>
 

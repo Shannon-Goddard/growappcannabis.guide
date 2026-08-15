@@ -182,9 +182,13 @@
 
     <!-- Seeds -->
     <div class="hb-section">
-      <button class="hb-section-btn" style="color:#3a444e;cursor:default;" disabled>
-        <span class="hb-section-left"><i class="fa-solid fa-cannabis hb-icon" style="color:#3a444e;"></i> Seeds</span>
+      <button class="hb-section-btn" data-target="hb-seeds">
+        <span class="hb-section-left"><i class="fa-solid fa-cannabis hb-icon"></i> Seeds</span>
+        <i class="fa-solid fa-chevron-right hb-chevron"></i>
       </button>
+      <div class="hb-links" id="hb-seeds">
+        <a href="${p}seeds/seeds.html"${active('seeds') ? ' class="hb-active"' : ''}><i class="fa-solid fa-store"></i> Seed Money</a>
+      </div>
     </div>
 
     <!-- Get the App -->

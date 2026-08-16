@@ -151,9 +151,14 @@
 
     <!-- Airflow & Climate -->
     <div class="hb-section">
-      <button class="hb-section-btn" style="color:#3a444e;cursor:default;" disabled>
-        <span class="hb-section-left"><i class="fa-solid fa-wind hb-icon" style="color:#3a444e;"></i> Airflow & Climate</span>
+      <button class="hb-section-btn" data-target="hb-airflow">
+        <span class="hb-section-left"><i class="fa-solid fa-wind hb-icon"></i> Airflow & Climate</span>
+        <i class="fa-solid fa-chevron-right hb-chevron"></i>
       </button>
+      <div class="hb-links" id="hb-airflow">
+        <a href="${p}airflow/airflow.html"${active('airflow') ? ' class="hb-active"' : ''}><i class="fa-solid fa-wind"></i> Fan & Filter Kits</a>
+        <a href="${p}airflow/airflow.html#calculator"><i class="fa-solid fa-calculator"></i> CFM Calculator</a>
+      </div>
     </div>
 
     <!-- Growing Medium & Feeding -->

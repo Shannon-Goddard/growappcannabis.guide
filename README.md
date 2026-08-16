@@ -2,9 +2,10 @@
 
 > **Founder @ Loyal9 LLC | Scaling 2,800+ Strain DB with GrowApp | Architecting Social Blockchain w/ Mission Mischief | AWS Serverless & Open-Source — We Pass Them Left, Then Watch the Industry Blink.**
 
-[![Live Demo](https://img.shields.io/badge/🌐_Live_Demo-growappcannabis.guide-green?style=for-the-badge)](https://growappcannabis.guide)
+[![Live App](https://img.shields.io/badge/🌐_Live_App-growappcannabis.guide-green?style=for-the-badge)](https://growappcannabis.guide)
 [![App Store](https://img.shields.io/badge/📱_iOS-App_Store-blue?style=for-the-badge)](https://apps.apple.com/us/app/growapp-cannabis-guide/id6471381461)
 [![Google Play](https://img.shields.io/badge/🤖_Android-Google_Play-green?style=for-the-badge)](https://play.google.com/store/apps/details?id=com.growappcannabiscannabis.guide)
+[![Amazon Appstore](https://img.shields.io/badge/📦_Amazon-Appstore-orange?style=for-the-badge)](https://www.amazon.com/gp/product/B0CFG7HGQK)
 [![License](https://img.shields.io/badge/📄_License-MIT-yellow?style=for-the-badge)](LICENSE.md)
 [![AI Pair Programmer](https://img.shields.io/badge/🤖_Pair_Programmer-Amazon_Q-FF9900?style=for-the-badge&logo=amazonaws&logoColor=white)](https://aws.amazon.com/q/)
 
@@ -14,43 +15,74 @@
 
 GrowApp is a **data-driven cannabis cultivation platform** that transforms how home growers approach their grows. Built with vanilla JavaScript, powered by a 2,800+ strain database, and architected around IndexedDB for fully offline-capable, personalized grow tracking.
 
+This repo is the **live app webview** — served inside the iOS, Android, and Amazon native app shells. It is not open for contributions. If you're looking for the public website version, check out the website repo below.
+
+> 🌐 Website repo: [github.com/Shannon-Goddard/growappcannabis.guide](https://github.com/Shannon-Goddard/growappcannabis.guide)
+
 ---
 
-## 🗂 Site Structure
+## 🗂 App Structure
 
 ```
-growappcannabis.guide/
-├── index.html                  ← Homepage hub with category nav + tool grid
-├── grow-space/
-│   └── grow-space.html         ← Tent kits & grow space gear
+grow_app/
+├── index.html                      ← Smart entry point: new user → builder, returning → mytask
+├── medium-feeding/
+│   ├── medium-feeding.html         ← 3-step grow builder
+│   ├── schedule-viewer.html        ← Full schedule: cards + table + My Notes
+│   ├── mytask.html                 ← Daily check-in dashboard
+│   └── mydiary.html                ← Photo diary with data overlay
+├── tools/
+│   └── tools.html                  ← Tools hub: calculators + grow tools + games
 ├── lighting/
-│   └── lighting.html           ← 132 LED lights, cost calculator, DLI tool
-├── medium-feeding/             ← Core grow app (see below)
-├── mydiary/                    ← Legacy diary (standalone)
-├── mytask/                     ← Legacy task (standalone)
+│   └── lighting.html               ← 132 LEDs, grow cost calculator, DLI tool
+├── airflow/
+│   └── airflow.html                ← CFM calculator, fan & filter kits
+├── grow-space/
+│   └── grow-space.html             ← Tent kits, space calculator
+├── harvest-window/
+│   └── harvest-window.html         ← AI trichome analyzer (TensorFlow on-device)
+├── strain-search/
+│   ├── strain-search.html          ← 2,800+ strain search & filter
+│   └── strains/                    ← ~2,800 individual strain pages
+├── plant-doctor/
+│   ├── plant-doctor.html           ← Symptom-based diagnosis
+│   └── assets/html/                ← 45+ condition detail pages
+├── blog/
+│   ├── blog.html
+│   └── assets/article/             ← Grow guides & gear reviews
+├── seeds/
+│   └── seeds.html                  ← Seed Money marketplace
+├── games/
+│   └── games.html                  ← Cannabis games hub
+├── how-to/
+│   └── how-to.html                 ← 20 seed-to-cure how-to videos
 ├── assets/
-│   ├── js/hamburger.js         ← Global nav
-│   ├── css/style.css
-│   └── policies/               ← Privacy, Terms, EULA, Disclosure
-├── server.py                   ← Local dev server (serves from repo root, port 8000)
-├── CNAME                       ← growappcannabis.guide
+│   ├── js/
+│   │   ├── bottom-nav.js           ← Global bottom nav (replaces hamburger)
+│   │   └── age-gate.js
+│   ├── css/
+│   ├── img/
+│   └── policies/                   ← Privacy, Terms, EULA, Disclosure, Contact
+├── server.py                       ← Local dev server (repo root, port 8000)
+├── CNAME                           ← growappcannabis.guide
 ├── robots.txt
 └── sitemap.xml
 ```
 
 ---
 
-## 🌱 medium-feeding — The Grow App
+## 🌱 medium-feeding — The Core Grow App
 
-The core product. A single-origin multi-page app where users build a personalized grow, then track it day by day.
+The primary product. Users build a personalized grow then track it day by day.
 
 ### Page Flow
 
 ```
-medium-feeding.html  (3-step builder)
-  └── schedule-viewer.html  (schedule + card view)
-        ├── mytask.html     (daily check-in)
-        └── mydiary.html    (photo diary)
+index.html  (smart entry — new vs returning user detection)
+  └── medium-feeding.html  (3-step builder)
+        └── schedule-viewer.html  (schedule + card view)
+              ├── mytask.html     (daily check-in)
+              └── mydiary.html    (photo diary)
 ```
 
 ### Pages
@@ -85,15 +117,51 @@ My Notes fields match exactly what MyTask saves — data entered in either place
 
 ---
 
+## 🧭 Navigation — Bottom Nav
+
+All pages (except `index.html`) use a fixed bottom nav bar injected by `assets/js/bottom-nav.js` via a `bottom-nav-placeholder` div. Works at any directory depth via `data-depth`.
+
+| Tab | Icon | Destination |
+|---|---|---|
+| Today | `fa-gauge-high` | `/medium-feeding/mytask.html` |
+| Schedule | `fa-leaf` | `/medium-feeding/schedule-viewer.html` |
+| Diary | `fa-camera` | `/medium-feeding/mydiary.html` |
+| Tools | `fa-screwdriver-wrench` | `/tools/tools.html` |
+| More | `fa-ellipsis` | Bottom sheet drawer |
+
+**More drawer** contains: Strain Search, Plant Doctor, Seeds, Blog, Games, and policy footer links. Supports swipe-down-to-close on mobile.
+
+---
+
+## 🛠 Tools Hub — tools/tools.html
+
+Organized into three sections:
+
+**Featured:** Harvest Window — AI trichome analyzer (TensorFlow.js on-device, model hosted at `loyal9.app`)
+
+**Calculators:**
+- Lighting Calculator — best LED for tent, grow cost, DLI (132 lights)
+- CFM Calculator — fan & filter sizing for your space
+- Grow Space Calculator — tent kit matching by room dimensions
+
+**Grow Tools:**
+- Strain Search — 2,800+ strains, filter by type/THC/CBD/flowering time
+- Plant Doctor — 45+ conditions, symptom-based diagnosis
+- How-To Videos — 20 seed-to-cure videos
+- Grow Blog — lighting, nutrients, hydro, gear reviews
+
+---
+
 ## 🛠 Tech Stack
 
 ```javascript
 const techStack = {
   frontend:   ['Vanilla JavaScript', 'CSS3', 'HTML5'],
   data:       ['JSON', 'IndexedDB (MyGrowDB v8)', 'localStorage'],
+  ai:         ['TensorFlow.js', 'Teachable Machine (on-device trichome analysis)'],
   deployment: ['GitHub Pages', 'CDN'],
   mobile:     ['PWA', 'iOS App Store', 'Google Play', 'Amazon Appstore'],
-  analytics:  ['Google Analytics (G-KWP9QD7GPL)'],
+  analytics:  ['Google Analytics (G-X0XEMR28V2)'],
   devServer:  ['Python server.py — serves repo root on port 8000']
 };
 ```
@@ -133,6 +201,11 @@ const techStack = {
 - Column selector — overlay any schedule field on photo
 - Dark theme, back to schedule viewer
 
+### 🔬 Harvest Window
+- On-device TensorFlow.js model (no server round-trip)
+- Classifies: clear, clear-white, white, white-amber, amber, flower, preflower, seedling, vegetative, non-cannabis
+- Model and metadata served from `loyal9.app`
+
 ---
 
 ## 🏗 Architecture
@@ -168,8 +241,8 @@ Singleton instance exported as `{ IndexedDBService }` from `indexedDBService.js`
 
 ```bash
 # Clone
-git clone https://github.com/yourusername/growappcannabis.guide.git
-cd growappcannabis.guide
+git clone https://github.com/Shannon-Goddard/grow_app.git
+cd grow_app
 
 # Serve from repo root (required for absolute fetch paths)
 python server.py
@@ -197,23 +270,6 @@ python server.py
 
 ---
 
-## 🤝 Contributing
-
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
-
-### Areas We Need Help
-- 🌱 Strain data expansion (terpene profiles, genetics)
-- 🧪 Nutrient brand integration (new feeding schedules)
-- 🔬 Plant diagnostic accuracy (symptom identification)
-- 📱 Mobile PWA enhancements
-- 🌐 Internationalization
-
----
-
 ## 📄 License
 
 MIT License — see [LICENSE.md](LICENSE.md)
@@ -224,7 +280,7 @@ MIT License — see [LICENSE.md](LICENSE.md)
 
 **"Grow what you can't."** 🌿
 
-*Shannon passed it left. Amazon Q caught it, refactored it, fixed the sticky headers, rewrote the legal docs, and passed it back greener than it started.* 🍃
+*Shannon passed it left. Amazon Q caught it, refactored it, rebuilt the nav, wired up the tools hub, batch-updated 2,975 files, and passed it back greener than it started.* 🍃
 
 *Built with ❤️ by [Loyal9 LLC](https://loyal9.com) · Pair programmed with [Amazon Q](https://aws.amazon.com/q/)*
 

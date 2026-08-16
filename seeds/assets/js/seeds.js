@@ -28,7 +28,8 @@ shipBtns.forEach(btn => btn.addEventListener('click', () => {
 // Typer
 (function () {
   var slogans = [
-    "We may earn commissions from links on this page.",
+    "",
+    "",
     "America runs on growin'",
     "Betcha can't grow just one.",
     "Like a good neighbor, seeds are here.",

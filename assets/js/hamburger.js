@@ -175,8 +175,12 @@
         <i class="fa-solid fa-chevron-right hb-chevron"></i>
       </button>
       <div class="hb-links" id="hb-tools">
+        <a href="${p}tools/tools.html"${active('/tools/tools') ? ' class="hb-active"' : ''}><i class="fa-solid fa-screwdriver-wrench"></i> All Tools</a>
         <a href="${p}strain-search/strain-search.html"${active('strain-search') ? ' class="hb-active"' : ''}><i class="fa-solid fa-magnifying-glass"></i> Strain Search</a>
         <a href="${p}plant-doctor/plant-doctor.html"${active('plant-doctor') ? ' class="hb-active"' : ''}><i class="fa-solid fa-stethoscope"></i> Plant Doctor</a>
+        <a href="${p}harvest-window/harvest-window.html"${active('harvest-window') ? ' class="hb-active"' : ''}><i class="fa-solid fa-microscope"></i> Harvest Window</a>
+        <a href="${p}how-to/how-to.html"${active('how-to') ? ' class="hb-active"' : ''}><i class="fa-brands fa-youtube"></i> How-To Videos</a>
+        <a href="${p}blog/blog.html"${active('blog') ? ' class="hb-active"' : ''}><i class="fa-solid fa-newspaper"></i> Grow Blog</a>
       </div>
     </div>
 

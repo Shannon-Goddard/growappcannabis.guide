@@ -18,12 +18,6 @@ header a.back:hover{color:#04AA6D;}
 
 /* DISCLAIMER */
 .disclaimer{max-width:860px;margin:1.5rem auto 0;padding:0 1.5rem;}
-.disclaimer-bar{background:#13181d;border:1px solid #2a333d;border-radius:8px;padding:.75rem 1rem;display:flex;align-items:flex-start;gap:.6rem;font-size:.78rem;color:#8b949e;line-height:1.5;}
-.disclaimer-bar i{color:#04AA6D;margin-top:2px;flex-shrink:0;}
-.disclaimer-bar a{color:#04AA6D;}
-
-/* TYPER */
-.typer-wrap{max-width:860px;margin:.75rem auto 0;padding:0 1.5rem;font-size:.8rem;color:#555;min-height:1.4rem;}
 #typer-cursor{animation:blink 1s step-end infinite;}
 @keyframes blink{50%{opacity:0;}}
 

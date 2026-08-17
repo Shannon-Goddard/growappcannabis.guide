@@ -237,11 +237,28 @@
       } else if (window.webkit && window.webkit.messageHandlers && window.webkit.messageHandlers.downloadHandler) {
         window.webkit.messageHandlers.downloadHandler.postMessage({ action: 'download', url: base64, filename: filename });
       } else {
-        const link = document.createElement('a');
-        link.download = filename;
-        link.href = dataUrl;
-        link.click();
+        // Convert dataUrl to blob
+        const byteStr = atob(base64);
+        const arr = new Uint8Array(byteStr.length);
+        for (let i = 0; i < byteStr.length; i++) arr[i] = byteStr.charCodeAt(i);
+        const blob = new Blob([arr], { type: 'image/png' });
+        // Use Web Share API on mobile (works on iOS Safari 15.1+ and Android Chrome)
+        if (navigator.canShare && navigator.canShare({ files: [new File([blob], filename, { type: 'image/png' })] })) {
+          navigator.share({ files: [new File([blob], filename, { type: 'image/png' })], title: filename })
+            .catch(() => downloadFallback(blob, filename));
+        } else {
+          downloadFallback(blob, filename);
+        }
       }
+    }
+
+    function downloadFallback(blob, filename) {
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.download = filename;
+      link.href = url;
+      link.click();
+      setTimeout(() => URL.revokeObjectURL(url), 1000);
     }
 
     document.getElementById('retake-btn').addEventListener('click', () => {

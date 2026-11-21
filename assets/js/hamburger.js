@@ -196,7 +196,7 @@
         <i class="fa-solid fa-chevron-right hb-chevron"></i>
       </button>
       <div class="hb-links" id="hb-seeds">
-        <a href="${p}seeds/seeds.html"${active('seeds') ? ' class="hb-active"' : ''}><i class="fa-solid fa-store"></i> Seed Money</a>
+        <a href="${p}seeds/seeds.html"${active('seeds') ? ' class="hb-active"' : ''}><i class="fa-solid fa-store"></i> Find Seeds</a>
       </div>
     </div>
 

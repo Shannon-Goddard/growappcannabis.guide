@@ -25,11 +25,11 @@ shipBtns.forEach(btn => btn.addEventListener('click', () => {
   applyFilters();
 }));
 
-// Typer
+// Click logo background to toggle overlay — removed, info now inline
+
+// Typer — resumes after scroll/tab switch via visibilitychange
 (function () {
   var slogans = [
-    "",
-    "",
     "America runs on growin'",
     "Betcha can't grow just one.",
     "Like a good neighbor, seeds are here.",
@@ -49,23 +49,38 @@ shipBtns.forEach(btn => btn.addEventListener('click', () => {
   ];
   var el = document.getElementById('typer-text');
   if (!el) return;
-  // shuffle
+
   for (var k = slogans.length - 1; k > 0; k--) {
     var r = Math.floor(Math.random() * (k + 1));
     var t = slogans[k]; slogans[k] = slogans[r]; slogans[r] = t;
   }
-  var i = 0, j = 0, deleting = false;
+
+  var i = 0, j = 0, deleting = false, timer = null;
+
   function type() {
+    if (document.hidden) return;
     var s = slogans[i];
     if (!deleting) {
-      el.textContent = s.substring(0, ++j);
-      if (j === s.length) { deleting = true; setTimeout(type, 2200); return; }
-      setTimeout(type, 55 + Math.random() * 35);
+      j++;
+      el.textContent = s.substring(0, j);
+      if (j >= s.length) { deleting = true; timer = setTimeout(type, 2200); return; }
+      timer = setTimeout(type, 55 + Math.random() * 35);
     } else {
-      el.textContent = s.substring(0, --j);
-      if (j === 0) { deleting = false; i = (i + 1) % slogans.length; setTimeout(type, 400); return; }
-      setTimeout(type, 28);
+      j--;
+      el.textContent = s.substring(0, j);
+      if (j <= 0) {
+        j = 0; deleting = false;
+        i = (i + 1) % slogans.length;
+        timer = setTimeout(type, 800);
+        return;
+      }
+      timer = setTimeout(type, 28);
     }
   }
+
+  document.addEventListener('visibilitychange', function () {
+    if (!document.hidden) { clearTimeout(timer); type(); }
+  });
+
   type();
 })();
